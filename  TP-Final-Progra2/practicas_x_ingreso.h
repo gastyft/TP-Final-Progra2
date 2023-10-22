@@ -1,0 +1,14 @@
+#ifndef PRACTICAS_X_INGRESO_H_INCLUDED
+#define PRACTICAS_X_INGRESO_H_INCLUDED
+#include <stdio.h>
+#include <stdlib.h>
+
+
+///ESTRUCTURAS
+
+
+///PROTOTIPADO
+
+
+
+#endif // PRACTICAS_X_INGRESO_H_INCLUDED

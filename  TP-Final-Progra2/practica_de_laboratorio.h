@@ -1,0 +1,14 @@
+#ifndef PRACTICA_DE_LABORATORIO_H_INCLUDED
+#define PRACTICA_DE_LABORATORIO_H_INCLUDED
+#include <stdio.h>
+#include <stdlib.h>
+
+///ESTRUCTURAS
+
+
+
+///PROTOTIPADO
+
+
+
+#endif // PRACTICA_DE_LABORATORIO_H_INCLUDED
