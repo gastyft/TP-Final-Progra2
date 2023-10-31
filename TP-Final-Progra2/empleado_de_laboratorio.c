@@ -8,12 +8,9 @@ void crear_usuario(char archivo_empleados[])
     FILE *archi=fopen(archivo_empleados,"a+b");
     empleado_de_laboratorio empleado;
 
-
     printf("Ingrese Nombre y apellido\n");
     fflush(stdin);
     gets(empleado.apellido_y_nombre);
-
-///VALIDACION APELLIDO Y NOMBRE CONSULTAR
 
     printf("Ingrese nombre de usuario\n");
     fflush(stdin);
@@ -395,16 +392,18 @@ void modificar_empleado(char archivo_empleados[])
 
     empleado_de_laboratorio empleado;
     char dni_a_buscar[9];
-
+char opc=0;
+do {
+        printf("DESEA MODIFICAR UN PACIENTE? PRESS ENTER PARA SI CUALQUIER TECLA PARA NO \n");
+fflush(stdin);
+opc=getch();
     while( validar(dni_a_buscar)==1)
     {
 
         system("cls");
-        printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
+        printf("Ingrese un DNI para modificar.Sin espacios, sin puntos. Solo numeros \n");
         fflush(stdin);
         gets(dni_a_buscar);
-
-
     }
 
     if(archi)
@@ -416,38 +415,45 @@ void modificar_empleado(char archivo_empleados[])
             if( aux==empleado.DNI)
             {
                 fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
-                char res;
-                printf("Desea cambiar el nombre y apellido? Presione S para si o cualquier tecla para no \n");
-                scanf(" %c",&res);    /// SE HACE ESPACIO PARA evitar errores en el buffer del teclado
-                ///  para leer caracteres, el carácter de nueva línea ingresado después de presionar Enter se convierte en el siguiente carácter
-                ///  leído por scanf para el caso de caracteres únicos.
 
-                if('S'==res || 's'==res)
+                    printf("---Ingrese una opcion--- \n");
+                    printf("1- Cambiar Nombre y apellido\n");
+                    printf("2- Cambiar nombre de usuario \n");
+                    printf("3- Cambiar contraseña \n");
+                    printf("4- Cambiar Rol de usuario \n");
+                    printf("5- Cambiar el estado del empleado \n");
+                    printf("ESC para salir \n");
+                    fflush(stdin);
+                    char o=0;
+                    fflush(stdin);
+                    o=getch();
+                system("cls");
+                switch(o)
+                {
+
+                case '1':
                 {
                     printf("Ingrese Nombre y apellido\n");
                     fflush(stdin);
                     gets(empleado.apellido_y_nombre);
+                    break;
                 }
-                char res1;
-                printf("Desea cambiar el nombre de Usuario? Presione S para si o cualquier tecla para no\n");
-                scanf(" %c",&res1);
-                if('S'==res1 || 's'==res1)
+
+                case '2':
                 {
                     printf("Ingrese nombre de usuario\n");
                     fflush(stdin);
                     gets(empleado.usuario);
                     empleado=validaciones_nombre_usuario(archivo_empleados,empleado);
+                    break;
                 }
-                char res2;
-                printf("Desea cambiar la contrasenia? Presione S para si o cualquier tecla para no\n");
-                scanf(" %c",&res2);
-                if('S'==res2 || 's'==res2)
-                {
-                    int contrasenia_valida = 0;
-
-                    while (!contrasenia_valida)
+                case'3':
                     {
-                        printf("Ingrese la contrasenia:  \n");
+                        int contrasenia_valida = 0;
+
+                        while (!contrasenia_valida)
+                {
+                    printf("Ingrese la contrasenia:  \n");
 
                         int i = 0;
                         char ch;
@@ -492,12 +498,9 @@ void modificar_empleado(char archivo_empleados[])
                             contrasenia_valida = 1;
                         }
                     }
+                break;
                 }
-
-                char res3;
-                printf("Desea cambiar el rol para este usuario? Presione S para si o cualquier tecla para no \n");
-                scanf(" %c",&res3);
-                if('S'==res3 || 's'==res3)
+                case '4':
                 {
                     int num;
                     int flag_num=1;
@@ -518,34 +521,56 @@ void modificar_empleado(char archivo_empleados[])
                         }
 
                     }
+                    break;
                 }
-                char res4;
-                printf("Desea cambiar el estado del empleado? Presione S para si o cualquier tecla para no\n");
-                scanf(" %c",&res4);
-                if('S'==res4 || 's'==res4)
+                case '5':
                 {
                     if(empleado.emliminado==1)
-                        empleado.emliminado=0;
+                    {
+                        printf("EL EMPLEADO ESTA DADO DE BAJA. Desea darlo de alta? Presione enter para Si\n");
+                        char o1=0;
+                        fflush(stdin);
+                        o1=getch();
+                        if(o1==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                            empleado.emliminado=0;
+                    }
                     else
-                        empleado.emliminado=1;
+                    {
+                        printf("EL EMPLEADO ESTA ACTIVO. Desea darlo de baja? Presione enter para Si\n");
+                        char o2=0;
+                        fflush(stdin);
+                        o2=getch();
+                        if(o2==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                            empleado.emliminado=1;
 
+                    }
+                break;
                 }
-                fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+            case 27:
+                {
+                    break;
+                }
+            default:
+                {
+                    printf("Ingreso una opcion incorrecta elija nuevamente o presione ESC para volver atras\n");
+                    fflush(stdin);
+                    o=getch();
+                }
+             fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
                 printf("EMPLEADO MODIFICADO\n");
                 mostrar_1_empleado(empleado);
-                system("pause");
-                return;
+
+               system("pause");
+
             }
-        }
+    }
 
-
-
-
-
+    }
     }
     else
         printf("ERROR EN ABRIR EL ARCHIVO EN MODIFICAR EMPLEADO \n");
 
+}while( opc!=27);
     fclose(archi);
 }
 
@@ -558,8 +583,8 @@ int login(char archivo_empleados[])
     empleado_de_laboratorio empleado;
     int flag=1;
     int num;
-printf("USUARIO\n");
-gets(empleado_a_loguearse.usuario);
+    printf("USUARIO\n");
+    gets(empleado_a_loguearse.usuario);
 
     printf("CONTRASENIA\n");
     int i = 0;
@@ -640,9 +665,9 @@ gets(empleado_a_loguearse.usuario);
 }
 
 
-int log_out(){
-
-return -1;
+int log_out()
+{
+    return -1;
 }
 
 

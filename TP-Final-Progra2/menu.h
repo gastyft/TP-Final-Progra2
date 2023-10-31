@@ -9,7 +9,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include <unistd.h>
+#include <time.h>
+#include "Firma.h"
+#define color system("COLOR B")
+#define ENTER 13
 #define ESC 27
+#define color system("COLOR B")
 void consolaPrincipal();
 void menuprincipal();
 
