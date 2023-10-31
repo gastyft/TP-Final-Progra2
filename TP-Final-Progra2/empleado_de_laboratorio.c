@@ -12,7 +12,7 @@ void crear_usuario( )
     gets(empleado.apellido_y_nombre);
 
     printf("Ingrese nombre de usuario\n");
-    fflush(stdin);
+    fflush(stdin); ///COMENTARIO
     gets(empleado.usuario);
     empleado=validaciones_nombre_usuario(empleado);                ///ACA MODIFICANDO EL EMPLEADO.PERFIL=1 CREO UN ADMIN
     ///validacion de que no exista otro usuario con el mismo nombre de user
@@ -39,7 +39,7 @@ void crear_usuario( )
     strcpy(empleado.perfil,"admin");
 
 
-    /// Mientras se presione Enter o la longitud máxima no se alcance
+    /// Mientras se presione Enter o la longitud mÃ¡xima no se alcance
     int contrasenia_valida = 0;
 
     while (!contrasenia_valida)
@@ -82,7 +82,7 @@ void crear_usuario( )
 
         if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
         {
-            printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
+            printf("\nLa contraseÃ±a debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
         }
         else
         {
@@ -90,7 +90,7 @@ void crear_usuario( )
         }
     }
 
-    /// Verifica la contraseña ingresada (en este caso, simplemente la muestra)
+    /// Verifica la contraseÃ±a ingresada (en este caso, simplemente la muestra)
 
     int flag=1;
     printf(" \nIngrese DNI \n");
@@ -513,7 +513,7 @@ int contrasenia_valida = 0;
                     printf("---Ingrese una opcion--- \n");
                     printf("1- Cambiar Nombre y apellido\n");
                     printf("2- Cambiar nombre de usuario \n");
-                    printf("3- Cambiar contraseña \n");
+                    printf("3- Cambiar contraseÃ±a \n");
                     printf("4- Cambiar Rol de usuario \n");
                     printf("5- Cambiar el estado del empleado \n");
                     printf("ESC para salir \n");
@@ -582,7 +582,7 @@ int contrasenia_valida = 0;
 
                             if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
                             {
-                                printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
+                                printf("\nLa contraseÃ±a debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
                             }
                             else
                             {
@@ -809,7 +809,7 @@ void menu_empleados(int isLoggedin) ///MENU EMPLEADOS
                 else
                 {
                     printf("ATENCION!!!\n");
-                    printf("DESEA REVELAR LA CONTRASEÑA?\n");
+                    printf("DESEA REVELAR LA CONTRASEÃ‘A?\n");
                     printf("Pulse enter para mostrar sino cualquier tecla\n");
                     char o=0;
                     fflush(stdin);
