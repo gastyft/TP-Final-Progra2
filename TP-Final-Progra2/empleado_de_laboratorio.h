@@ -6,6 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 #define ESC 27
+#define ARCH_EMPLEADO "Empleado.bin"
+
 ///ESTRUCTURAS
 
 typedef struct {
@@ -14,7 +16,7 @@ char apellido_y_nombre[40];
 char usuario[20];
 char contrasenia[20];
 char perfil[20];
-int emliminado;
+int eliminado;
 
 }empleado_de_laboratorio;
 
@@ -32,15 +34,18 @@ int emliminado;
 
 
 ///PROTOTIPADO
-empleado_de_laboratorio validaciones_nombre_usuario(char nombreArchivo[],empleado_de_laboratorio empleado);
-empleado_de_laboratorio validaciones(char nombreArchivo[],empleado_de_laboratorio empleado,char num[20],int *flag);
-void crear_usuario(char archivo_empleados[]);
+empleado_de_laboratorio validaciones_nombre_usuario( empleado_de_laboratorio empleado);
+empleado_de_laboratorio validaciones( empleado_de_laboratorio empleado,char num[20],int *flag);
+void crear_usuario();
 void mostrar_1_empleado(empleado_de_laboratorio empleado);
-void mostrar_empleados(char archivo_empleados[]);
-void dar_baja_empleado(char archivo_empleados[],empleado_de_laboratorio empleado);
-void dar_alta_empleado_logico(char archivo_empleados[],empleado_de_laboratorio empleado);
-void modificar_empleado(char archivo_empleados[]);
-int login(char archivo_empleados[]);
+void mostrar_empleados();
+void mostrar_empleados_inactivos();
+void mostrar_empleados_activos();
+void dar_baja_empleado();
+void dar_alta_empleado_logico( empleado_de_laboratorio empleado);
+void modificar_empleado();
+void menu_empleados(int isLoggedin);
+int login( );
 int log_out();
 
 #endif // EMPLEADO_DE_LABORATORIO_H_INCLUDED

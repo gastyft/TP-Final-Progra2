@@ -44,7 +44,7 @@ arbolPaciente *crear_paciente(char nombre[20],arbolPaciente *arbol);
 int crear_dni(arbolPaciente *arbol);
 int crear_edad();
 void cargar_Archivo_paciente(char nombre[],stPaciente a);
-
+int validar_edad(char numero[]);
 void mostrar_paciente(stPaciente a);
 void mostrar_pacientes(arbolPaciente *arbol);
 

@@ -18,7 +18,7 @@
 #define color system("COLOR B")
 void consolaPrincipal();
 void menuprincipal();
-
+void menu_contenedor();
 
 ///PROTOTIPADO
 

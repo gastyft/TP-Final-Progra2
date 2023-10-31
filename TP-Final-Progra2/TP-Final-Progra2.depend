@@ -20,10 +20,10 @@
 
 1697963321 c:\users\gasty\onedrive\escritorio\repos\tp-final-progra2\ tp-final-progra2\practica_de_laboratorio.h
 
-1698713620 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.c
+1698746893 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.c
 	"empleado_de_laboratorio.h"
 
-1698588475 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.h
+1698744049 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.h
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -37,7 +37,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1698713641 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
+1698746436 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -45,7 +45,7 @@
 1698710047 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.c
 	"pacientes.h"
 
-1698709865 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.h
+1698735450 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.h
 	<stdio.h>
 	<stdlib.h>
 	<stdio.h>
@@ -67,10 +67,10 @@
 	<stdio.h>
 	<stdlib.h>
 
-1698707503 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
+1698741232 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
 	"menu.h"
 
-1698655726 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.h
+1698742053 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.h
 	"empleado_de_laboratorio.h"
 	"pacientes.h"
 	"practicas_x_ingreso.h"

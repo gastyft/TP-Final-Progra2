@@ -26,7 +26,7 @@ void carga_puntos()  /// APERTURA DE PROYECTO
 void menuprincipal()
 {
     char opc;
-     color;
+    color;
     printf("Abriendo APP, espere");
     carga_puntos();
     do
@@ -134,7 +134,111 @@ void consolaPrincipal()
 }
 
 
+void menu_contenedor()
+{
+
+    int isLoggedIn=-1;
+    int cont= 3;
+    char opcion=0;
 
 
 
 
+do {
+    isLoggedIn = login();
+
+    if (isLoggedIn == -1) {
+        cont--;
+        if (cont <1) {
+            printf("Ha alcanzado el limite de intentos. Saliendo del programa.\n");
+            return;
+        }
+        printf("LE QUEDAN %d INTENTOS\n", cont);
+
+
+        printf("Intente nuevamente o presione ESC para cerrar el programa\n");
+        fflush(stdin);
+        opcion = getch();
+        if (opcion == ESC) {
+            break;
+        }
+    }
+
+} while (isLoggedIn == -1);
+
+
+            do
+            {
+                if(isLoggedIn==1)
+                {
+                    printf("1- MENU EMPLEADOS \n");
+                    printf("ESC LogOut \n");
+                    char op1=0;
+                    fflush(stdin);
+                    op1=getch();
+
+                    switch(op1){
+
+                    case '1':
+                        menu_empleados(isLoggedIn);
+                        break;
+                        ///OTROS CASE DE LOS MENUS DE LAS DEMAS ESTRUCTURAS;
+
+                    case 27:
+                        isLoggedIn=log_out();
+                        break;
+
+                    default:
+                        printf("Ingreso una opcion incorrecta  \n");
+                          printf("1- MENU EMPLEADOS \n");
+                    printf("ESC LogOut \n");
+                        fflush(stdin);
+                        op1=getch();
+
+                        break;
+                    }
+
+///menu pacientes
+///menu practicas
+///menu labos
+///TODAS LAS FUNCIONES HABILITADAS
+///ESC PARA SALIR DE LA SESION
+
+
+                }
+                if(isLoggedIn==2)
+                {
+///menu pacientes
+///menu practicas
+///menu labos
+///ESC PARA SALIR DE LA SESION
+                }
+                if(isLoggedIn==3)
+                {
+///menu pacientes
+///menu practicas
+///menu labos
+///ESC PARA SALIR DE LA SESION
+                }
+
+
+                ///EN ALGUN LADO OPCION LOGOUT;
+                ///DONDE ASIGNA ISLOGGEDIN A -1
+            }
+            while(isLoggedIn!=-1);
+
+
+
+        //if(isLoggedin==-1)
+//   printf("HA SALIDO DE LA SESION \n");
+//  usleep(30000);
+//    system("cls");
+
+
+
+system("cls");
+printf("Cerrando programa");
+carga_puntos();
+firma();
+
+}
