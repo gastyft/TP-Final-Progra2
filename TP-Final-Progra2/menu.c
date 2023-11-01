@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "Goto_xy.h"
 
 ///INGRESAR AL LOGIN Y DEPENDIENDO DE QUE TIPO SEA EL USER DARLE
 ///MENUS DE TECNICO EMPLEADO O ADMIN CON SUS FUNCIONALIDADES ACOTADAS POR PERFIL EXCEPTO EL ADMIN QUE ES EL QUE PUEDE HACER TODO.
@@ -83,42 +84,24 @@ void consolaPrincipal()
     printf("%c%36s%23c\n",186,"UTN medic SALUD ",186);
     printf("%c%59c\n",186,186);
     printf("%c",204);
-    for(int i=0; i <19; i++)
-    {
-        printf("%c",205);
-    }
-    printf("%c",203);
-    for(int i=0; i <19; i++)
-    {
-        printf("%c",205);
-    }
-    printf("%c",203);
-    for(int i=0; i <18; i++)
+    for(int i=0; i <58; i++)
     {
         printf("%c",205);
     }
     printf("%c \n",185);
-    printf("%c%20c%20c%19c\n",186,186,186,186);
-    printf("%c%9i%11c%9i%11c%9i%10c\n",186,1,186,2,186,3,186);
-    printf("%c%20c%20c%19c\n",186,186,186,186);
-    printf("%c%16s%4c%15s%5c%15s%4c\n",186,"Administracion",186,"Laboratorio",186,"Laboratorio",186);
-    printf("%c%20c%17s%3c%16s%3c\n",186,186,"Administracion",186,"Profecionales",186);
-    printf("%c%20c%20c%19c\n",186,186,186,186);
+    printf("%c%59c\n",186,186);
+    printf("%c%15s%44c\n",186,"Usuario:",186);
+    printf("%c%59c\n",186,186);
+    printf("%c%59c\n",186,186);
+    printf("%c%15s%44c\n",186,"Contrasenia:",186);
+    printf("%c%59c\n",186,186);
+    printf("%c%59c\n",186,186);
     printf("%c",204);
-    for(int i=0; i <19; i++)
+    for(int i=0; i <58; i++)
     {
         printf("%c",205);
     }
-    printf("%c",202);
-    for(int i=0; i <19; i++)
-    {
-        printf("%c",205);
-    }
-    printf("%c",202);
-    for(int i=0; i <18; i++)
-    {
-        printf("%c",205);
-    }
+
     printf("%c \n",185);
     printf("%c%59c\n",186,186);
     printf("%c%15s%44c\n",186,"ESC   SALIR",186);
@@ -151,19 +134,20 @@ do {
         cont--;
         if (cont <1) {
             printf("Ha alcanzado el limite de intentos. Saliendo del programa.\n");
-            return;
+                break;
         }
         printf("LE QUEDAN %d INTENTOS\n", cont);
-
+/// BLOQUEAR PASAR DE ELIMINADO A 1 si no ingresa bien
 
         printf("Intente nuevamente o presione ESC para cerrar el programa\n");
         fflush(stdin);
+
         opcion = getch();
         if (opcion == ESC) {
             break;
         }
     }
-
+system("cls");
 } while (isLoggedIn == -1);
 
 
@@ -208,9 +192,7 @@ do {
                 }
                 if(isLoggedIn==2)
                 {
-///menu pacientes
-///menu practicas
-///menu labos
+///menu practicas para tecnico
 ///ESC PARA SALIR DE LA SESION
                 }
                 if(isLoggedIn==3)
@@ -230,8 +212,9 @@ do {
 
 
         //if(isLoggedin==-1)
-//   printf("HA SALIDO DE LA SESION \n");
-//  usleep(30000);
+        system("cls");
+  printf("HA SALIDO DE LA SESION \n");
+  usleep(1000000);
 //    system("cls");
 
 
@@ -239,6 +222,6 @@ do {
 system("cls");
 printf("Cerrando programa");
 carga_puntos();
-firma();
+cierre_firma();
 
 }

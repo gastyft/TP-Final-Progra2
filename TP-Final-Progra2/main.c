@@ -1,16 +1,26 @@
+#define LoKJuegoConC main
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "menu.h"
+#include "Goto_xy.h"
 
+///MAKIGAS
 
-int main()
+int LoKJuegoConC()
 {
-   /// menuprincipal();
-    color;   ///CONTRASEÑA ADMIN: Admin123!
+     color;
+   ///consolaPrincipal();
+ menu_contenedor();
+
+
+
+
+
+     ///CONTRASEÑA ADMIN: Admin123!
 
 //  crear_usuario();
-    menu_contenedor();
 /**
 
 PARA EL MENU

@@ -20,15 +20,16 @@
 
 1697963321 c:\users\gasty\onedrive\escritorio\repos\tp-final-progra2\ tp-final-progra2\practica_de_laboratorio.h
 
-1698746893 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.c
+1698796707 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.c
 	"empleado_de_laboratorio.h"
 
-1698744049 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.h
+1698794568 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.h
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	<string.h>
 	<ctype.h>
+	"Goto_xy.h"
 
 1697964880 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_de_laboratorio.c
 	"ingreso_de_laboratorio.h"
@@ -37,10 +38,11 @@
 	<stdio.h>
 	<stdlib.h>
 
-1698746436 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
+1698816355 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
+	"Goto_xy.h"
 
 1698710047 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.c
 	"pacientes.h"
@@ -67,8 +69,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1698741232 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
+1698816465 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
 	"menu.h"
+	"Goto_xy.h"
 
 1698742053 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.h
 	"empleado_de_laboratorio.h"
@@ -84,12 +87,20 @@
 	<time.h>
 	"Firma.h"
 
-1697857358 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.c
+1698816273 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.c
 	<stdio.h>
 	<stdlib.h>
 	"Firma.h"
 
-1698575079 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.h
+1698816282 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.h
 	<unistd.h>
 	<time.h>
+
+1688494228 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\goto_xy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"goto_xy.h"
+
+1688253880 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\goto_xy.h
 

@@ -7,7 +7,7 @@
 #include <ctype.h>
 #define ESC 27
 #define ARCH_EMPLEADO "Empleado.bin"
-
+#include "Goto_xy.h"
 ///ESTRUCTURAS
 
 typedef struct {

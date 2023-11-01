@@ -18,25 +18,25 @@ void crear_usuario( )
     ///validacion de que no exista otro usuario con el mismo nombre de user
     int num;
     int flag_num=1;
-//    while(flag_num)
-//    {
-//        printf("Ingrese Rol de usuario. ");
-//        printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
-//        scanf("%d",&num);
-//        if(num==2)
-//        {
-//            strcpy(empleado.perfil,"tecnico");
-//            flag_num=0;
-//        }
-//        if(num==3)
-//        {
-//            strcpy(empleado.perfil,"empleado");
-//            flag_num=0;
-//        }
-//
-//    }
+   while(flag_num)
+    {
+        printf("Ingrese Rol de usuario. ");
+        printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
+        scanf("%d",&num);
+        if(num==2)
+        {
+            strcpy(empleado.perfil,"tecnico");
+            flag_num=0;
+        }
+        if(num==3)
+        {
+            strcpy(empleado.perfil,"empleado");
+            flag_num=0;
+        }
+
+    }
     ///DAR ALTA UN NUEVO ADMIN;
-    strcpy(empleado.perfil,"admin");
+   /// strcpy(empleado.perfil,"admin");
 
 
     /// Mientras se presione Enter o la longitud máxima no se alcance
@@ -191,7 +191,7 @@ int validar(char numero[])
 }
 
 
-empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[9],int *flag) /// VALIDACIONES DE EMPLEADOS POR DNI (que no exista otro DNI repetido)
+empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[],int *flag) /// VALIDACIONES DE EMPLEADOS POR DNI (que no exista otro DNI repetido)
 {
 ///dni,nombre,apellido vienen como parametros de la funcion alta y modificacion
     empleado_de_laboratorio empleado_valido;
@@ -482,9 +482,9 @@ void modificar_empleado()
     empleado_de_laboratorio empleado;
     char dni_a_buscar[9];
     char o=0;
-      int num;
-                        int flag_num=1;
-int contrasenia_valida = 0;
+    int num;
+    int flag_num=1;
+    int contrasenia_valida = 0;
 
     printf("DESEA MODIFICAR UN PACIENTE? PRESS ENTER PARA SI CUALQUIER TECLA PARA NO \n");
     fflush(stdin);
@@ -508,7 +508,8 @@ int contrasenia_valida = 0;
             if( aux==empleado.DNI )
             {
 
-               do {
+                do
+                {
 
                     printf("---Ingrese una opcion--- \n");
                     printf("1- Cambiar Nombre y apellido\n");
@@ -543,53 +544,53 @@ int contrasenia_valida = 0;
 
 
                             while (!contrasenia_valida)
-                    {
-                        printf("Ingrese la contrasenia:  \n");
-
-                            int i = 0;
-                            char ch;
-                            int tiene_mayuscula = 0;
-                            int tiene_caracter_especial = 0;
-
-                            while (i < 20 && (ch = _getch()) != '\r')
                             {
-                                if (ch == '\b')
+                                printf("Ingrese la contrasenia:  \n");
+
+                                int i = 0;
+                                char ch;
+                                int tiene_mayuscula = 0;
+                                int tiene_caracter_especial = 0;
+
+                                while (i < 20 && (ch = _getch()) != '\r')
                                 {
-                                    if (i > 0)
+                                    if (ch == '\b')
                                     {
-                                        i--;
-                                        printf("\b \b");
+                                        if (i > 0)
+                                        {
+                                            i--;
+                                            printf("\b \b");
+                                        }
                                     }
+                                    else
+                                    {
+                                        empleado.contrasenia[i] = ch;
+                                        printf("*");
+                                        i++;
+
+                                        if (isupper(ch))
+                                        {
+                                            tiene_mayuscula = 1;
+                                        }
+                                        else if (!isalnum(ch))
+                                        {
+                                            tiene_caracter_especial = 1;
+                                        }
+                                    }
+                                }
+
+                                empleado.contrasenia[i] = '\0';
+
+                                if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
+                                {
+                                    printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
                                 }
                                 else
                                 {
-                                    empleado.contrasenia[i] = ch;
-                                    printf("*");
-                                    i++;
-
-                                    if (isupper(ch))
-                                    {
-                                        tiene_mayuscula = 1;
-                                    }
-                                    else if (!isalnum(ch))
-                                    {
-                                        tiene_caracter_especial = 1;
-                                    }
+                                    contrasenia_valida = 1;
                                 }
                             }
-
-                            empleado.contrasenia[i] = '\0';
-
-                            if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
-                            {
-                                printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
-                            }
-                            else
-                            {
-                                contrasenia_valida = 1;
-                            }
-                        }
-                    break;
+                        break;
 
                     case '4':
 
@@ -618,20 +619,20 @@ int contrasenia_valida = 0;
                         if(empleado.eliminado==1)
 
                             printf("EL EMPLEADO ESTA DADO DE BAJA. Desea darlo de alta? Presione enter para Si\n");
-                            char o1=0;
-                            fflush(stdin);
-                            o1=getch();
-                            if(o1==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
-                                empleado.eliminado=0;
+                        char o1=0;
+                        fflush(stdin);
+                        o1=getch();
+                        if(o1==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                            empleado.eliminado=0;
 
                         else
 
                             printf("EL EMPLEADO ESTA ACTIVO. Desea darlo de baja? Presione enter para Si\n");
-                            char o2=0;
-                            fflush(stdin);
-                            o2=getch();
-                            if(o2==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
-                                empleado.eliminado=1;
+                        char o2=0;
+                        fflush(stdin);
+                        o2=getch();
+                        if(o2==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                            empleado.eliminado=1;
 
 
                         break;
@@ -648,14 +649,15 @@ int contrasenia_valida = 0;
                         break;
 
                     }
-                } while(o != 27);
+                }
+                while(o != 27);
 
-            fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
-            fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
-            printf("EMPLEADO MODIFICADO\n");
-            mostrar_1_empleado(empleado);
-            system("pause");
-            return;
+                fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
+                fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+                printf("EMPLEADO MODIFICADO\n");
+                mostrar_1_empleado(empleado);
+                system("pause");
+                return;
             }
         }
     }
@@ -680,8 +682,9 @@ int login( )
     printf("CONTRASENIA \n");
     int i = 0;
     char ch;
+    gotoxy(12,2);
     while (i < 20 && (ch = _getch()) != '\r')
-    {
+    {  gotoxy(12+i,2);
         if (ch == '\b')
         {
             if (i > 0)
@@ -853,6 +856,4 @@ void menu_empleados(int isLoggedin) ///MENU EMPLEADOS
         }
     }
     while(o!=ESC);
-
-
 }

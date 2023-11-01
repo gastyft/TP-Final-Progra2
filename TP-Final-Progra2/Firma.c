@@ -67,3 +67,51 @@ void firma(){
   }
 
 }
+
+void cierre_firma(){
+
+
+
+firma();
+   int i = 0;
+   while (!kbhit())
+    {
+    if (!i)
+        {
+        system("COLOR B0");
+        i =1;
+        usleep(100000);
+        usleep(100000);
+         usleep(100000);
+        usleep(100000);
+        system("COLOR D0");
+         usleep(100000);
+        usleep(100000); usleep(100000);
+        usleep(100000);
+        system("COLOR E0");
+         usleep(100000);
+        usleep(100000); usleep(100000);
+        usleep(100000);
+        }
+    else
+        {
+        system("COLOR A0");
+         usleep(100000);
+        usleep(100000);
+        usleep(100000);
+        usleep(100000);
+        system("COLOR C0");
+         usleep(100000);
+        usleep(100000); usleep(100000);
+        usleep(100000);
+system("COLOR D0");
+         usleep(100000);
+        usleep(100000);
+        usleep(100000);
+        usleep(100000);
+        i = 0;
+        }
+    }
+
+}
+

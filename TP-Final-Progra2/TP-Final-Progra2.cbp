@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Firma.h" />
+		<Unit filename="Goto_xy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Goto_xy.h" />
 		<Unit filename="empleado_de_laboratorio.c">
 			<Option compilerVar="CC" />
 		</Unit>
