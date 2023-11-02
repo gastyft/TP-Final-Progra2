@@ -4,16 +4,16 @@
 ### Tiziano Couñago
 
 ### 28/10/2023 
-     Hoy comenzamos a trabajar en el proyecto y ya habíamos asignado las tareas en clase. Dividimos el trabajo por estructuras 
+Hoy comenzamos a trabajar en el proyecto y ya habíamos asignado las tareas en clase. Dividimos el trabajo por estructuras 
 y a me tocó encargarse del ingreso al laboratorio.
 Surgieron algunas dudas sobre las fechas de ingreso y retiro, que anoté para revisar y consultar en clase. 
-     En la clase en la que se explicó el proyecto final, no pude asistir, lo que dificultó mi comprensión al principio. 
+En la clase en la que se explicó el proyecto final, no pude asistir, lo que dificultó mi comprensión al principio. 
 Por eso, empecé a trabajar en funciones específicas y luego fue viendo cómo crear otras funciones que las incluyeran. 
 Además, el equipo todavía no había acordado ciertos detalles para que el proyecto fuera lo más uniforme posible,
 como los nombres de algunas variables o archivos que debían utilizar todos.
 
 ### 31/10/2023
-      Esas cuestiones de uniformidad ya estaban resueltas. 
+Esas cuestiones de uniformidad ya estaban resueltas. 
 Terminé las funciones relacionadas con el archivo de ingresos al laboratorio y realicé muchas de las validaciones necesarias. 
 El problema surgió cuando comencé a trabajar con listas, ya que mi estructura necesitaba conectarse con la de Sofía y la de Mauricio.
 Por lo tanto, el uso de punteros sería fundamental para poder continuar. 
