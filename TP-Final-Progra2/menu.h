@@ -12,16 +12,22 @@
 #include <unistd.h>
 #include <time.h>
 #include "Firma.h"
-#define color system("COLOR B")
+#include "Goto_xy.h"
 #define ENTER 13
 #define ESC 27
 #define color system("COLOR B")
+#define COLOR_RESET   "\x1b[0m"
+#define COLOR_RED     "\x1b[31m"
+#define COLOR_BLUE    "\x1b[36m"
+#define COLOR_YELLOW   "\x1b[33m"
+#define COLOR_WHITE  "\x1b[38m"
+#define COLOR_PURPLE "\x1b[35m"
+
+///PROTOTIPADO
 void consolaPrincipal();
 void menuprincipal();
 void menu_contenedor();
-
-///PROTOTIPADO
-
+void apertura_programa();
 
 
 #endif // MENU_H_INCLUDED

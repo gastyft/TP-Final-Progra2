@@ -1,20 +1,13 @@
 #define LoKJuegoConC main
-
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "menu.h"
-#include "Goto_xy.h"
 
 ///MAKIGAS
 
 int LoKJuegoConC()
 {
-     color;
-   ///consolaPrincipal();
- menu_contenedor();
-
-
+   //  color;
+//   consolaPrincipal();
+   menu_contenedor();
 
 
 

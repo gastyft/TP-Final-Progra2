@@ -682,9 +682,9 @@ int login( )
     printf("CONTRASENIA \n");
     int i = 0;
     char ch;
-    gotoxy(12,2);
+    /// gotoxy(12,2);
     while (i < 20 && (ch = _getch()) != '\r')
-    {  gotoxy(12+i,2);
+    {  /// gotoxy(12+i,2);
         if (ch == '\b')
         {
             if (i > 0)

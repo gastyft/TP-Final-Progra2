@@ -27,7 +27,7 @@ void carga_puntos()  /// APERTURA DE PROYECTO
 void menuprincipal()
 {
     char opc;
-    color;
+
     printf("Abriendo APP, espere");
     carga_puntos();
     do
@@ -119,17 +119,17 @@ void consolaPrincipal()
 
 void menu_contenedor()
 {
-
     int isLoggedIn=-1;
     int cont= 3;
     char opcion=0;
 
-
+    apertura_programa();
 
 
 do {
-    isLoggedIn = login();
 
+
+    isLoggedIn = login();
     if (isLoggedIn == -1) {
         cont--;
         if (cont <1) {
@@ -155,8 +155,11 @@ system("cls");
             {
                 if(isLoggedIn==1)
                 {
+
+                    printf("\n");
                     printf("1- MENU EMPLEADOS \n");
                     printf("ESC LogOut \n");
+
                     char op1=0;
                     fflush(stdin);
                     op1=getch();
@@ -225,3 +228,8 @@ carga_puntos();
 cierre_firma();
 
 }
+    void apertura_programa(){
+    color;
+    printf("Abriendo APP, espere");
+    carga_puntos();
+    }
