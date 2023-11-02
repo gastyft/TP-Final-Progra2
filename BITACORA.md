@@ -1,5 +1,5 @@
  
- # <img src="https://campus.mdp.utn.edu.ar/pluginfile.php/1/theme_moove/logo/1692727069/UTN-iso-new.png" alt="Logo UTN FR mdp" width="50" height="50">
+ # <img src="https://campus.mdp.utn.edu.ar/pluginfile.php/1/theme_moove/logo/1692727069/UTN-iso-new.png" alt="Logo UTN FR mdp" width="100" height="50">
  # DIA A DIA
 
 ## Tiziano Couñago
