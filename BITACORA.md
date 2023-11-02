@@ -23,11 +23,9 @@ También, me saqué a duda que había anotado acerca de las fechas de ingreso y 
 ## Sofia Stejskal
 
  **30/10/2023**
-
 Trabaje con el archivo de las prácticas y tuvo inconvenientes para pasar los datos del mismo a un arreglo dinámico que pudo solucionar con ayuda del docente. 
 
- 1/11/2023
-
+**1/11/2023**
 Sofia sigue trabajando en el archivo de prácticas. Búsqueda de prácticas, baja, altas. 
 
 
