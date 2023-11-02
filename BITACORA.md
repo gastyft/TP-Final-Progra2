@@ -20,7 +20,7 @@ El problema surgió cuando comencé a trabajar con listas, ya que mi estructura 
 Por lo tanto, el uso de punteros sería fundamental para poder continuar. 
 También, me saqué a duda que había anotado acerca de las fechas de ingreso y la del retiro.
 
-## Sofia stejskal
+## Sofia Stejskal
 
  **30/10/2023**
 
