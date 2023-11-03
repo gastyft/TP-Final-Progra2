@@ -1,4 +1,4 @@
- 
+ # <div class="container-fluid" style:"color=purple">
  # <img src="https://campus.mdp.utn.edu.ar/pluginfile.php/1/theme_moove/logo/1692727069/UTN-iso-new.png" alt="Logo UTN FR mdp" width="130" height="40">
  # DIA A DIA
 
@@ -48,7 +48,7 @@ Las validaciones genéricas se modificaron según los datos que el usuario tenga
 
 
 
-
+# </div>
 
 
 
