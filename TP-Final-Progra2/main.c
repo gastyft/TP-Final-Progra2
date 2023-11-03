@@ -1,4 +1,4 @@
-#define LoKJuegoConC main
+#define LoKJuegoConC main ///By Marian
 #include "menu.h"
 
 ///MAKIGAS

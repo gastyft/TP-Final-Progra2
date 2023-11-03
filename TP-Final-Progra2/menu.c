@@ -33,7 +33,7 @@ void menuprincipal()
     do
     {
         system("cls");
-        consolaPrincipal();
+///        consolaPrincipal();
         printf("\n");
         fflush(stdin);
         opc = getch();
@@ -71,9 +71,9 @@ void menuprincipal()
     while( opc != ESC);
 
 }
-void consolaPrincipal()
+void consola_login()
 {
-
+color;
     printf("\n\n%c",201);
     for(int i=0; i <58; i++)
     {
@@ -90,10 +90,55 @@ void consolaPrincipal()
     }
     printf("%c \n",185);
     printf("%c%59c\n",186,186);
-    printf("%c%15s%44c\n",186,"Usuario:",186);
+    printf("%c%15s%44c\n",186,"",186);
     printf("%c%59c\n",186,186);
     printf("%c%59c\n",186,186);
-    printf("%c%15s%44c\n",186,"Contrasenia:",186);
+    printf("%c%15s%44c\n",186,"",186);
+    printf("%c%59c\n",186,186);
+    printf("%c%59c\n",186,186);
+    printf("%c",204);
+    for(int i=0; i <58; i++)
+    {
+        printf("%c",205);
+    }
+
+    printf("%c \n",185);
+    printf("%c%59c\n",186,186);
+
+    printf("%c%59c\n",186,186);
+    printf("%c",200);
+    for(int i=0; i <58; i++)
+    {
+        printf("%c",205);
+    }
+    printf("%c\n",188);
+
+
+}
+
+void consola_vacia()
+{
+color;
+    printf("\n\n%c",201);
+    for(int i=0; i <58; i++)
+    {
+        printf("%c",205);
+    }
+    printf("%c\n",187);
+    printf("%c%59c\n",186,186);
+    printf("%c%36s%23c\n",186,"UTN medic SALUD ",186);
+    printf("%c%59c\n",186,186);
+    printf("%c",204);
+    for(int i=0; i <58; i++)
+    {
+        printf("%c",205);
+    }
+    printf("%c \n",185);
+    printf("%c%59c\n",186,186);
+    printf("%c%15s%44c\n",186,"",186);
+    printf("%c%59c\n",186,186);
+    printf("%c%59c\n",186,186);
+    printf("%c%15s%44c\n",186,"",186);
     printf("%c%59c\n",186,186);
     printf("%c%59c\n",186,186);
     printf("%c",204);
@@ -116,7 +161,6 @@ void consolaPrincipal()
 
 }
 
-
 void menu_contenedor()
 {
     int isLoggedIn=-1;
@@ -127,21 +171,24 @@ void menu_contenedor()
 
 
 do {
-
-
     isLoggedIn = login();
     if (isLoggedIn == -1) {
         cont--;
         if (cont <1) {
+                gotoxy(2,11);
+
             printf("Ha alcanzado el limite de intentos. Saliendo del programa.\n");
+             printf(COLOR_RESET);
                 break;
         }
+        gotoxy(2,8);
+        printf(COLOR_RED);
         printf("LE QUEDAN %d INTENTOS\n", cont);
 /// BLOQUEAR PASAR DE ELIMINADO A 1 si no ingresa bien
-
+gotoxy(2,9);
         printf("Intente nuevamente o presione ESC para cerrar el programa\n");
         fflush(stdin);
-
+        printf(COLOR_RESET);
         opcion = getch();
         if (opcion == ESC) {
             break;
@@ -216,17 +263,18 @@ system("cls");
 
         //if(isLoggedin==-1)
         system("cls");
+        color;
   printf("HA SALIDO DE LA SESION \n");
-  usleep(1000000);
-//    system("cls");
-
-
-
-system("cls");
+int salid1=0;
+while(salid1<80){
+  usleep(10000);
+  salid1++;
+}
+ system("cls");
+color;
 printf("Cerrando programa");
 carga_puntos();
 cierre_firma();
-
 }
     void apertura_programa(){
     color;

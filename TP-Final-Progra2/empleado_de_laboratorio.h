@@ -8,6 +8,7 @@
 #define ESC 27
 #define ARCH_EMPLEADO "Empleado.bin"
 #include "Goto_xy.h"
+#include "menu.h"
 ///ESTRUCTURAS
 
 typedef struct {
@@ -24,9 +25,9 @@ int eliminado;
 
 
 /// ADMIN con prioridad 1 y este puede crear usuarios con prioridad 2 o 3. Solo el admin puede crear nuevos usuarios.
-///Para administradores(admin con todas las funciones)
-///Para profesionales del Laboratorio (bioquímicos o técnicos)
-///Para administrativos del Laboratorio(empleado)
+///Para administradores(admin con todas las funciones) Rol 1
+///Para profesionales del Laboratorio (bioquímicos o técnicos) Rol 2
+///Para administrativos del Laboratorio(empleado) Rol 3
 
 ///CREAR UN LOGIN Y QUE ESTE SEA TRANSFERIDO EN TODOS LOS COMPONENTES, QUE MEDIANTE IF EN EL MENU SE LE VAN A HABILITAR LAS OPCIONES
 /// DEPENDIENDO DE QUE TIPO DE USUARIO SEA.

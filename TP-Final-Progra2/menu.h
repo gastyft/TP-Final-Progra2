@@ -24,7 +24,8 @@
 #define COLOR_PURPLE "\x1b[35m"
 
 ///PROTOTIPADO
-void consolaPrincipal();
+void consola_login();
+void consola_vacia();
 void menuprincipal();
 void menu_contenedor();
 void apertura_programa();

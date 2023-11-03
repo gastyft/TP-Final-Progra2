@@ -676,49 +676,56 @@ int login( )
     empleado_de_laboratorio empleado;
     int flag=1;
     int num;
-    printf("USUARIO\n");
+    consola_login();
+     gotoxy(7,8);
+    printf("USUARIO:\n");
+  gotoxy(16,8);
     gets(empleado_a_loguearse.usuario);
-
-    printf("CONTRASENIA \n");
+ gotoxy(3,11);
+   printf("CONTRASENIA: \n");
     int i = 0;
     char ch;
-    /// gotoxy(12,2);
-    while (i < 20 && (ch = _getch()) != '\r')
-    {  /// gotoxy(12+i,2);
-        if (ch == '\b')
+      gotoxy(16,11);
+    while (i < 20 && (ch = _getch()) != '\r')  ///SE LEE CARACTER A CARACTER CON _GETCH()  QUE CAPTURA EL CARACTER SIN NECESIDAD DE ENTER
+    {   ///gotoxy(11+i,16);                     /// LEERA HASTA QUE SE OPRIMA ENTER(\r)
+        if (ch == '\b')                        ///SI   ES BACKSPACE,ES DECIR, SI RETROCEDIO EL PUNTERO DEL TECLADO, ENTONCES ENTRA
         {
-            if (i > 0)
+            if (i > 0)                         ///PREGUNTA SI LA I ES MAYOR A CERO SI LO ES ENTONCES HACE 2 BACKSPACE
             {
                 i--;
                 printf("\b \b");
             }
         }
-        else
-        {
+        else                                   /// SI NO ES UN BACKSPACE ENTONCES SUMA EL CARACTER LEIDO A CONTRASENIA Y EN LUGAR DE QUE APAREZCA
+        {                                      /// LA LETRA APARECE  * PARA EVITAR LA LECTURA DEL CARACTER INGRESADO.
             empleado_a_loguearse.contrasenia[i] = ch;
-            printf("*");
+            printf("*");///SE PUEDE REEMPLAZAR POR CUALQUIER CARACTER
             i++;
         }
     }
     empleado_a_loguearse.contrasenia[i] = '\0';
     if(archi)
     {
-        while(fread(&empleado,sizeof(empleado_de_laboratorio),1,archi)>0)
+        while(fread(&empleado,sizeof(empleado_de_laboratorio),1,archi)>0)  ///COMPARA USUARIO CON GRADO DE LIBERTAD POR SI EN USUARIO PONE ALGUNA MAYUSCULA QUE NO IBA
         {
             if(strcmpi(empleado_a_loguearse.usuario,empleado.usuario)==0)
             {
 
-                if(strcmp(empleado_a_loguearse.contrasenia,empleado.contrasenia)==0)
+                if(strcmp(empleado_a_loguearse.contrasenia,empleado.contrasenia)==0) ///COMPARA RESTRICTAMENTE QUE SEAN IGUALES LAS CONTRASENIAS
                 {
 
-                    if(empleado.eliminado==1)
+                    if(empleado.eliminado==1) ///CASO DE QUE EL USUARIO ESTE DADO DE BAJA, SE IFORMA Y NO SE LE PERMITE EL ACCESO.
                     {
+                        system("cls");
+                        consola_vacia();
+                        gotoxy(12,11);
                         printf("USTED HA SIDO DADO DE BAJA SOLICITE UN NUEVO USUARIO CON EL ADMIN O PROGRAMADOR \n");
 
                     }
                     else
                     {
-                        printf("\nBienvenido %s \n",empleado.apellido_y_nombre);
+                        printf("\nBienvenido %s \n",empleado.apellido_y_nombre); ///CASO QUE LOGUEE BIEN, SE LO RECIBE Y ASIGNA EL ROL QUE TIENE
+
                         if(strcmpi(empleado.perfil,"admin")==0)
                         {
                             num=1;
@@ -740,12 +747,17 @@ int login( )
                     flag=1;
             }
         }
-        if(flag==1)
+        if(flag==1)  ///SE INFORMA SI NO INGRESO CORRECTAMENTE
         {
             num=-1;
 
             printf("\n");
+            system("cls");
+                        consola_vacia();
+                        gotoxy(9,7);
+                        printf(COLOR_RED);
             printf("NOMBRE DE USUARIO O CONTRASENIA INCORRECTA \n");
+            printf(COLOR_RESET);
         }
 
     }
@@ -754,11 +766,11 @@ int login( )
 
     fclose(archi);
 
-    return num;
+    return num;     ///RETORNA -1 SI NO INGRESO CORRECTAMENTE SINO ROL 1,2 O 3.
 }
 int log_out()
 {
-    return -1;
+    return -1; ///DESLOGUEA. SOLAMENTE CAMBIA DE ESTADO A -1.
 }
 
 
@@ -789,8 +801,6 @@ void menu_empleados(int isLoggedin) ///MENU EMPLEADOS
                 system("cls");
                 break;
             case '2':
-
-
                 dar_baja_empleado( );
                 printf("EMPLEADOS DADOS DE BAJA \n");
                 mostrar_empleados_inactivos();
