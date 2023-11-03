@@ -31,7 +31,13 @@ int pasar_archivo_practicas_a_arreglo (practicas * arreglo_practicas, int * dime
 void mostrar_arreglo(practicas* arreglo_practicas, int validos);
 void dar_baja_practica(int nro_de_practica_a_validar);
 void dar_alta_practica(int nro_de_practica_a_validar);
-void buscar_practica_por_nombre (char practica_a_buscar[], practicas * arreglo_de_practicas,int validos);
+void buscar_practica_por_nombre (char practica_a_buscar[], practicas * arreglo_de_practicas,int validos,int indices [], int * cant_resultados);
+void buscar_practica_por_numero(int numero_practica_a_buscar, practicas * arreglo_de_practicas, int validos);
+practicas cargar_practica_individual_validacion_archivo ();
+practicas practicaNula();
+void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practicas, int validos);
+void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo_practicas, int i);
+
 
 
 #endif // PRACTICA_DE_LABORATORIO_H_INCLUDED
