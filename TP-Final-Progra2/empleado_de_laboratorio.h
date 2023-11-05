@@ -48,5 +48,5 @@ void modificar_empleado();
 void menu_empleados(int isLoggedin);
 int login( );
 int log_out();
-
+int validar_dni_empleado(char numero[]);
 #endif // EMPLEADO_DE_LABORATORIO_H_INCLUDED

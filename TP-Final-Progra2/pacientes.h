@@ -19,7 +19,7 @@ char Apellido_nombre[40];
 
 }stPaciente;
 
-typedef struct  arbolPaciente {
+typedef struct arbolPaciente {
 
  stPaciente paciente;
  struct arbolPaciente *izq;
@@ -44,15 +44,21 @@ arbolPaciente *crear_paciente(char nombre[20],arbolPaciente *arbol);
 int crear_dni(arbolPaciente *arbol);
 int crear_edad();
 void cargar_Archivo_paciente(char nombre[],stPaciente a);
-int validar_edad(char numero[]);
+
+void mostrar_pacientes(stPaciente a, int i);
+void mostrar_paciente_porapellido(char nombre[]);
+int posmenor(stPaciente a[],int validos,int pos);
+void ordenar_seleccion(stPaciente a[],int validos);
+
 void mostrar_paciente(stPaciente a);
-void mostrar_pacientes(arbolPaciente *arbol);
+void mostrar_pacientes_arbol(arbolPaciente *arbol);
 
 arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente * arbol);
 stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol);
 void modificar_archivo_pacientes(char nombre[],int dni_buscar,stPaciente paciente);
-
-
-
+arbolPaciente* baja_paciente(char nombre_paciente[],arbolPaciente *arbol);
+int contar_pacientes(char nombre_paciente[]);
+int validar_edad(char numero[]);
+ arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
 
 #endif // PACIENTES_H_INCLUDED

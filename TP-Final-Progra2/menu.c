@@ -1,5 +1,5 @@
 #include "menu.h"
-#include "Goto_xy.h"
+
 
 ///INGRESAR AL LOGIN Y DEPENDIENDO DE QUE TIPO SEA EL USER DARLE
 ///MENUS DE TECNICO EMPLEADO O ADMIN CON SUS FUNCIONALIDADES ACOTADAS POR PERFIL EXCEPTO EL ADMIN QUE ES EL QUE PUEDE HACER TODO.
@@ -23,54 +23,54 @@ void carga_puntos()  /// APERTURA DE PROYECTO
 }
 
 
-
-void menuprincipal()
-{
-    char opc;
-
-    printf("Abriendo APP, espere");
-    carga_puntos();
-    do
-    {
-        system("cls");
-///        consolaPrincipal();
-        printf("\n");
-        fflush(stdin);
-        opc = getch();
-        switch(opc)
-        {
-        case 49:
-            system("cls");
-
-            system("pause");
-            break;
-        case 50:
-            system("cls");
-
-            system("pause");
-            break;
-        case 51:
-            system("cls");
-
-            system("pause");
-            break;
-
-        case ESC:
-            printf("Saliendo del programa...");
-            carga_puntos();
-            system("cls");
-            firma();
-            break;
-        default:
-            printf("Opcion invalida. Por favor, seleccione una opcion valida.\n");
-            system("pause");
-            break;
-
-        }
-    }
-    while( opc != ESC);
-
-}
+// NO SE USA
+//void menuprincipal()
+//{
+//    char opc;
+//
+//    printf("Abriendo APP, espere");
+//    carga_puntos();
+//    do
+//    {
+//        system("cls");
+/////        consolaPrincipal();
+//        printf("\n");
+//        fflush(stdin);
+//        opc = getch();
+//        switch(opc)
+//        {
+//        case 49:
+//            system("cls");
+//
+//            system("pause");
+//            break;
+//        case 50:
+//            system("cls");
+//
+//            system("pause");
+//            break;
+//        case 51:
+//            system("cls");
+//
+//            system("pause");
+//            break;
+//
+//        case ESC:
+//            printf("Saliendo del programa...");
+//            carga_puntos();
+//            system("cls");
+//            firma();
+//            break;
+//        default:
+//            printf("Opcion invalida. Por favor, seleccione una opcion valida.\n");
+//            system("pause");
+//            break;
+//
+//        }
+//    }
+//    while( opc != ESC);
+//
+//}
 void consola_login()
 {
 color;
@@ -169,6 +169,7 @@ void menu_contenedor()
 
     apertura_programa();
 
+    arbolPaciente *arbol=inic_arbol();
 
 do {
     isLoggedIn = login();
@@ -203,8 +204,20 @@ system("cls");
                 if(isLoggedIn==1)
                 {
 
-                    printf("\n");
+                      system("cls");
+                        consola_vacia();
+
+                        gotoxy(21,7);
                     printf("1- MENU EMPLEADOS \n");
+                    gotoxy(21,8);
+                    printf("2- MENU PACIENTES \n");
+                     gotoxy(21,9);
+                     printf("3- Yo tendria otro menu :) ...");
+                      gotoxy(21,10);
+                     printf("4- Yo tendria otro menu :) ...");
+                      gotoxy(21,11);
+                     printf("5- Yo no quiero ser un menu >( ...");
+                    gotoxy(21,12);
                     printf("ESC LogOut \n");
 
                     char op1=0;
@@ -217,14 +230,40 @@ system("cls");
                         menu_empleados(isLoggedIn);
                         break;
                         ///OTROS CASE DE LOS MENUS DE LAS DEMAS ESTRUCTURAS;
+                    case '2':
+                    arbol= menu_pacientes("pacientes.bin", arbol);
+                        break;
+                    case '3':
 
+                        break;
                     case 27:
                         isLoggedIn=log_out();
                         break;
 
                     default:
+                        system("cls");
+                        gotoxy(21,7);
                         printf("Ingreso una opcion incorrecta  \n");
-                          printf("1- MENU EMPLEADOS \n");
+                        int contame=0;
+                        while(contame<200)
+                        {
+                            usleep(10000);
+                            contame++;
+                        }
+                             system("cls");
+                        consola_vacia();
+
+                        gotoxy(21,7);
+                    printf("1- MENU EMPLEADOS \n");
+                    gotoxy(21,8);
+                    printf("2- MENU PACIENTES \n");
+                     gotoxy(21,9);
+                     printf("3- Yo tendria otro menu :) ...");
+                      gotoxy(21,10);
+                     printf("4- Yo tendria otro menu :) ...");
+                      gotoxy(21,11);
+                     printf("5- Yo no quiero ser un menu >( ...");
+                    gotoxy(21,12);
                     printf("ESC LogOut \n");
                         fflush(stdin);
                         op1=getch();
@@ -281,3 +320,50 @@ cierre_firma();
     printf("Abriendo APP, espere");
     carga_puntos();
     }
+
+
+
+
+
+void consola_pacientes(){
+ system("color b");
+  printf("\n\n%c",201);
+  for(int i=0;i <58;i++){
+    printf("%c",205);
+  }
+  printf("%c\n",187);
+  printf("%c%59c\n",186,186);
+  printf("%c%36s%23c\n",186,"UTN medic SALUD ",186);
+  printf("%c%59c\n",186,186);
+  printf("%c",204);
+   for(int i=0;i <58;i++){
+    printf("%c",205);
+  }
+
+  printf("%c \n",185);
+  printf("%c%59c\n",186,186);
+  printf("%c%8i%26s%25c\n",186,1,"Alta Paciente",186);
+  printf("%c%8i%29s%22c\n",186,2,"Modificar Paciente",186);
+  printf("%c%8i%28s%23c\n",186,3,"Baja de Paciente",186);
+  printf("%c%8i%28s%23c\n",186,4,"Consuta Paciente",186);
+  printf("%c%8i%29s%22c\n",186,5,"Listado de ingreso",186);
+  printf("%c%8i%30s%21c\n",186,6,"Consulta de ingreso",186);
+  printf("%c%8i%30s%21c\n",186,7,"Listado de Pacientes",186);
+  printf("%c%59c\n",186,186);
+   printf("%c",204);
+   for(int i=0;i <58;i++){
+    printf("%c",205);
+  }
+
+  printf("%c \n",185);
+  printf("%c%59c\n",186,186);
+  printf("%c%17s%42c\n",186,"ESC   SALIR",186);
+  printf("%c%59c\n",186,186);
+    printf("%c",200);
+  for(int i=0;i <58;i++){
+    printf("%c",205);
+  }
+  printf("%c\n",188);
+
+
+}

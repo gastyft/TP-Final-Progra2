@@ -1,16 +1,17 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
-#include "empleado_de_laboratorio.h"
-#include "pacientes.h"
-#include "practicas_x_ingreso.h"
-#include "practica_de_laboratorio.h"
-#include "ingreso_de_laboratorio.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
 #include <unistd.h>
 #include <time.h>
+#include "empleado_de_laboratorio.h"
+#include "pacientes.h"
+#include "practicas_x_ingreso.h"
+#include "practica_de_laboratorio.h"
+#include "ingreso_de_laboratorio.h"
+#include "pacientes.h"
 #include "Firma.h"
 #include "Goto_xy.h"
 #define ENTER 13
@@ -29,6 +30,9 @@ void consola_vacia();
 void menuprincipal();
 void menu_contenedor();
 void apertura_programa();
+void consola_pacientes();
+void consola_pacientes();
+
 
 
 #endif // MENU_H_INCLUDED

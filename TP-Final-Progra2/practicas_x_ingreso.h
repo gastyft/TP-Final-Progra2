@@ -40,7 +40,16 @@ nodo_simple_pxi * borrar_nodo_foble (nodo_simple_pxi * lista, int dato);
 nodo_simple_pxi * buscar_nodo(nodo_simple_pxi * lista, int dato);
 void muestra_individual (pracXingreso a);
 void muestra_lista_desde_archivo (const char * archivo_practicas, nodo_simple_pxi * lista);
-
+nodo_simple_pxi * inic_lista();
+nodo_simple_pxi * agregar_ppio(nodo_simple_pxi * lista, nodo_simple_pxi * nuevo);
+nodo_simple_pxi * crear_nodo_doble (pracXingreso dato);
+nodo_simple_pxi * buscar_ultimo_nodo_recursivo (nodo_simple_pxi * lista);
+nodo_simple_pxi * agregar_final (nodo_simple_pxi*,nodo_simple_pxi*);
+nodo_simple_pxi * agregar_orden (nodo_simple_pxi *,nodo_simple_pxi*);
+nodo_simple_pxi * cargar_lista (nodo_simple_pxi*);
+void muestra_lista (nodo_simple_pxi*);
+nodo_simple_pxi * borrar_nodo_foble (nodo_simple_pxi * lista, int dato);
+nodo_simple_pxi * buscar_nodo(nodo_simple_pxi * lista, int dato);
 
 
 #endif // PRACTICAS_X_INGRESO_H_INCLUDED

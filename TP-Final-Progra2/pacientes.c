@@ -1,11 +1,4 @@
-
 #include "pacientes.h"
-
-
-
-
-
-
 
 arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol){
     FILE *archi = fopen(nombre_paciente,"rb");
@@ -13,7 +6,7 @@ arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbo
 
     if(archi){
 
-         while(fread(&paciente,sizeof(paciente),1,archi) > 0){
+         while(fread(&paciente,sizeof(stPaciente),1,archi) > 0){
 
             arbol = agregar_paciente(arbol,crear_nodo_arbol(paciente));
 
@@ -37,13 +30,17 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
     paciente.eliminado = 0;
 
        system("cls");
-      printf("\n\t ingrese Apellido y Nombre del paciente: ");
+       consola_vacia();
+       gotoxy(1,7);
+      printf("\n\t ingrese Apellido y Nombre del paciente: \n\n\t");
       fflush(stdin);
       gets(paciente.Apellido_nombre);
 
 
    while(validar_nombre(paciente.Apellido_nombre)){
       system("cls");
+      consola_vacia();
+       gotoxy(1,7);
       printf("\n\t No corresponde a un nombre \n ");
       printf("\n\t ingrese Apellido y Nombre del paciente: ");
       fflush(stdin);
@@ -55,7 +52,9 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
       do{
             system("cls");
-      printf(" \t ingrese la direccion \n");
+            consola_vacia();
+             gotoxy(1,7);
+      printf(" \t ingrese la direccion \n\t");
       gets(paciente.direccion);
 
 
@@ -63,20 +62,30 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
       do{
          system("cls");
-         printf(" \t ingrese el numero de telefono \n");
+         consola_vacia();
+         gotoxy(1,7);
+         printf(" \t ingrese el numero de telefono \n\t");
          gets(paciente.telefono);
 
-      }while(validar_edad(paciente.telefono) || strlen(paciente.telefono) < 9);
-
+      } while(validar_edad(paciente.telefono) || strlen(paciente.telefono) < 9);
+      system("cls");
+      consola_vacia();
+       gotoxy(1,7);
       mostrar_paciente(paciente);
 
   char opc = 0;
+
   printf("\n\t Son correctos los datos ? s/n \n");
   fflush(stdin);
   opc = getch();
+
   if(opc == 's' || opc == 'S')      /// se preciona s para cargar los datos
     {
+          system("cls");
+       consola_vacia();
+         gotoxy(1,7);
     printf(" \n \t*DATOS CARGADOS   . . . \n \t*");
+
    cargar_Archivo_paciente(nombre_paciente,paciente);
    arbol = agregar_paciente(arbol,crear_nodo_arbol(paciente));
 
@@ -85,8 +94,10 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
 
   }else{
-    system("cls");
-   printf("NO fueron cargados los datos... \n");
+     system("cls");
+     consola_vacia();
+       gotoxy(1,7);
+   printf(" \t NO fueron cargados los datos... \n \t");
    system("pause");
 
 
@@ -102,11 +113,14 @@ return arbol;
 arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente * arbol){
      char dni_char[15];
      int dni;
+
     printf("\t ingrese el dni del paciente que desea modificar \n");
     printf("\t ingrese DNI: ");
     gets(dni_char);
    while( validar(dni_char)){           /// valida si es un numero
          system("cls");
+     consola_vacia();
+       gotoxy(1,7);
      printf("\t no corresponde a un DNI \n");
      printf("\t ingrese un DNI: ");
      gets(dni_char);
@@ -117,6 +131,8 @@ arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente *
 
    if(aux != NULL){
          system("cls");
+         consola_vacia();
+          gotoxy(1,7);
         mostrar_paciente(aux->paciente);
         char opc;
        printf(" \n\t desea modificar el paciente ? \n");
@@ -150,7 +166,8 @@ arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente *
 }
 stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion que modifica un paciente
         system("cls");                                               /// recible a un paciente y lo devuelve modificado
-      mostrar_paciente(a);
+        consola_vacia();
+         gotoxy(1,7);
 
      printf("\n \tQue dato desea modificar?");
 
@@ -160,7 +177,6 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
      printf("\n\t[4]   - MODIFICAR TELEFONO");
      printf("\n\t[5]   - DAR DE ALTA");
      printf("\n\t[6]   - MODIFICAR DNI");
-     printf("\n\t[ESC]   - SALIR");
 
 
    char opcion;
@@ -170,6 +186,8 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
     {
       case 49:
                      system("cls");
+                     consola_vacia();
+                      gotoxy(1,7);
                      printf("\n\t ingrese Apellido y Nombre del paciente: ");
                      fflush(stdin);
                      gets(a.Apellido_nombre);
@@ -178,6 +196,8 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
              while(validar_nombre(a.Apellido_nombre))
                 {
                        system("cls");
+                       consola_vacia();
+                        gotoxy(1,7);
                   printf("\n\t No corresponde a un nombre \n ");
                   printf("\n\t ingrese Apellido y Nombre del paciente: ");
                   fflush(stdin);
@@ -197,6 +217,8 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
       case 51:
                    do{
                       system("cls");
+                      consola_vacia();
+                       gotoxy(1,7);
                       printf(" \t ingrese la direccion \n");
                       gets(a.direccion);
 
@@ -208,6 +230,8 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
 
                        do{
                        system("cls");
+                       consola_vacia();
+                       gotoxy(1,7);
                        printf(" \t ingrese el numero de telefono \n");
                        gets(a.telefono);
 
@@ -249,6 +273,62 @@ stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol){  /// funcion q
     }
 
 return a;
+
+}
+
+arbolPaciente* baja_paciente(char nombre_paciente[],arbolPaciente *arbol){
+    char dni_char[15];
+     int dni;
+    printf("\t ingrese el dni del paciente que desea dar de baja \n");
+    printf("\t ingrese DNI: ");
+    gets(dni_char);
+   while( validar(dni_char)){           /// valida si es un numero
+         system("cls");
+     printf("\t no corresponde a un DNI \n");
+     printf("\t ingrese un DNI: ");
+     gets(dni_char);
+
+   }
+   dni = atoi(dni_char);
+   arbolPaciente *aux = buscar_paciente(arbol,dni);
+
+   if(aux != NULL){
+         system("cls");
+        mostrar_paciente(aux->paciente);
+        char opc;
+       printf(" \n\t desea dar de baja el paciente ? \n");
+       printf("\t presione cualquier tecla para continuar, ESC para salir \n");
+       opc = getch();
+       if(opc != ESC){
+
+             if(aux->ingreso == NULL){
+
+                 aux->paciente.eliminado = 1;
+             modificar_archivo_pacientes(nombre_paciente,dni,aux->paciente);
+              printf("\t el paciente fue dado de baja \n");
+
+
+             }else{
+
+                printf("\t el paciente tiene un ingreso asociado \n");
+                printf("\t no se le puede dar de baja \n");
+
+
+             }
+
+
+       }
+
+
+   }else{
+     system("cls");
+     printf("\n\t no se encontro el DNI del paciente \n ");
+
+
+
+   }
+
+ return arbol;
 
 }
 
@@ -301,10 +381,15 @@ int crear_dni(arbolPaciente *arbol){
     int dni;
 
    do{
+         system("cls");
+     consola_vacia();
+       gotoxy(1,7);
    printf("\t ingrese nuevo DNI: ");
    gets(dni_char);
    while( validar(dni_char)){           /// valida si es un numero
-         system("cls");
+          system("cls");
+        consola_vacia();
+         gotoxy(1,7);
      printf("\t no corresponde a un DNI \n");
      printf("\t ingrese un DNI: ");
      gets(dni_char);
@@ -322,11 +407,17 @@ int crear_edad(){
 
     char edad_char[15];
     int edad;
+    system("cls");
+     consola_vacia();
+       gotoxy(2,7);
     printf("\t ingrese una edad \n \t");
     gets(edad_char);
     edad = atoi(edad_char);
 
     while(validar_edad(edad_char) || edad > 100 || edad < 1){
+             system("cls");
+          consola_vacia();
+           gotoxy(2,7);
         printf("\t no corresponde a una edad \n");
         printf("\t ingrese una edad \n \t");
         gets(edad_char);
@@ -406,6 +497,27 @@ arbolPaciente *buscar_paciente(arbolPaciente *arbol,int dato)
     return rta;
 }
 
+int validar(char numero[]){
+
+    int flag = 0;
+
+    for (int i = 0; numero[i] != '\0'; i++) {
+        if (isspace(numero[i])) {
+        flag = 1; }  /// detecta un escpacio
+        if (isdigit(numero[i])) { /// si es un numero no continua verificando
+        } else if (isalpha(numero[i])) {  /// detecta si es una letra
+            flag = 1;
+        }else if (ispunct(numero[i])) {   /// detecta si es un simbolo
+            flag = 1;
+        }
+    }
+    if(strlen(numero)> 8 || strlen(numero)< 8){
+
+       flag = 1;         /// detecta que sean 8 caracteres correctos
+
+    }
+   return flag;
+}
 int validar_edad(char numero[]){
 
     int flag = 0;
@@ -437,7 +549,7 @@ int validar_nombre(const char Letras[]) {
         if (isspace(Letras[i])) {
             espacioConteo++; // Incrementar el contador de espacios
             if (espacioConteo > 2) {
-                flag = 1; // M�s de dos espacios consecutivos, establecer la bandera en 1
+                flag = 1; // Más de dos espacios consecutivos, establecer la bandera en 1
                 break;     // Salir del bucle
             }
         } else {
@@ -445,7 +557,7 @@ int validar_nombre(const char Letras[]) {
         }
 
         if (!isalpha(Letras[i]) && !isspace(Letras[i])) {
-            flag = 1; // Se encontr� un car�cter que no es una letra ni espacio
+            flag = 1; // Se encontró un carácter que no es una letra ni espacio
             break;    // Salir del bucle
         }
     }
@@ -462,7 +574,7 @@ int validar_char(char Letras[]) {
 
     for (int i = 0; Letras[i] != '\0'; i++) {
         if (!isalpha(Letras[i])) {
-            flag = 1; /// Se encontr� un car�cter que no es una letra, establecer la bandera en 1
+            flag = 1; /// Se encontró un carácter que no es una letra, establecer la bandera en 1
             break;    /// Salir del bucle
         }
     }
@@ -470,8 +582,104 @@ int validar_char(char Letras[]) {
     return flag;
 }
 
+int contar_pacientes(char nombre_paciente[]){
+
+ FILE *archi = fopen(nombre_paciente,"rb");
+ stPaciente a;
+   int i = 0;
+
+    if(archi){
+
+         while(fread(&a,sizeof(stPaciente),1,archi) > 0){
+
+            i++;
+
+         }
+
+        fclose(archi);
+
+    }
+
+
+return i;
+
+}
+void mostrar_paciente_porapellido(char nombre[]){
+  int validos = contar_pacientes(nombre); /// se busca los validos con los id
+  stPaciente a[validos]; /// se crea un arreglo con la dimension del archivo
+
+  FILE *archi = fopen(nombre,"rb");
+
+  if (archi != NULL){
+      int i = 0;
+      while(fread(&a[i],sizeof(stPaciente),1,archi) > 0){   /// se carga el arreglo
+
+               i++;
+      }
+     fclose(archi);
+
+
+
+     ordenar_seleccion(a,validos);   ///se ordena el arreglo
+
+       system("cls");
+ printf(" \n      DNI       APELLIDO Y NOMBRE           EDAD     TELEFONO       DIRECCION       ELIMINADO ");
+  for(int i = 0 ; i < validos; i++){
+
+       mostrar_pacientes(a[i],i+2);  /// se muestra ordenado el arreglo
+
+
+  }
+
+}
+}
+int posmenor(stPaciente a[],int validos,int pos){
+    char menor[40];
+     strcpy(menor,a[pos].Apellido_nombre);
+    int pos_menor = pos;
+    int i = pos + 1;
+    while(i < validos){
+
+        if(strcmpi(menor,a[i].Apellido_nombre) > 0){
+            pos_menor = i;
+            strcpy(menor, a[i].Apellido_nombre);
+        }
+        i++;
+
+    }
+    return pos_menor;
+
+
+}
+void ordenar_seleccion(stPaciente a[],int validos){
+   int i = 0;
+   int posMenor;
+   stPaciente aux;
+   while(i < validos -1){
+
+      posMenor = posmenor(a,validos,i);
+      aux = a[posMenor];
+      a[posMenor]= a[i];
+      a[i] = aux;
+      i++;
+   }
+
+
+
+}
+  void mostrar_pacientes(stPaciente a, int i){
+   printf("\n");
+   gotoxy(1,i); printf("  %i ",a.dni);
+   gotoxy(15,i); printf("  %s ",a.Apellido_nombre);
+   gotoxy(43,i); printf("  %i ",a.edad);
+   gotoxy(50,i); printf("  %s ",a.telefono);
+   gotoxy(65,i); printf("  %s ",a.direccion);
+   gotoxy(85,i); printf("  %s", (a.eliminado == 0) ? "No" : "Si");
+
+   }
+
 void mostrar_paciente(stPaciente a){
-    printf(" \t ___________________ \n");
+
     printf(" \t DNI                %i \n",a.dni);
     printf(" \t Apellido y Nombre: %s \n",a.Apellido_nombre);
     printf(" \t EDAD               %i \n",a.edad);
@@ -481,15 +689,82 @@ void mostrar_paciente(stPaciente a){
 
 }
 
-void mostrar_pacientes(arbolPaciente *arbol)
+
+void mostrar_pacientes_arbol(arbolPaciente *arbol)
 {
 
     if(arbol)
     {
-        mostrar_pacientes(arbol->izq);
+        mostrar_pacientes_arbol(arbol->izq);
         mostrar_paciente(arbol->paciente);
-        mostrar_pacientes(arbol->der);
+        mostrar_pacientes_arbol(arbol->der);
     }
 
 }
 
+
+   arbolPaciente *menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol)
+{   char opc;
+    do{
+  system("cls");
+  consola_pacientes();
+  printf("\n");
+  fflush(stdin);
+  opc = getch();
+  switch(opc)
+  {
+       case 49:    system("cls");
+                consola_vacia();
+                gotoxy(0,7);
+                arbol = crear_paciente(nombre_pacientes,arbol);
+                break;
+       case 50:
+                  system("cls");
+                consola_vacia();
+                gotoxy(0,7);
+                arbol = modificar_paciente_buscar(nombre_pacientes,arbol);
+
+                break;
+       case 51:
+                 system("cls");
+                 consola_vacia();
+                gotoxy(0,7);
+               arbol = baja_paciente(nombre_pacientes,arbol);
+                break;
+       case 52:
+                 system("cls");
+
+                system("pause");
+                break;
+       case 53:
+                 system("cls");
+
+                system("pause");
+                break;
+       case 54:
+                 system("cls");
+
+                system("pause");
+                break;
+       case 55:
+                 system("cls");
+                 mostrar_paciente_porapellido(nombre_pacientes);
+                 printf("\n");
+                system("pause");
+                break;
+
+
+
+       case ESC:
+
+                break;
+       default:
+                printf("Opcion invalida. Por favor, seleccione una opcion valida.\n");
+                system("pause");
+                break;
+
+    }
+  } while( opc != ESC);
+
+   return arbol;
+}

@@ -18,7 +18,7 @@ void crear_usuario( )
     ///validacion de que no exista otro usuario con el mismo nombre de user
     int num;
     int flag_num=1;
-   while(flag_num)
+    while(flag_num)
     {
         printf("Ingrese Rol de usuario. ");
         printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
@@ -36,7 +36,7 @@ void crear_usuario( )
 
     }
     ///DAR ALTA UN NUEVO ADMIN;
-   /// strcpy(empleado.perfil,"admin");
+      strcpy(empleado.perfil,"admin");
 
 
     /// Mientras se presione Enter o la longitud máxima no se alcance
@@ -158,7 +158,7 @@ void mostrar_1_empleado(empleado_de_laboratorio empleado)
 
 
 
-int validar(char numero[])
+int validar_dni_empleado(char numero[])
 {
 
     int flag = 0;
@@ -181,12 +181,13 @@ int validar(char numero[])
             flag = 1;
         }
     }
-    if(strlen(numero)> 8 || strlen(numero)< 7)
+    if(10000000<atoi(numero) || 1000000>atoi(numero) )
     {
 
         flag = 1;         /// detecta que sean 8 caracteres correctos
 
     }
+
     return flag;
 }
 
@@ -202,7 +203,7 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
 
         if(fread(&empleado_valido,sizeof(empleado_valido),1,archivo)==0 )  ///SI NO HAY DATOS EN EL ARCHIVO
         {
-            while( validar(num)==1)
+            while( validar_dni_empleado(num)==1)
             {
                 system("cls");
                 printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
@@ -234,7 +235,7 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
             }
             else
             {
-                while( validar(num)==1)
+                while( validar_dni_empleado(num)==1)
                 {
                     system("cls");
                     printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
@@ -371,7 +372,7 @@ void dar_baja_empleado()
         printf("Ingrese Dni del Empleado \n");
         fflush(stdin);
         gets(DNI1);
-        while( validar(DNI1)==1)
+        while( validar_dni_empleado(DNI1)==1)
         {
             system("cls");
             printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
@@ -444,7 +445,7 @@ empleado_de_laboratorio busqueda_empleado(  char dni_a_buscar[10])
 
     FILE *archi=fopen(ARCH_EMPLEADO,"r+b");
     empleado_de_laboratorio empleado;
-    while( validar(dni_a_buscar)==1)
+    while( validar_dni_empleado(dni_a_buscar)==1)
     {
         system("cls");
         printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
@@ -489,7 +490,7 @@ void modificar_empleado()
     printf("DESEA MODIFICAR UN PACIENTE? PRESS ENTER PARA SI CUALQUIER TECLA PARA NO \n");
     fflush(stdin);
     o=getch();
-    while( validar(dni_a_buscar)==1)
+    while( validar_dni_empleado(dni_a_buscar)==1)
     {
 
         system("cls");
@@ -510,7 +511,7 @@ void modificar_empleado()
 
                 do
                 {
-
+                    rewind(archi);
                     printf("---Ingrese una opcion--- \n");
                     printf("1- Cambiar Nombre y apellido\n");
                     printf("2- Cambiar nombre de usuario \n");
@@ -617,24 +618,24 @@ void modificar_empleado()
                     case '5':
 
                         if(empleado.eliminado==1)
-
+                        {
                             printf("EL EMPLEADO ESTA DADO DE BAJA. Desea darlo de alta? Presione enter para Si\n");
-                        char o1=0;
-                        fflush(stdin);
-                        o1=getch();
-                        if(o1==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
-                            empleado.eliminado=0;
-
-                        else
-
+                            char o1=0;
+                            fflush(stdin);
+                            o1=getch();
+                            if(o1==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                                empleado.eliminado=0;
+                        }
+                        else if(empleado.eliminado==0)
+                        {
                             printf("EL EMPLEADO ESTA ACTIVO. Desea darlo de baja? Presione enter para Si\n");
-                        char o2=0;
-                        fflush(stdin);
-                        o2=getch();
-                        if(o2==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
-                            empleado.eliminado=1;
+                            char o2=0;
+                            fflush(stdin);
+                            o2=getch();
+                            if(o2==13) /// EN ASCII 13 es el retorno de carro (ENTER para los mortales)
+                                empleado.eliminado=1;
 
-
+                        }
                         break;
 
                     case 27:
@@ -649,14 +650,14 @@ void modificar_empleado()
                         break;
 
                     }
-                }
-                while(o != 27);
 
                 fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
                 fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
                 printf("EMPLEADO MODIFICADO\n");
                 mostrar_1_empleado(empleado);
                 system("pause");
+                }
+                while(o != 27);
                 return;
             }
         }
@@ -677,17 +678,18 @@ int login( )
     int flag=1;
     int num;
     consola_login();
-     gotoxy(7,8);
+    gotoxy(7,8);
     printf("USUARIO:\n");
-  gotoxy(16,8);
+    gotoxy(16,8);
     gets(empleado_a_loguearse.usuario);
- gotoxy(3,11);
-   printf("CONTRASENIA: \n");
+    gotoxy(3,11);
+    printf("CONTRASENIA: \n");
     int i = 0;
     char ch;
-      gotoxy(16,11);
+    gotoxy(16,11);
     while (i < 20 && (ch = _getch()) != '\r')  ///SE LEE CARACTER A CARACTER CON _GETCH()  QUE CAPTURA EL CARACTER SIN NECESIDAD DE ENTER
-    {   ///gotoxy(11+i,16);                     /// LEERA HASTA QUE SE OPRIMA ENTER(\r)
+    {
+        ///gotoxy(11+i,16);                     /// LEERA HASTA QUE SE OPRIMA ENTER(\r)
         if (ch == '\b')                        ///SI   ES BACKSPACE,ES DECIR, SI RETROCEDIO EL PUNTERO DEL TECLADO, ENTONCES ENTRA
         {
             if (i > 0)                         ///PREGUNTA SI LA I ES MAYOR A CERO SI LO ES ENTONCES HACE 2 BACKSPACE
@@ -697,7 +699,8 @@ int login( )
             }
         }
         else                                   /// SI NO ES UN BACKSPACE ENTONCES SUMA EL CARACTER LEIDO A CONTRASENIA Y EN LUGAR DE QUE APAREZCA
-        {                                      /// LA LETRA APARECE  * PARA EVITAR LA LECTURA DEL CARACTER INGRESADO.
+        {
+            /// LA LETRA APARECE  * PARA EVITAR LA LECTURA DEL CARACTER INGRESADO.
             empleado_a_loguearse.contrasenia[i] = ch;
             printf("*");///SE PUEDE REEMPLAZAR POR CUALQUIER CARACTER
             i++;
@@ -724,7 +727,18 @@ int login( )
                     }
                     else
                     {
-                        printf("\nBienvenido %s \n",empleado.apellido_y_nombre); ///CASO QUE LOGUEE BIEN, SE LO RECIBE Y ASIGNA EL ROL QUE TIENE
+                        system("cls");
+                        consola_vacia();
+
+                        gotoxy(21,9);
+                        printf("Bienvenido %s \n",empleado.apellido_y_nombre); ///CASO QUE LOGUEE BIEN, SE LO RECIBE Y ASIGNA EL ROL QUE TIENE
+                        int salid1=0;
+                        while(salid1<200)
+                        {
+                            usleep(10000);
+                            salid1++;
+                        }
+                        system("cls");
 
                         if(strcmpi(empleado.perfil,"admin")==0)
                         {
@@ -753,9 +767,9 @@ int login( )
 
             printf("\n");
             system("cls");
-                        consola_vacia();
-                        gotoxy(9,7);
-                        printf(COLOR_RED);
+            consola_vacia();
+            gotoxy(9,7);
+            printf(COLOR_RED);
             printf("NOMBRE DE USUARIO O CONTRASENIA INCORRECTA \n");
             printf(COLOR_RESET);
         }
@@ -783,13 +797,22 @@ void menu_empleados(int isLoggedin) ///MENU EMPLEADOS
 
     do
     {
-        printf("\n Seleccione una opcion:\n");
-        printf("\n 1)Crear nuevo usuario");
-        printf("\n 2)Dar de baja un empleado");
-        printf("\n 3)Modificacion");
-        printf("\n 4)Consulta"); ///Probar con switchs
-        printf("\n 5)Lista empleados");
-        printf("\n ESC Para salir de la sesion \n");
+        system("cls");
+        consola_vacia();
+        gotoxy(21,7);
+        printf("Seleccione una opcion:\n");
+         gotoxy(21,8);
+        printf("1)Crear nuevo usuario");
+         gotoxy(21,9);
+        printf("2)Dar de baja un empleado");
+         gotoxy(21,10);
+        printf("3)Modificacion");
+         gotoxy(21,11);
+        printf("4)Consulta"); ///Probar con switchs
+         gotoxy(21,12);
+        printf("5)Lista empleados");
+         gotoxy(21,13);
+        printf("ESC Para salir de la sesion \n");
 
         fflush(stdin);
         o=getch();

@@ -8,7 +8,7 @@ int LoKJuegoConC()
    //  color;
 //   consolaPrincipal();
    menu_contenedor();
-
+    //crear_usuario();
 
 
      ///CONTRASEÑA ADMIN: Admin123!
