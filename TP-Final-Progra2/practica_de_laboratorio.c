@@ -403,3 +403,12 @@ void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo
         fclose(archi);
     }
 }
+
+///VALIDAR PRACTICAS
+
+//practicas validacion_practica(practicas practicaAvalidar){
+//
+//
+//
+//return practicaAvalidar;
+//}

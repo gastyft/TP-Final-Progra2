@@ -1,14 +1,20 @@
 #define LoKJuegoConC main ///By Marian
 #include "menu.h"
+#define COLOR_RESET   "\x1b[0m"
+#define COLOR_RED     "\x1b[31m"
+#define COLOR_WHITE   "\x1b[38m"
 
 ///MAKIGAS
 
+
 int LoKJuegoConC()
 {
-   //  color;
+   // color;
 //   consolaPrincipal();
-   menu_contenedor();
-    //crear_usuario();
+//me_parece_una_banda();
+
+    menu_contenedor();
+     ///crear_usuario();
 
 
      ///CONTRASEÑA ADMIN: Admin123!

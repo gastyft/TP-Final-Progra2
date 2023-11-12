@@ -6,7 +6,10 @@
 #include <conio.h>
 
 
+
 void apertura_programa();
 void firma();
 void cierre_firma();
+void colores();
+
 #endif // FIRMA_H_INCLUDED

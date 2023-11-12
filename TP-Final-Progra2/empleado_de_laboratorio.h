@@ -9,6 +9,7 @@
 #define ARCH_EMPLEADO "Empleado.bin"
 #include "Goto_xy.h"
 #include "menu.h"
+
 ///ESTRUCTURAS
 
 typedef struct {
@@ -42,6 +43,8 @@ void mostrar_1_empleado(empleado_de_laboratorio empleado);
 void mostrar_empleados();
 void mostrar_empleados_inactivos();
 void mostrar_empleados_activos();
+void mostrar_empleado_por_apellido();
+  void mostrar_empleados_lista(empleado_de_laboratorio emp, int i);
 void dar_baja_empleado();
 void dar_alta_empleado_logico( empleado_de_laboratorio empleado);
 void modificar_empleado();
@@ -49,4 +52,12 @@ void menu_empleados(int isLoggedin);
 int login( );
 int log_out();
 int validar_dni_empleado(char numero[]);
+void funcion_about_us();
+void imprimir_con_puntos(const char *parrafo);
+void menu_altas_usuarios();
+void ordenar_seleccion_empleado(empleado_de_laboratorio emp[],int validos);
+int posmenor_empleado(empleado_de_laboratorio emp[],int validos,int pos);
+void mostrar_empleado_por_apellido();
+void menu_muestra_empleados();
+
 #endif // EMPLEADO_DE_LABORATORIO_H_INCLUDED

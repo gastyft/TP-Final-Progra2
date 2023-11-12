@@ -2,17 +2,21 @@
 
 
 
-void crear_usuario( )
+void crear_usuario()
 {
     FILE *archi=fopen(ARCH_EMPLEADO,"a+b");
     empleado_de_laboratorio empleado;
-
+    gotoxy(2,10);
     printf("Ingrese Nombre y apellido\n");
     fflush(stdin);
+    gotoxy(29,10);
     gets(empleado.apellido_y_nombre);
-
+    system("cls");
+    consola_vacia();
+    gotoxy(2,10);
     printf("Ingrese nombre de usuario\n");
     fflush(stdin);
+    gotoxy(29,10);
     gets(empleado.usuario);
     empleado=validaciones_nombre_usuario(empleado);                ///ACA MODIFICANDO EL EMPLEADO.PERFIL=1 CREO UN ADMIN
     ///validacion de que no exista otro usuario con el mismo nombre de user
@@ -20,8 +24,14 @@ void crear_usuario( )
     int flag_num=1;
     while(flag_num)
     {
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
         printf("Ingrese Rol de usuario. ");
-        printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
+        gotoxy(2,11);
+        printf("Ingrese 2 para Tecnico de laboratorio o");
+        gotoxy(2,12);
+        printf("3 para empleado administrativo  ");
         scanf("%d",&num);
         if(num==2)
         {
@@ -35,8 +45,8 @@ void crear_usuario( )
         }
 
     }
-    ///DAR ALTA UN NUEVO ADMIN;
-      strcpy(empleado.perfil,"admin");
+    ///DAR ALTA UN NUEVO ADMIN; Descomentar linea 47 y comentar de la 24 a la 45
+    ///   strcpy(empleado.perfil,"admin");
 
 
     /// Mientras se presione Enter o la longitud máxima no se alcance
@@ -44,8 +54,11 @@ void crear_usuario( )
 
     while (!contrasenia_valida)
     {
-        printf("Ingrese la contrasenia:  \n");
-
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
+        printf("Ingrese la contrasenia:");
+        gotoxy(27,10);
         int i = 0;
         char ch;
         int tiene_mayuscula = 0;
@@ -82,7 +95,18 @@ void crear_usuario( )
 
         if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
         {
-            printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            printf("La contrasenia debe tener al menos 8 caracteres,");
+            gotoxy(2,11);
+            printf("una mayuscula y un caracter especial.");
+            int contame2=0;
+            while(contame2<300)
+            {
+                usleep(10000);
+                contame2++;
+            }
         }
         else
         {
@@ -93,15 +117,22 @@ void crear_usuario( )
     /// Verifica la contraseña ingresada (en este caso, simplemente la muestra)
 
     int flag=1;
-    printf(" \nIngrese DNI \n");
+    system("cls");
+    consola_vacia();
+    gotoxy(2,10);
+    printf("Ingrese DNI:");
     char dni_aux[9]; ///SE PIDE COMO CHAR PARA VALIDAR PERO SE PERSISTE DE TIPO INT COMO SOLICITAN EN EL DESARROLLO
     fflush(stdin);
+    gotoxy(16,10);
     gets(dni_aux);
 
     empleado = validaciones(empleado,dni_aux,&flag);  ///validacion de DNI
     empleado.eliminado=0;
     if (flag==0)
     {
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
         printf("No se cargara el usuario.\n");
     }
     else
@@ -206,6 +237,8 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
             while( validar_dni_empleado(num)==1)
             {
                 system("cls");
+                consola_vacia();
+                gotoxy(2,10);
                 printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
                 fflush(stdin);
                 gets(num);
@@ -217,7 +250,10 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
 
             if(aux == empleado_valido.DNI)
             {
-                printf("El dni ya existe,presione cualquier tecla para cargar un nuevo DNI o ESCAPE para salir\n");
+                system("cls");
+                consola_vacia();
+                gotoxy(2,10);
+                printf("El dni ya existe,presione cualquier tecla para cargar un nuevo DNI o ESCAPE para salir");
                 fflush(stdin);
                 o=getch();
                 if(o==ESC)
@@ -226,8 +262,12 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
                 }
                 else
                 {
-                    printf("Ingrese DNI nuevo \n");
+                    system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
+                    printf("Ingrese DNI nuevo: ");
                     fflush(stdin);
+                    gotoxy(22,10);
                     gets(num);
                     rewind(archivo);
                 }
@@ -238,8 +278,11 @@ empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[]
                 while( validar_dni_empleado(num)==1)
                 {
                     system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
                     printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
                     fflush(stdin);
+                    gotoxy(2,11);
                     gets(num);
 
 
@@ -292,7 +335,7 @@ void mostrar_empleados_activos()
     FILE *archi=fopen(ARCH_EMPLEADO,"r+b");
 
     empleado_de_laboratorio empleado;
-
+    int i=0;
     if(archi)
     {
 
@@ -300,7 +343,7 @@ void mostrar_empleados_activos()
         {
             if(empleado.eliminado==0)
                 mostrar_1_empleado(empleado);
-
+            i++;
         }
 
     }
@@ -349,8 +392,14 @@ empleado_de_laboratorio validaciones_nombre_usuario(empleado_de_laboratorio empl
     {
         if(strcmpi(empleado.usuario,empleado_valido.usuario)==0)
         {
-            printf("El nombre de usuario ya existe, ingrese un nombre de usuario distinto\n");
-            printf("Ingrese nombre de usuario\n");
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            printf("El nombre de usuario ya existe,");
+            gotoxy(2,11);
+            printf("ingrese un nombre de usuario distinto");
+            gotoxy(2,12);
+            printf("Ingrese nombre de usuario:  ");
             fflush(stdin);
             gets(empleado.usuario);
             rewind(archivo);
@@ -367,16 +416,34 @@ void dar_baja_empleado()
     empleado_de_laboratorio empleado_a_validar;
     int flag=1;
     char DNI1[10];
+    char o=0;
     if(archi != NULL)
     {
-        printf("Ingrese Dni del Empleado \n");
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
+        printf("Ingrese Dni del Empleado: \n");
         fflush(stdin);
+        gotoxy(27,10);
         gets(DNI1);
         while( validar_dni_empleado(DNI1)==1)
         {
             system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            printf("SI DESEA SALIR PRESIONE ESCAPE O CUALQUIER TECLA");
+            gotoxy(2,11);
+            printf("PARA CARGAR NUEVAMENTE EL DNI");
+            fflush(stdin);
+            o=getch();
+            if(o==ESC)
+                return;
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
             printf("Ingrese nuevo DNI sin espacios, sin puntos. Solo numeros \n");
             fflush(stdin);
+            gotoxy(2,11);
             gets(DNI1);
         }
         int aux=atoi(DNI1);
@@ -386,6 +453,9 @@ void dar_baja_empleado()
             {
                 if(empleado_a_validar.eliminado == 1)
                 {
+                    system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
                     printf("Ya esta dado de baja el empleado %s \n",empleado_a_validar.apellido_y_nombre);
                     flag=0;
                 }
@@ -395,12 +465,18 @@ void dar_baja_empleado()
                     empleado_a_validar.eliminado= 1;
                     fwrite(&empleado_a_validar,sizeof(empleado_de_laboratorio),1,archi);
                     flag=0;
+                    system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
                     printf("Baja exitosa \n");
                 }
             }
         }
         if(flag)
         {
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
             printf("No se encontro empleado con ese DNI.\n");
         }
     }
@@ -430,6 +506,9 @@ void dar_alta_empleado_logico( empleado_de_laboratorio empleado)
                 fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
 
                 fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+                system("cls");
+                consola_vacia();
+                gotoxy(2,10);
                 printf("Usuario dado de alta nuevamente \n");
                 return;
             }
@@ -486,13 +565,24 @@ void modificar_empleado()
     int num;
     int flag_num=1;
     int contrasenia_valida = 0;
-
-    printf("DESEA MODIFICAR UN PACIENTE? PRESS ENTER PARA SI CUALQUIER TECLA PARA NO \n");
+    gotoxy(2,10);
+    printf("DESEA MODIFICAR UN PACIENTE?");
+    gotoxy(2,11);
+    printf("PRESS ENTER PARA SI CUALQUIER TECLA PARA NO ");
     fflush(stdin);
     o=getch();
-    while( validar_dni_empleado(dni_a_buscar)==1)
+    while( o!=13 || validar_dni_empleado(dni_a_buscar)==1)
     {
-
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
+        printf("dni mal puesto. Si desea cargar nuevamente presione ENTER");
+        gotoxy(2,11);
+        printf(" sino cualquier tecla para salir ");
+        fflush(stdin);
+        o=getch();
+        if(o!=13)
+            break;
         system("cls");
         printf("Ingrese un DNI para modificar.Sin espacios, sin puntos. Solo numeros \n");
         fflush(stdin);
@@ -512,12 +602,21 @@ void modificar_empleado()
                 do
                 {
                     rewind(archi);
+                    system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
                     printf("---Ingrese una opcion--- \n");
+                    gotoxy(2,11);
                     printf("1- Cambiar Nombre y apellido\n");
+                    gotoxy(2,12);
                     printf("2- Cambiar nombre de usuario \n");
+                    gotoxy(2,13);
                     printf("3- Cambiar contraseña \n");
+                    gotoxy(2,14);
                     printf("4- Cambiar Rol de usuario \n");
+                    gotoxy(2,15);
                     printf("5- Cambiar el estado del empleado \n");
+                    gotoxy(2,16);
                     printf("ESC para salir \n");
                     fflush(stdin);
                     o=getch();
@@ -526,16 +625,20 @@ void modificar_empleado()
                     {
 
                     case '1':
-
-                        printf("Ingrese Nombre y apellido\n");
+                        system("cls");
+                        consola_vacia();
+                        gotoxy(2,10);
+                        printf("Ingrese Nombre y apellido:  ");
                         fflush(stdin);
                         gets(empleado.apellido_y_nombre);
                         break;
 
 
                     case '2':
-
-                        printf("Ingrese nombre de usuario\n");
+                        system("cls");
+                        consola_vacia();
+                        gotoxy(2,10);
+                        printf("Ingrese nombre de usuario  ");
                         fflush(stdin);
                         gets(empleado.usuario);
                         empleado=validaciones_nombre_usuario( empleado);
@@ -546,7 +649,10 @@ void modificar_empleado()
 
                             while (!contrasenia_valida)
                             {
-                                printf("Ingrese la contrasenia:  \n");
+                                system("cls");
+                                consola_vacia();
+                                gotoxy(2,10);
+                                printf("Ingrese la contrasenia:  ");
 
                                 int i = 0;
                                 char ch;
@@ -584,7 +690,10 @@ void modificar_empleado()
 
                                 if (i < 8 || !tiene_mayuscula || !tiene_caracter_especial)
                                 {
-                                    printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.\n");
+                                    system("cls");
+                                    consola_vacia();
+                                    gotoxy(2,10);
+                                    printf("\nLa contraseña debe tener al menos 8 caracteres, una mayuscula y un caracter especial.");
                                 }
                                 else
                                 {
@@ -598,7 +707,11 @@ void modificar_empleado()
 
                         while(flag_num==1)
                         {
+                            system("cls");
+                            consola_vacia();
+                            gotoxy(2,10);
                             printf("Ingrese Rol de usuario. ");
+                            gotoxy(2,11);
                             printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
                             scanf("%d",&num);
                             if(num==2)
@@ -619,7 +732,12 @@ void modificar_empleado()
 
                         if(empleado.eliminado==1)
                         {
-                            printf("EL EMPLEADO ESTA DADO DE BAJA. Desea darlo de alta? Presione enter para Si\n");
+                            system("cls");
+                            consola_vacia();
+                            gotoxy(2,10);
+                            printf("EL EMPLEADO ESTA DADO DE BAJA. Desea darlo de alta?");
+                            gotoxy(2,11);
+                            printf("Presione enter para Si\n");
                             char o1=0;
                             fflush(stdin);
                             o1=getch();
@@ -643,19 +761,23 @@ void modificar_empleado()
                         break;
 
                     default:
-
-                        printf("Ingreso una opcion incorrecta elija nuevamente o presione ESC para volver atras\n");
+                        system("cls");
+                        consola_vacia();
+                        gotoxy(2,10);
+                        printf("Ingreso una opcion incorrecta elija nuevamente");
+                        gotoxy(2,11);
+                        printf("o presione ESC para volver atras");
                         fflush(stdin);
                         o=getch();
                         break;
 
                     }
 
-                fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
-                fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
-                printf("EMPLEADO MODIFICADO\n");
-                mostrar_1_empleado(empleado);
-                system("pause");
+                    fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
+                    fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+                    printf("EMPLEADO MODIFICADO\n");
+                    mostrar_1_empleado(empleado);
+                    system("pause");
                 }
                 while(o != 27);
                 return;
@@ -791,102 +913,495 @@ int log_out()
 void menu_empleados(int isLoggedin) ///MENU EMPLEADOS
 {
 
-
     printf("EL USUARIO ES EL ADMIN \n");
     char o=0;
 
     do
     {
+
         system("cls");
         consola_vacia();
         gotoxy(21,7);
         printf("Seleccione una opcion:\n");
-         gotoxy(21,8);
-        printf("1)Crear nuevo usuario");
-         gotoxy(21,9);
+        gotoxy(21,8);
+        printf("1)Crear y dar altas usuarios");
+        gotoxy(21,9);
         printf("2)Dar de baja un empleado");
-         gotoxy(21,10);
+        gotoxy(21,10);
         printf("3)Modificacion");
-         gotoxy(21,11);
+        gotoxy(21,11);
         printf("4)Consulta"); ///Probar con switchs
-         gotoxy(21,12);
+        gotoxy(21,12);
         printf("5)Lista empleados");
-         gotoxy(21,13);
+        gotoxy(21,13);
         printf("ESC Para salir de la sesion \n");
 
         fflush(stdin);
         o=getch();
         switch(o)
         {
+        case '1':
+            menu_altas_usuarios();
+            break;
+        case '2':
+            system("cls");
+            consola_vacia();
+            dar_baja_empleado();
+            system("cls");
+            printf("EMPLEADOS DADOS DE BAJA \n");
+            mostrar_empleados_inactivos();
+            system("pause");
+            system("cls");
+            break;
+        case '3':
+            system("cls");
+            consola_vacia();
+            modificar_empleado();
+            break;
+        case '4':
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            printf("INGRESE DNI A BUSCAR: \n");
+            char busqueda[10];
+            fflush(stdin);
+            gotoxy(24,10);
+            gets(busqueda);
+            empleado_de_laboratorio emp;
+            emp= busqueda_empleado(busqueda);
+            if(emp.DNI==-1)
             {
-            case '1':
-                crear_usuario();
                 system("cls");
-                break;
-            case '2':
-                dar_baja_empleado( );
-                printf("EMPLEADOS DADOS DE BAJA \n");
-                mostrar_empleados_inactivos();
-                system("pause");
+                consola_vacia();
+                gotoxy(2,10);
+                printf("NO SE ENCONTRO EL EMPLEADO \n");
+            }
+            else
+            {
                 system("cls");
-                break;
-            case '3':
-                modificar_empleado();
-                break;
-            case '4':
-                printf("INGRESE DNI A BUSCAAR \n");
-                char busqueda[10];
-                fflush(stdin);
-                gets(busqueda);
-                empleado_de_laboratorio emp;
-                emp= busqueda_empleado(busqueda);
-                if(emp.DNI==-1)
-                    printf("NO SE ENCONTRO EL EMPLEADO \n");
-                else
-                {
-                    printf("ATENCION!!!\n");
-                    printf("DESEA REVELAR LA CONTRASEÑA?\n");
-                    printf("Pulse enter para mostrar sino cualquier tecla\n");
-                    char o=0;
-                    fflush(stdin);
-                    o=getch();
-                    if(o==13)
-                    {
-                        mostrar_1_empleado(emp);;
-                        printf("Contrasenia: %s\n",emp.contrasenia);
-                        system("pause");
-                    }
-                    else
-                    {
-                        mostrar_1_empleado(emp);
-                        system("pause");
-                    }
-                }
-
-                break;
-            case '5':
-                system("cls");
-                printf("EMPLEADOS ACTIVOS \n");
-                mostrar_empleados_activos();
-                printf(" \n");
-                printf("----------------------------------");
-                printf("EMPLEADOS INACTIVOS \n");
-                mostrar_empleados_inactivos();
-                system("pause");
-                system("cls");
-                break;
-            case 27:
-
-                break;
-            default:
-                printf("\n\tHa seleccionado una opcion invalida.\n\tPor favor, presione cualquier tecla para continuar\n\n");
+                consola_vacia();
+                gotoxy(2,10);
+                printf("ATENCION!!!\n");
+                gotoxy(2,11);
+                printf("DESEA REVELAR LA CONTRASEÑA?\n");
+                gotoxy(3,12);
+                printf("Pulse enter para mostrar sino cualquier tecla\n");
+                char o=0;
                 fflush(stdin);
                 o=getch();
-
-                system("cls");
-                break;
+                if(o==13)
+                {
+                    mostrar_1_empleado(emp);
+                    printf("Contrasenia: %s\n",emp.contrasenia);
+                    system("pause");
+                }
+                else
+                {
+                    mostrar_1_empleado(emp);
+                    system("pause");
+                }
             }
+
+            break;
+        case '5':
+           menu_muestra_empleados();
+            break;
+
+        case 27:
+
+            break;
+        default:
+            printf("\n\tHa seleccionado una opcion invalida.\n\tPor favor, presione cualquier tecla para continuar\n\n");
+            fflush(stdin);
+            o=getch();
+            system("cls");
+            break;
         }
+
     }
     while(o!=ESC);
+}
+void setConsoleColor(int text, int background)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), text | (background << 4));
+}
+
+void funcion_about_us()
+{
+    consola_vacia();
+    gotoxy(2,8);
+    printf(COLOR_YELLOW);
+    imprimir_con_puntos("Quienes somos?");
+
+    gotoxy(2,9);
+    imprimir_con_puntos("Somos estudiantes universitarios en programacion ");
+
+    gotoxy(2,10);
+    imprimir_con_puntos("de la facultad UTN de Mar del Plata");
+
+    printf(COLOR_RESET);
+    int contame=0;
+    while(contame<200)
+    {
+        usleep(10000);
+        contame++;
+    }
+    system("cls");
+    consola_vacia();
+    setConsoleColor(15,0);
+    gotoxy(2,8);
+    imprimir_con_puntos("Proyecto realizado para la materia Programacion");
+
+    gotoxy(2,9);
+    imprimir_con_puntos("y laboratorio II");
+
+    imprimir_con_puntos(" para el docente ");
+
+    setConsoleColor(4,0);
+    imprimir_con_puntos("Adrian Arocca");
+
+    setConsoleColor(3,0);
+    gotoxy(2,10);
+    setConsoleColor(15,0);
+    imprimir_con_puntos("Y sus ayudantes ");
+    setConsoleColor(6,0);
+    imprimir_con_puntos("Magdalena Martins ");
+    setConsoleColor(15,0);
+    printf("y ");
+    setConsoleColor(2,0);
+    imprimir_con_puntos("Mariano Blanco");
+    int contame2=0;
+    while(contame2<100)
+    {
+        usleep(10000);
+        contame2++;
+    }
+
+}
+
+void me_parece_una_banda()
+{
+
+    const char *parrafo1="Armani! El taco no. Hace la personal, y se va. Se va.";
+    const char *parrafo2="Se va Martinez para el gol,";
+    const char *parrafo3="y va el tercero y va ";
+    const char *parrafo4="el tercero y gol de River, gol de River, gol de River";
+
+
+    system("cls");
+    consola_vacia();
+    setConsoleColor(15,0);
+    gotoxy(2,8);
+    imprimir_con_puntos(parrafo1);
+    gotoxy(2,9);
+    setConsoleColor(4,0);
+    imprimir_con_puntos(parrafo2);
+    imprimir_con_puntos(parrafo3);
+    gotoxy(2,10);
+    setConsoleColor(15,0);
+    imprimir_con_puntos(parrafo4);
+
+    int contame2=0;
+    while(contame2<100)
+    {
+        usleep(10000);
+        contame2++;
+    }
+    system("cls");
+    colores();
+    contame2=0;
+    while(contame2<10)
+    {
+        usleep(10000);
+        contame2++;
+    }
+    return;
+}
+
+void imprimir_con_puntos(const char *parrafo)
+{
+    int i;
+    int longitud = strlen(parrafo);
+
+    for (i = 0; i < longitud; i++)
+    {
+        // Imprimir el carácter con un punto
+        printf("%c.", parrafo[i]);
+        fflush(stdout); // Asegurar que el buffer se vacíe y se muestre inmediatamente
+
+        usleep(30000); // Retraso de 300 milisegundos (0.3 segundos)
+
+        // Borrar el carácter y el punto anterior mediante caracteres de escape
+        printf("\b \b");
+        fflush(stdout);
+
+        // Si no estás en el último carácter, espera un poco antes de imprimir el siguiente
+        if (i < longitud - 1)
+        {
+            usleep(30000); // Retraso adicional entre caracteres para mayor claridad
+        }
+    }
+}
+
+void menu_altas_usuarios()
+{
+    char op=0;
+
+    do
+    {
+        system("cls");
+        consola_vacia();
+        gotoxy(2,10);
+        printf("1- Crear usuario");
+        gotoxy(2,11);
+        printf("2- Dar alta un usuario que este dado de baja por DNI");
+        gotoxy(2,12);
+        printf("ESC PARA SALIR");
+        fflush(stdin);
+        op=getch();
+        switch(op)
+        {
+        case '1':
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            crear_usuario();
+            break;
+        case '2':
+            system("cls");
+            consola_vacia();
+            gotoxy(2,10);
+            printf("INGRESE DNI A BUSCAR: \n");
+            char busqueda1[10];
+            fflush(stdin);
+            gotoxy(24,10);
+            gets(busqueda1);
+            empleado_de_laboratorio emp;
+            emp= busqueda_empleado(busqueda1);
+            if(emp.DNI==-1)
+            {
+                system("cls");
+                consola_vacia();
+                gotoxy(2,10);
+                printf("NO SE ENCONTRO EL EMPLEADO \n");
+            }
+            else
+                dar_alta_empleado_logico(emp);
+            break;
+        case 27:
+
+            break;
+
+        default:
+            system("cls");
+            consola_vacia();
+
+            gotoxy(2,10);
+            printf("1- Crear usuario");
+            gotoxy(2,11);
+            printf("2- Dar alta un usuario que este dado de baja por DNI");
+            fflush(stdin);
+            op=getch();
+            break;
+
+        }
+    }
+    while(op!=27);
+
+
+
+}
+
+///FUNCIONES DE MAURI PARA MUESTRA ORDENADA POR APELLIDO
+int contar_empleados()
+{
+
+    FILE *archi = fopen(ARCH_EMPLEADO,"rb");
+    empleado_de_laboratorio emp;
+    int i = 0;
+
+    if(archi)
+    {
+
+        while(fread(&emp,sizeof(stPaciente),1,archi) > 0)
+        {
+
+            i++;
+
+        }
+
+        fclose(archi);
+
+    }
+
+
+    return i;
+
+}
+void mostrar_empleado_por_apellido()
+{
+    int validos = contar_empleados(); /// se busca los validos con los id
+    empleado_de_laboratorio emp[validos]; /// se crea un arreglo con la dimension del archivo
+
+    FILE *archi = fopen(ARCH_EMPLEADO,"rb");
+
+    if (archi != NULL)
+    {
+        int i = 0;
+        while(fread(&emp[i],sizeof(empleado_de_laboratorio),1,archi) > 0)    /// se carga el arreglo
+        {
+
+            i++;
+        }
+        fclose(archi);
+
+
+
+        ordenar_seleccion_empleado(emp,validos);   ///se ordena el arreglo
+
+        system("cls");
+        printf(" \n      DNI       APELLIDO Y NOMBRE           USUARIO       ELIMINADO        ");
+        for(int i = 0 ; i < validos; i++)
+        {
+
+            mostrar_empleados_lista(emp[i],i+2);  /// se muestra ordenado el arreglo
+
+
+        }
+
+    }
+}
+int posmenor_empleado(empleado_de_laboratorio emp[],int validos,int pos)
+{
+    char menor[40];
+    strcpy(menor,emp[pos].apellido_y_nombre);
+    int pos_menor = pos;
+    int i = pos + 1;
+    while(i < validos)
+    {
+
+        if(strcmpi(menor,emp[i].apellido_y_nombre) > 0)
+        {
+            pos_menor = i;
+            strcpy(menor, emp[i].apellido_y_nombre);
+        }
+        i++;
+
+    }
+    return pos_menor;
+
+
+}
+void ordenar_seleccion_empleado(empleado_de_laboratorio emp[],int validos)
+{
+    int i = 0;
+    int posMenor;
+    empleado_de_laboratorio aux;
+    while(i < validos -1)
+    {
+
+        posMenor = posmenor_empleado(emp,validos,i);
+        aux = emp[posMenor];
+        emp[posMenor]= emp[i];
+        emp[i] = aux;
+        i++;
+    }
+
+
+
+}
+void mostrar_empleados_lista(empleado_de_laboratorio emp, int i)
+{
+    printf("\n");
+    gotoxy(1,i);
+    printf("  %i ",emp.DNI);
+    gotoxy(15,i);
+    printf("  %s ",emp.apellido_y_nombre);
+    gotoxy(43,i);
+    printf("  %s ",emp.usuario);
+    gotoxy(60,i);
+    printf("  %s", (emp.eliminado == 0) ? "No" : "Si");
+
+
+}
+
+///FIN FUNCIONES DE MAURI PARA MUESTRA ORDENADA POR APELLIDO
+
+void menu_muestra_empleados()
+{
+    char o=0;
+
+    do
+    {
+        system("cls");
+        consola_vacia();
+        gotoxy(2,7);
+        printf("1- Muestra ordenados por apellido");
+        gotoxy(2,8);
+        printf("2- Muestra activos e inactivos sin orden");
+        gotoxy(2,9);
+        printf("3- Muestra activos");
+        gotoxy(2,10);
+        printf("4- Muestra inactivos");
+        gotoxy(2,11);
+        printf("ESC SALIR");
+        fflush(stdin);
+        o=getch();
+        switch(o)
+        {
+        case '1':
+            system("cls");
+            mostrar_empleado_por_apellido();
+            printf("\n");
+            system("pause");
+            break;
+        case '2':
+            system("cls");
+            printf("EMPLEADOS ACTIVOS \n");
+            mostrar_empleados_activos();
+            printf(" \n");
+            printf("----------------------------------\n");
+            printf("EMPLEADOS INACTIVOS \n");
+            mostrar_empleados_inactivos();
+            system("pause");
+            system("cls");
+            break;
+        case '3':
+            system("cls");
+            printf("EMPLEADOS ACTIVOS\n");
+        mostrar_empleados_activos();
+        system("pause");
+            break;
+        case '4':
+            system("cls");
+            printf("EMPLEADOS INACTIVOS\n");
+            mostrar_empleados_inactivos();
+            system("pause");
+            break;
+        case 27:
+            break;
+        default:
+  system("cls");
+        consola_vacia();
+        gotoxy(2,10);
+        printf("1- Muestra ordenados por apellido");
+        gotoxy(2,11);
+        printf("2- Muestra activos e inactivos sin orden");
+        gotoxy(2,12);
+        printf("3- Muestra activos");
+        gotoxy(2,13);
+        printf("4- Muestra inactivos");
+        gotoxy(2,14);
+        printf("ESC SALIR");
+        fflush(stdin);
+        o=getch();
+
+            break;
+        }
+    }
+    while(o!=27);
+
+
+
+
 }
