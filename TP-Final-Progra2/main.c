@@ -9,36 +9,29 @@
 
 int LoKJuegoConC()
 {
-   // color;
+    // color;
 //   consolaPrincipal();
-//me_parece_una_banda();
 
+///    setConsoleColor(15,10); /// LETRA BLANCA FONDO VERDE
+///    setConsoleColor(15,4);  ///LETRA BLANCA FONDO ROJO
+///    setConsoleColor(15,5);   ///LETRA BLANCA FONDO VIOLETA (QUEDA BUENO)
+///    printf("12312412412512 12 12 125 12 ");
     menu_contenedor();
-     ///crear_usuario();
+//     crear_usuario();
 
 
-     ///CONTRASEÑA ADMIN: Admin123!
+    ///CONTRASEÑA ADMIN: Admin123!
 
 //  crear_usuario();
-/**
+    /**
 
-PARA EL MENU
-MIENTRAS NO HAGA LOGOUT ENTONCES ESE MENU DE USUARIO especifico.
-*/
+    PARA EL MENU
+    MIENTRAS NO HAGA LOGOUT ENTONCES ESE MENU DE USUARIO especifico.
+    */
 
 
 
-   /// FUNCIONES PACIENTES
-
-//    char dni[10];
-//    char archi_pacientes[] = "pacientes.bin";
-//    arbolPaciente *arbol;
-//    arbol = inic_arbol();
-//    arbol = cargar_arbol_pacientes(archi_pacientes,arbol);
-//    arbol = crear_paciente(archi_pacientes,arbol);
-//    mostrar_pacientes(arbol);
-//   arbol= modificar_paciente_buscar(archi_pacientes,arbol);
-//   mostrar_pacientes(arbol);
+    /// FUNCIONES PACIENTES
 
     return 0;
 }

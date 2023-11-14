@@ -623,7 +623,9 @@ void mostrar_paciente_porapellido(char nombre[]){
      ordenar_seleccion(a,validos);   ///se ordena el arreglo
 
        system("cls");
- printf(" \n      DNI       APELLIDO Y NOMBRE           EDAD     TELEFONO       DIRECCION       ELIMINADO ");
+        setConsoleColor(15,5);
+        gotoxy(1,1);
+ printf("       DNI       APELLIDO Y NOMBRE           EDAD     TELEFONO       DIRECCION       ELIMINADO  ");
   for(int i = 0 ; i < validos; i++){
 
        mostrar_pacientes(a[i],i+2);  /// se muestra ordenado el arreglo
@@ -669,12 +671,21 @@ void ordenar_seleccion(stPaciente a[],int validos){
 }
   void mostrar_pacientes(stPaciente a, int i){
    printf("\n");
-   gotoxy(1,i); printf("  %i ",a.dni);
-   gotoxy(15,i); printf("  %s ",a.Apellido_nombre);
-   gotoxy(43,i); printf("  %i ",a.edad);
-   gotoxy(50,i); printf("  %s ",a.telefono);
-   gotoxy(65,i); printf("  %s ",a.direccion);
-   gotoxy(85,i); printf("  %s", (a.eliminado == 0) ? "No" : "Si");
+   setConsoleColor(15,5);
+   gotoxy(1,i); printf("  %-20i ",a.dni);
+   gotoxy(15,i); printf("  %-30s ",a.Apellido_nombre);
+   gotoxy(43,i); printf("  %-15i ",a.edad);
+   gotoxy(50,i); printf("  %-20s ",a.telefono);
+   gotoxy(65,i); printf("  %-20s ",a.direccion);
+   gotoxy(85,i);
+    if (a.eliminado == 0) {
+            setConsoleColor(15,10); // Verde
+            printf("  %-10s", "No");
+    } else {
+
+       setConsoleColor(15,4);// Rojo
+          printf("  %-10s", "Si");
+    }
 
    }
 
@@ -748,8 +759,10 @@ void mostrar_pacientes_arbol(arbolPaciente *arbol)
                 break;
        case 55:
                  system("cls");
+
                  mostrar_paciente_porapellido(nombre_pacientes);
                  printf("\n");
+                 setConsoleColor(11,0);
                 system("pause");
                 break;
 

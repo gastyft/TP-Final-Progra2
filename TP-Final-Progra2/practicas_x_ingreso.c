@@ -1,23 +1,23 @@
 #include "practicas_x_ingreso.h"
 
 
-pracXingreso cargar_individual ()
+pracXingreso cargar_individual (int nroIngreso)
 {
     pracXingreso a;
-    FILE *archi=fopen(nombrePracticas,"r+b");
-    int cant=0;
-    if(archi){
-    fseek(archi,0,SEEK_END);
-cant=ftell(archi)/sizeof(pracXingreso);    ///AUTOINCREMENTAL: CUENTO CANTIDAD QUE SE ENCUENTRAN EN ARCHIVO Y LE SUMO 1
-    }
-    else
-        printf("ERROR EN CARGAR INDIVIDUAL\n");
+    ///  FILE *archi=fopen(nombrePracticas,"r+b"); ///NRO INGRESO SE DE TRAER DE INGRESO X LABORATORIO
+//    int cant=0;
+//    if(archi){
+//    fseek(archi,0,SEEK_END);
+//cant=ftell(archi)/sizeof(pracXingreso);    ///AUTOINCREMENTAL: CUENTO CANTIDAD QUE SE ENCUENTRAN EN ARCHIVO Y LE SUMO 1
+//    }
+//    else
+//        printf("ERROR EN CARGAR INDIVIDUAL\n");
 
-    a.nroIngreso=cant++;
+    a.nroIngreso=nroIngreso;
     printf("\nIngrese resultado\n");
     fflush(stdin);
     gets(a.resultado);
-         /// esto no es asi, se hace autoincremental
+    /// esto no es asi, se hace autoincremental
 
     printf("\nIngrese numero de practica\n");
     scanf("%d",&a.nroPractica);
@@ -119,7 +119,7 @@ nodo_simple_pxi * agregar_orden (nodo_simple_pxi * lista, nodo_simple_pxi * nuev
     return lista;
 }
 
-nodo_simple_pxi * cargar_lista (nodo_simple_pxi * lista)
+nodo_simple_pxi * cargar_lista (nodo_simple_pxi * lista, int nroIngreso)
 {
     pracXingreso dato;
     nodo_simple_pxi * aux;
@@ -127,7 +127,7 @@ nodo_simple_pxi * cargar_lista (nodo_simple_pxi * lista)
 
     while (opcion!=27)
     {
-        dato=cargar_individual();
+        dato=cargar_individual(nroIngreso);
         aux=crear_nodo_pxi(dato);
         lista=agregar_ppio(lista,aux);
         printf("PRESS ANY KEY TO CONTINUE OR ESC TO EXIT \n ");
@@ -250,32 +250,46 @@ de practica y al resultado solamente
 
 
 
-nodo_simple_pxi *alta_logica_archivo(nodo_simple_pxi *lista,int nroIngreso){
+nodo_simple_pxi *alta_logica_archivo(nodo_simple_pxi *lista,int nroIngreso)
+{
 
-FILE *archi=fopen(nombrePracticasxIngreso,"r+b");
-pracXingreso prac;
-if(archi){
-    while(fread(&prac,sizeof(pracXingreso),1,archi)>0){
-        if(nroIngreso == prac.nroIngreso){
+    FILE *archi=fopen(nombrePracticasxIngreso,"r+b");
+    pracXingreso prac;
+    if(archi)
+    {
+        while(fread(&prac,sizeof(pracXingreso),1,archi)>0)
+        {
+            if(nroIngreso == prac.nroIngreso)
+            {
 
-            prac.eliminado=0;
-            fseek(archi,-1*sizeof(pracXingreso),SEEK_CUR);
-            fwrite(&prac,sizeof(pracXingreso),1,archi);
-            nodo_simple_pxi *aux=buscar_nodo(lista,nroIngreso);
-               aux->dato.eliminado=0;
+                prac.eliminado=0;
+                fseek(archi,-1*sizeof(pracXingreso),SEEK_CUR);
+                fwrite(&prac,sizeof(pracXingreso),1,archi);
+                nodo_simple_pxi *aux=buscar_nodo(lista,nroIngreso);
+                aux->dato.eliminado=0;
+            }
         }
     }
+    return lista;
 }
-return lista;
-}
 
-nodo_simple_pxi *alta_fisica(nodo_simple_pxi*lista){
+nodo_simple_pxi *alta_fisica(nodo_simple_pxi*lista,int nroIngreso)
+{
+
+    FILE*archi=fopen(nombrePracticasxIngreso,"a+b");
+    if(archi)
+    {
+        pracXingreso prac=cargar_individual(nroIngreso);
+        ///Luego de validar la carga
+        lista=agregar_final(lista,crear_nodo_pxi(prac));
+        fwrite(&prac,sizeof(pracXingreso),1,archi);
 
 
-    lista=agregar_final(lista,crear_nodo_pxi(cargar_individual()));
+    }
+    else
+        printf("ERROR EN EL ARCHIVO EN FUNCION ALTA FISICA\n");
 
-
-        return lista;
+    return lista;
 }
 
 
@@ -340,7 +354,7 @@ nodo_simple_pxi *modificar_practicas_x_ingreso_contenedora_admin(nodo_simple_pxi
         if(aux)
         {
 
-           aux= modifica_un_nodo_prac_x_ingreso_admin(aux);
+            aux= modifica_un_nodo_prac_x_ingreso_admin(aux);
 
             flag=1;
         }
@@ -366,17 +380,18 @@ nodo_simple_pxi *modificar_practicas_x_ingreso_contenedora_admin(nodo_simple_pxi
     return lista;
 }
 
-nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_tecnico(nodo_simple_pxi *aModificar){
+nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_tecnico(nodo_simple_pxi *aModificar)
+{
 
-printf("PRACTICA QUE QUIERE MODIFICAR EL RESULTADO \n");
- muestra_individual(aModificar->dato);
+    printf("PRACTICA QUE QUIERE MODIFICAR EL RESULTADO \n");
+    muestra_individual(aModificar->dato);
 
     printf("Ingrese nuevo resultado\n");
     fflush(stdin);
 
     gets(aModificar->dato.resultado);
 
-return aModificar;
+    return aModificar;
 }
 
 
@@ -426,52 +441,36 @@ nodo_simple_pxi *cargar_practicas_x_ingreso_tecnico(nodo_simple_pxi *lista) ///C
 }
 
 
-nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso){
+nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso)
+{
 
-FILE *archi=fopen(nombrePracticasxIngreso,"r+b");
-pracXingreso prac;
-int flag=0;
-if(archi){
-        while(flag && fread(&prac,sizeof(pracXingreso),1,archi)>0){
-            if(nroIngreso==prac.nroIngreso){
-            prac.eliminado=1;
-            fseek(archi,-1*sizeof(pracXingreso),SEEK_CUR);
-            fwrite(&prac,sizeof(pracXingreso),1,archi);
-            flag=1;
+    FILE *archi=fopen(nombrePracticasxIngreso,"r+b");
+    pracXingreso prac;
+    int flag=0;
+    if(archi)
+    {
+        while(flag && fread(&prac,sizeof(pracXingreso),1,archi)>0)
+        {
+            if(nroIngreso==prac.nroIngreso)
+            {
+                prac.eliminado=1;
+                fseek(archi,-1*sizeof(pracXingreso),SEEK_CUR);
+                fwrite(&prac,sizeof(pracXingreso),1,archi);
+                flag=1;
             }
         }
 
-if(flag){
-        printf("No se encontro el nro de ingreso\n");
-lista=NULL;
+        if(flag)
+        {
+            printf("No se encontro el nro de ingreso\n");
+            lista=NULL;
+        }
+
+    }
+    else
+        printf("ERROR EN EL ARCHIVO EN FUNCION BAJA DE PXI\n");
+
+    return lista;
 }
-
-}
-else printf("ERROR EN EL ARCHIVO EN FUNCION BAJA DE PXI\n");
-
-return lista;
-}
-
-
-//practicas validar_nro_practica_exista(practicas *arr,validos,int nroPractica){
-// int i=0;
-// flag=-1;
-// while(i<validos){
-//if(arr[i].nroPractica==nroPractica){
-//    {
-//
-//    flag=
-//    }
-// i++;
-//
-// }
-//
-//
-//
-//
-//
-// return ;
-// }
-
 
 

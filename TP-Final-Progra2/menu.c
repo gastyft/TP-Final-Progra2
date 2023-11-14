@@ -18,6 +18,10 @@ void carga_puntos()  /// APERTURA DE PROYECTO
             usleep(300000); // Retraso de 300 milisegundos (0.3 segundos)
             printf("\b \b"); // Borrar el punto anterior mediante caracteres de escape
         }
+
+
+
+
     }
     system("cls");
 }
@@ -231,8 +235,6 @@ void menu_contenedor()
             gotoxy(21,11);
             printf("5- About Us");
             gotoxy(21,12);
-            printf("6- Me parece una banda...");
-            gotoxy(21,13);
             printf("ESC LogOut \n");
 
             char op1=0;
@@ -260,7 +262,7 @@ void menu_contenedor()
                 break;
             case '6':
                 system("cls");
-                me_parece_una_banda();
+
                 break;
             case 27:
                 isLoggedIn=log_out();
@@ -347,6 +349,7 @@ void menu_contenedor()
 void apertura_programa()
 {
     color;
+
     printf("Abriendo APP, espere");
     carga_puntos();
 }

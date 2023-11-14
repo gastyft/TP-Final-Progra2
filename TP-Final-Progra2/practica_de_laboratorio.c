@@ -405,10 +405,52 @@ void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo
 }
 
 ///VALIDAR PRACTICAS
+practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica)
+{
+    int i=0;
+    practicas prac;
+    while(i<validos)
+    {
+        if(arr[i].nroPractica==nroPractica)
+        {
+            {
+                strcpy(prac.nombrePractica,arr[i].nombrePractica);
+                       prac.nroPractica=nroPractica;
+                        prac.eliminado=arr[i].eliminado;
+            }
+        }
+            i++;
+    }
 
-//practicas validacion_practica(practicas practicaAvalidar){
-//
-//
-//
-//return practicaAvalidar;
-//}
+    return prac;
+}
+
+practicas validacion_nombre_practica(practicas practicaAvalidar){///no se repita
+FILE *archi=fopen(nombrePracticas,"r+b");
+practicas prac;
+if(archi){
+
+while(fread(&prac,sizeof(practicas),1,archi)>0){
+
+if(strcmpi(prac.nombrePractica,practicaAvalidar.nombrePractica)==0){
+
+    printf("ESE NOMBRE DE PRACTICA YA EXISTE \n");
+
+    printf("Ingrese otro nombre de practica\n");
+
+    fflush(stdin);
+    gets(practicaAvalidar.nombrePractica);
+    rewind(archi);
+}
+
+}
+fwrite(&practicaAvalidar,sizeof(practicas),1,archi);
+
+}
+else
+    printf("ERRROR EN EL ARCHIVO DE PRACTICAS EN FUNCION VALIDACION NOMBRE PRACTICA \n");
+
+fclose(archi);
+
+return practicaAvalidar;
+}

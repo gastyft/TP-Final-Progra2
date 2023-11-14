@@ -37,7 +37,7 @@ practicas cargar_practica_individual_validacion_archivo ();
 practicas practicaNula();
 void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practicas, int validos);
 void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo_practicas, int i);
-
-
+practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica);
+practicas validacion_nombre_practica(practicas practicaAvalidar);
 
 #endif // PRACTICA_DE_LABORATORIO_H_INCLUDED
