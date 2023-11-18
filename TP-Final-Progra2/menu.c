@@ -214,30 +214,30 @@ void menu_contenedor()
         system("cls");
     }
     while (isLoggedIn == -1);
-
+///CARGA DE ESTRUCTURAS COMPUESTAS
+    arbol= cargar_arbol_pacientes("pacientes.bin",arbol);
+      arbol= cargar_arbol_ingresos(arbol);    ///CARGA PRACTICAS INCLUIDA EN CARGA ARBOL INGRESOS
 
     do
     {
         if(isLoggedIn==1) ///admin
         {
-
             system("cls");
             consola_vacia();
-
             gotoxy(21,7);
             printf("1- MENU EMPLEADOS \n");
             gotoxy(21,8);
             printf("2- MENU PACIENTES \n");
             gotoxy(21,9);
-            printf("3- Yo tendria otro menu :) ...");
+            printf("3- MENU INGRESOS LAB");
             gotoxy(21,10);
-            printf("4- Yo tendria otro menu :) ...");
+            printf("4- MENU PRACTICAS");
             gotoxy(21,11);
             printf("5- About Us");
             gotoxy(21,12);
             printf("ESC LogOut \n");
-            arbol= cargar_arbol_pacientes("pacientes.bin",arbol);
-            printf(" %d",arbol->paciente.dni);
+
+
 
             char op1=0;
             fflush(stdin);
@@ -251,6 +251,7 @@ void menu_contenedor()
             ///OTROS CASE DE LOS MENUS DE LAS DEMAS ESTRUCTURAS;
             case '2':
                 arbol= menu_pacientes("pacientes.bin", arbol);
+
                 break;
             case '3':
 
@@ -258,6 +259,7 @@ void menu_contenedor()
                 system("pause");
                 break;
             case '4':
+
                 break;
             case '5':
                 system("cls");
@@ -270,7 +272,6 @@ void menu_contenedor()
             case 27:
                 isLoggedIn=log_out();
                 break;
-
             default:
                 system("cls");
                 gotoxy(21,7);
@@ -312,16 +313,16 @@ void menu_contenedor()
 
 
         }
-        if(isLoggedIn==2) ///Tecnico
+        if(isLoggedIn==2) ///Tecnico o bioquimico administrativo laboratorio
         {
 ///menu practicas para tecnico
 ///ESC PARA SALIR DE LA SESION
         }
-        if(isLoggedIn==3) ///empleado
+        if(isLoggedIn==3) ///empleadoo administrativo
         {
-///menu pacientes empleado
+///menu pacientes empleado solo ver
 ///menu practicas empleado
-///menu labos empleado
+///menu labos empleado cambiar fechas, numero matricula
 ///ESC PARA SALIR DE LA SESION
         }
 

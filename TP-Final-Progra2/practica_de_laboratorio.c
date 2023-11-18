@@ -405,10 +405,11 @@ void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo
 }
 
 ///VALIDAR PRACTICAS
-practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica)
+practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica) /// DEVUELVE NULL SI NO EXISTE SINO LA ESTRUCTURA
 {
     int i=0;
-    practicas prac;
+    practicas prac=practica_nula();
+
     while(i<validos)
     {
         if(arr[i].nroPractica==nroPractica)
@@ -427,7 +428,7 @@ practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica
 
 practicas validacion_nombre_practica(practicas practicaAvalidar){///no se repita
 FILE *archi=fopen(nombrePracticas,"r+b");
-practicas prac;
+practicas prac=practica_nula();
 if(archi){
 
 while(fread(&prac,sizeof(practicas),1,archi)>0){

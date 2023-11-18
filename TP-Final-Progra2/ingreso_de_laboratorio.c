@@ -252,10 +252,322 @@ ingresosLaboratorio validacion_fecha_retiro(ingresosLaboratorio laboratorio) ///
         while( fecha.dia<1   || fecha.dia >diasMaximos);
 
     }
+    sprintf(laboratorio.fechaRetiro,"%d/%d/%d", fecha.dia,fecha.mes,fecha.anio);
+    return laboratorio;
+}
+
+ingresosLaboratorio validacion_modificacion_retiro(ingresosLaboratorio laboratorio){
+
+    stFecha fecha;
+
+
+
+    int diaActual,mesActual,anioActual,diasMaximos=0;
+
+  for (int j = 0; j < 10; j++) {
+        if (j < 2) {
+            diaActual = diaActual * 10 + atoi(&laboratorio.fechaIngreso[j]);
+        } else if (j > 2 && j < 5) {
+            mesActual = mesActual * 10 + atoi(&laboratorio.fechaIngreso[j]);
+        } else if (j > 5 && j < 10) {
+            anioActual = anioActual * 10 + atoi(&laboratorio.fechaIngreso[j]);
+        }
+    }
+
+    do
+    {
+        printf("Ingrese anio\n");
+        scanf("%d",&fecha.anio);
+
+    }
+    while(fecha.anio<2023);       ///PIDE AÑO MAYOR O IGUAL A 2023
+
+    if(fecha.anio == anioActual)  /// SI ES AÑO ACTUAL ENTONCES PIDE MES MAYOR O IGUAL AL ACTUAL
+    {
+        do
+        {
+            printf("Ingrese mes\n");
+            scanf("%d",&fecha.mes);
+        }
+        while(fecha.mes<1 || mesActual>fecha.mes); ///COMPRUEBA QUE EL MES NO SEA MENOR A 1 Y QUE SEA MAYOR O IGUAL AL MES ACTUAL
+
+        if(fecha.mes == mesActual) /// SI EL MES ES ACTUAL ENTONCES VALIDA QUE MES ES PARA ASIGNARLE LE MAXIMO DE DIAS DE ESE MES
+        {
+            do    /// si es mayor al dia actual no habria porque validar en el switch
+            {
+                printf("Ingrese dia\n");   /// PIDE UN DIA MENOR O IGUAL AL ACTUAL
+                scanf("%d",&fecha.dia);
+            }
+            while(fecha.dia<1 || diaActual>fecha.dia); ///VALIDA QUE NO SEA MENOR A 1 Y QUE SUPERE EL O IGUALE EL DIA ACTUAL
+        }
+        else
+        {
+            switch (fecha.mes)
+            {
+            case 2:
+                /// Verificar si el año es bisiesto para febrero
+                if ((fecha.anio % 4 == 0 && fecha.anio % 100 != 0) || fecha.anio % 400 == 0)
+                    diasMaximos = 29;
+                else
+                    diasMaximos = 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diasMaximos = 30;
+                break;
+            default:
+                diasMaximos = 31;
+                break;
+            }
+            do
+            {
+                printf("Ingrese dia\n");
+                scanf("%d",&fecha.dia);
+            }
+            while(fecha.dia > diasMaximos);
+        }
+    }
+    else /// si no es anio actual
+    {
+        do
+        {
+            printf("Ingrese mes\n");
+            scanf("%d",&fecha.mes);
+        }
+        while(fecha.mes>12 || fecha.mes<1 ); ///VALID QUE EL MES QUE PONGA SEA ENTRE 1 Y 12
+
+        switch (fecha.mes)
+        {
+        case 2:
+            /// Verificar si el año es bisiesto para febrero
+            if ((fecha.anio % 4 == 0 && fecha.anio % 100 != 0) || fecha.anio % 400 == 0)
+                diasMaximos = 29;
+            else
+                diasMaximos = 28;
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            diasMaximos = 30;
+            break;
+        default:
+            diasMaximos = 31;
+            break;
+        }
+        do
+        {
+            printf("Ingrese dia \n");
+            scanf("%d",&fecha.dia);
+        }
+        while( fecha.dia<1   || fecha.dia >diasMaximos);
+
+    }
+    sprintf(laboratorio.fechaRetiro,"%d/%d/%d", fecha.dia,fecha.mes,fecha.anio);
+    return laboratorio;
+}
+
+
+ingresosLaboratorio validacion_modificacion_ingreso(ingresosLaboratorio laboratorio){
+
+    stFecha fecha;
+
+
+
+    int diaRetiro,mesRetiro,anioRetiro,diasMaximos=0;
+
+  for (int j = 0; j < 10; j++) {
+        if (j < 2) {
+            diaRetiro = diaRetiro * 10 + atoi(&laboratorio.fechaRetiro[j]);
+        } else if (j > 2 && j < 5) {
+            mesRetiro = mesRetiro * 10 + atoi(&laboratorio.fechaRetiro[j]);
+        } else if (j > 5 && j < 10) {
+            anioRetiro = anioRetiro * 10 + atoi(&laboratorio.fechaRetiro[j]);
+        }
+    }
+
+    do
+    {
+        printf("Ingrese anio\n");
+        scanf("%d",&fecha.anio);
+
+    }
+    while(fecha.anio>anioRetiro);       ///PIDE AÑO MAYOR O IGUAL A 2023
+
+    if(fecha.anio == anioRetiro)  /// SI ES AÑO ACTUAL ENTONCES PIDE MES MAYOR O IGUAL AL ACTUAL
+    {
+        do
+        {
+            printf("Ingrese mes\n");
+            scanf("%d",&fecha.mes);
+        }
+        while(fecha.mes<1 || mesRetiro<fecha.mes); ///COMPRUEBA QUE EL MES NO SEA MENOR A 1 Y QUE SEA MENOR O IGUAL AL MES RETIRO
+
+        if(fecha.mes == mesRetiro) /// SI EL MES ES ACTUAL ENTONCES VALIDA QUE MES ES PARA ASIGNARLE LE MAXIMO DE DIAS DE ESE MES
+        {
+            do    /// si es mayor al dia actual no habria porque validar en el switch
+            {
+                printf("Ingrese dia\n");   /// PIDE UN DIA MENOR O IGUAL AL ACTUAL
+                scanf("%d",&fecha.dia);
+            }
+            while(fecha.dia<1 || diaRetiro<fecha.dia); ///VALIDA QUE NO SEA MENOR A 1 Y QUE SUPERE EL O IGUALE EL DIA ACTUAL
+        }
+        else
+        {
+            switch (fecha.mes)
+            {
+            case 2:
+                /// Verificar si el año es bisiesto para febrero
+                if ((fecha.anio % 4 == 0 && fecha.anio % 100 != 0) || fecha.anio % 400 == 0)
+                    diasMaximos = 29;
+                else
+                    diasMaximos = 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diasMaximos = 30;
+                break;
+            default:
+                diasMaximos = 31;
+                break;
+            }
+            do
+            {
+                printf("Ingrese dia\n");
+                scanf("%d",&fecha.dia);
+            }
+            while(fecha.dia > diasMaximos);
+        }
+    }
+    else /// si no es anio actual
+    {
+        do
+        {
+            printf("Ingrese mes\n");
+            scanf("%d",&fecha.mes);
+        }
+        while(fecha.mes>12 || fecha.mes<1 ); ///VALID QUE EL MES QUE PONGA SEA ENTRE 1 Y 12
+
+        switch (fecha.mes)
+        {
+        case 2:
+            /// Verificar si el año es bisiesto para febrero
+            if ((fecha.anio % 4 == 0 && fecha.anio % 100 != 0) || fecha.anio % 400 == 0)
+                diasMaximos = 29;
+            else
+                diasMaximos = 28;
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            diasMaximos = 30;
+            break;
+        default:
+            diasMaximos = 31;
+            break;
+        }
+        do
+        {
+            printf("Ingrese dia \n");
+            scanf("%d",&fecha.dia);
+        }
+        while( fecha.dia<1   || fecha.dia >diasMaximos);
+
+    }
     sprintf(laboratorio.fechaIngreso,"%d/%d/%d", fecha.dia,fecha.mes,fecha.anio);
     return laboratorio;
 }
 
+arbolPaciente * modificar_fecha_ingreso(arbolPaciente * arbol)
+{
+    int nroingreso=0,flag=0;
+
+    printf("Ingrese el numero de ingreso\n");///le pide el numero de ingreso para ir a buscar al archivo
+    scanf("%d",&nroingreso);
+    nodoLab* aux=buscar_ingreso_porNumero(arbol,nroingreso);
+    if(aux){
+    aux->labo= validacion_modificacion_ingreso(aux->labo);
+        FILE * archi=fopen(nombrearchivo,"r+b");
+    ingresosLaboratorio laboratorio;
+    if(archi!=NULL)
+    {
+        rewind(archi);
+        while(fread(&laboratorio,sizeof(ingresosLaboratorio),1,archi)>0 && flag==0)///lee el archivo y verifica que el flag siga en 0
+        {
+            if(laboratorio.numeroIngreso==aux->labo.numeroIngreso)///compara los numeros de ingreso
+            {
+                fseek(archi,-1*sizeof(ingresosLaboratorio),SEEK_CUR);
+                fwrite(&laboratorio,sizeof(ingresosLaboratorio),1,archi);
+                flag=1;
+            }
+        }
+    }
+    else
+    {
+        printf("ERROR EN LA APERTURA DEL ARCHIVO\n");
+    }
+          fclose(archi);
+    }
+    if(flag==0 || !aux)
+    {
+        printf("El numero de ingreso %d no existe\n",nroingreso);
+    }
+    else
+    {
+        printf("La fecha de ingreso ha sido modificada con exito\n");
+    }
+
+
+
+    return arbol;
+}
+
+arbolPaciente * modificar_fecha_retiro(arbolPaciente * arbol)
+{
+    int nroingreso=0,flag=0;
+
+    printf("Ingrese el numero de ingreso\n");///le pide el numero de ingreso para ir a buscar al archivo
+    scanf("%d",&nroingreso);
+    nodoLab* aux=buscar_ingreso_porNumero(arbol,nroingreso);
+    if(aux){
+    aux->labo= validacion_modificacion_retiro(aux->labo);
+        FILE * archi=fopen(nombrearchivo,"r+b");
+    ingresosLaboratorio laboratorio;
+    if(archi!=NULL)
+    {
+        rewind(archi);
+        while(fread(&laboratorio,sizeof(ingresosLaboratorio),1,archi)>0 && flag==0)///lee el archivo y verifica que el flag siga en 0
+        {
+            if(laboratorio.numeroIngreso==aux->labo.numeroIngreso)///compara los numeros de ingreso
+            {
+                fseek(archi,-1*sizeof(ingresosLaboratorio),SEEK_CUR);
+                fwrite(&laboratorio,sizeof(ingresosLaboratorio),1,archi);
+                flag=1;
+            }
+        }
+    }
+    else
+    {
+        printf("ERROR EN LA APERTURA DEL ARCHIVO\n");
+    }
+     fclose(archi);
+    }
+    if(flag==0 || !aux)
+    {
+        printf("El numero de ingreso %d no existe\n",nroingreso);
+    }
+    else
+    {
+        printf("La fecha de ingreso ha sido modificada con exito\n");
+    }
+
+    return arbol;
+}
 
 
 
@@ -265,32 +577,6 @@ int retorna_dni()
     printf("Ingrese el dni del paciente AAAAAA");
     scanf("%d", &dni);
     return dni;
-}
-
-arbolPaciente * buscar(arbolPaciente * arbol, int dni)
-{
-    arbolPaciente * rta=NULL;
-    if(arbol!=NULL)
-    {
-        if(dni == arbol->paciente.dni)
-        {
-            rta = arbol;
-            printf("\n ENCONTRE EL DNI \n");
-        }
-        else
-        {
-            if(dni>arbol->paciente.dni)
-            {
-                rta = buscar(arbol->der, dni);
-            }
-            else
-            {
-
-                rta = buscar(arbol->izq, dni);
-            }
-        }
-    }
-    return rta;
 }
 
 arbolPaciente * modificar_matricula_profesional (arbolPaciente * arbol)
@@ -313,7 +599,7 @@ arbolPaciente * modificar_matricula_profesional (arbolPaciente * arbol)
                 dni=laboratorio.dni;
                 fseek(archi,-1*sizeof(ingresosLaboratorio),SEEK_CUR);
                 fwrite(&laboratorio,sizeof(ingresosLaboratorio),1,archi);
-                arbolaux = buscar(arbolaux,dni);
+                arbolaux = buscar_paciente(arbolaux,dni);
                 nodoLab * seg = arbolaux->ingreso;
                 while(seg)
                 {
@@ -376,7 +662,7 @@ arbolPaciente * modificar_matricula_profesional (arbolPaciente * arbol)
 
 nodoLab * cambiar_estado_eliminado_lista(arbolPaciente *arbol,int nroingreso,int dni,int flag)
 {
-    arbolPaciente * arbolaux = buscar(arbol,dni);
+    arbolPaciente * arbolaux = buscar_paciente(arbol,dni);
     nodoLab * seg = arbolaux->ingreso;
     while(seg!=NULL)
     {
@@ -432,9 +718,7 @@ arbolPaciente * alta_ingresos_laboratorio(arbolPaciente * arbol)
     if(archi)
     {
         int dni=retorna_dni();
-        printf("VOLVI A ENTRAAAAR\n");
-        printf("SOY EL DNIII %d",dni);
-        arbolPaciente * arbolaux = buscar(arbol,dni);
+        arbolPaciente * arbolaux = buscar_paciente(arbol,dni);
         if(arbolaux!=NULL)
         {
             laboratorio=carga_un_ingreso_laboratorio(dni);
@@ -478,7 +762,7 @@ arbolPaciente * baja_ingresos_laboratorio(arbolPaciente * arbol)
                     dni=laboratorio.dni;
                     fseek(archi,-1*sizeof(ingresosLaboratorio),SEEK_CUR);
                     fwrite(&laboratorio,sizeof(ingresosLaboratorio),1,archi);
-                    arbolaux=buscar(arbolaux,dni);
+                    arbolaux=buscar_paciente(arbolaux,dni);
                     if(arbolaux->ingreso->labo.numeroIngreso  ==nrodeingreso)
                     {
                         arbolaux->ingreso->labo.eliminado=1;
@@ -514,12 +798,13 @@ arbolPaciente * baja_ingresos_laboratorio(arbolPaciente * arbol)
     return arbol;
 }
 
-void consulta_por_numero_de_ingreso()
+void consulta_por_numero_de_ingreso(arbolPaciente *arbol)
 {
     int nrodeingreso=0,flag=0;
     ingresosLaboratorio laboratorio;
     printf("Ingrese el numero de ingreso del paciente que quiere consultar");
     scanf("%d",&nrodeingreso);
+   nodoLab *aux= buscar_ingreso_porNumero(arbol,nrodeingreso);
     FILE * archi =fopen(nombrearchivo,"r+b");
     if(archi!=NULL)
     {
@@ -530,7 +815,9 @@ void consulta_por_numero_de_ingreso()
             {
                 flag=1;
                 muestra_un_laboratorio(laboratorio);
-                ///muestra de practicas
+
+
+                        muestra_lista(aux->listaIngresoPrac);
             }
         }
         if(flag==0)
@@ -547,20 +834,17 @@ void consulta_por_numero_de_ingreso()
 
 void consulta_por_dni(arbolPaciente * arbol)
 {
-    int i=1,dni=retorna_dni();
+    int dni=retorna_dni();
 
 
-    arbolPaciente * arbolaux = buscar(arbol,dni);
+    arbolPaciente * arbolaux = buscar_paciente(arbol,dni);
     if(arbolaux!=NULL)
     {
         nodoLab * seg =arbolaux->ingreso;
         while(seg)
         {
             muestra_un_laboratorio(seg->labo);
-            printf("Practica %d : \n",i);///ver si esta dentro de la funcion o no
-
-            ///muestra_una_practica_por_ingreso(seg->labo.nroingreso)   funcion sofi o gasty
-            i++;
+            muestra_lista(seg->listaIngresoPrac);
             seg = seg->siguiente;
         }
     }
@@ -578,7 +862,7 @@ arbolPaciente * alta_de_ingreso_por_numero(arbolPaciente * arbol)
     scanf("%d", &nroingresoabuscar);
     dniabuscar=verificar_existencia_nroingreso_alta(nroingresoabuscar,&flag);
     arbolPaciente * arbolaux = inic_arbol();
-    arbolaux=buscar(arbolaux,dniabuscar);
+    arbolaux=buscar_paciente(arbolaux,dniabuscar);
 
     if(flag==0)
     {
@@ -637,52 +921,6 @@ int verificar_existencia_nroingreso_alta (int nroingresoabuscar,int * flag)/// s
 
 
 
-
-//////arbolPaciente * modificar_fecha_ingreso (arbolPaciente * arbol)
-//////{
-//////    int nroingreso=0,matriculanueva=0;
-//////    arbolPaciente *arbolaux=arbol;
-//////    printf("Ingrese el numero de ingreso");
-//////    scanf("%d",&nroingreso);
-//////    FILE * archi=fopen(nombrearchivo,"r+b");
-//////    if(archi!=NULL)
-//////    {
-//////        rewind(archi);
-//////        while(fread(&laboratorio,sizeof(ingresosLaboratorio),1,archi)>0 && flag==0)
-//////        {
-//////            if(nrodeingreso==laboratorio.numeroIngreso)
-//////            {
-//////                printf("Ingrese la nueva fecha de ingreso %d",nroingreso);
-//////                ///scanf("%d",&matriculanueva);
-//////                while()
-//////                {
-//////                    ///validacion
-//////                }
-//////                laboratorio.fechaingreso=fechanueva;
-//////                dni=laboratorio.dni;
-//////                fseek(archi,-1*sizeof(ingresosLaboratorio),SEEK_CUR);
-//////                fwrite(&laboratorio,sizeof(ingresosLaboratorio),1,archi);
-//////                arbolaux=buscar(arbolaux,dni);
-//////                nodoLab * seg = arbolaux->ingreso;
-//////                while(seg)
-//////                {
-//////                    if(seg->labo.numeroIngreso==nroingreso)
-//////                    {
-//////                        seg->labo.fechaIngreso=fechaingreso;
-//////                    }
-//////                    seg=seg->siguiente;
-//////                }
-//////                flag=1
-//////            }
-//////        }
-//////    }
-//////    else
-//////    {
-//////        printf("ERROR EN LA APERTURA DEL ARCHIVO");
-//////    }
-//////    return arbol;
-//////}
-
 ///MENUS INGRESO LABORATORIOS
 arbolPaciente * menu_ingresos_laboratorio (arbolPaciente * arbol)
 {
@@ -697,8 +935,6 @@ arbolPaciente * menu_ingresos_laboratorio (arbolPaciente * arbol)
         {
         case '1':
             arbol=alta_ingresos_laboratorio(arbol);
-
-
             break;
 
         case '2':
@@ -729,20 +965,20 @@ arbolPaciente * menu_ingresos_laboratorio (arbolPaciente * arbol)
 void menu_modificacion_ingresos_laboratorio(arbolPaciente * arbol)
 {
     char o=0;
+
+    do{
     printf("Desea modificar : \n[1] Fecha Ingreso \n [2] Fecha Retiro \n [3] Matricula del profesional \n [4] Alta de un ingreso que esta dado de baja  \n [ESC] ESCAPE");
     fflush(stdin);
     o=getch();
     system("cls");
-    while(o!=ESC)
-    {
         switch(o)
         {
         case '1':
-         ///       modificacion_fecha_ingreso(arbol);
+          arbol= modificar_fecha_ingreso(arbol);
             break;
 
         case '2':
-         ///      modificacion_fecha_retiro(arbol);
+       arbol = modificar_fecha_retiro(arbol);
             break;
         case '3':
           arbol=  modificar_matricula_profesional(arbol);
@@ -760,22 +996,23 @@ void menu_modificacion_ingresos_laboratorio(arbolPaciente * arbol)
             fflush(stdin);
             o=getch();
         }
-    }
+    }  while(o!=ESC);
 }
 
 void menu_consulta_ingresos_laboratorio(arbolPaciente * arbol)
 {
     char o=0;
+
+
+    do{
     printf("Desea consultar : \n[1] Ingreso especifico \n [2] Todos los ingresos de un paciente \n [ESC] ESCAPE");
     fflush(stdin);
     o=getch();
     system("cls");
-    while(o!=ESC)
-    {
         switch(o)
         {
         case '1':
-            consulta_por_numero_de_ingreso();
+            consulta_por_numero_de_ingreso(arbol);
             break;
 
         case '2':
@@ -790,7 +1027,7 @@ void menu_consulta_ingresos_laboratorio(arbolPaciente * arbol)
             fflush(stdin);
             o=getch();
         }
-    }
+    }  while(o!=ESC);
 }
 
 nodoLab* buscar_ingreso_recorrer(nodoLab *ingreso, int dato){
@@ -841,14 +1078,19 @@ nodoLab* buscar_ingreso_porNumero(arbolPaciente *arbol,int dato)
     return rta;
 }
 
- void mostrar_ingreso (ingresosLaboratorio a, int i){
+ void mostrar_ingreso (ingresosLaboratorio a, int i){ /// BUSCAR CABECERA
    printf("\n");
+
    gotoxy(3,i); printf("  %i ",a.numeroIngreso);
+
    gotoxy(15,i); printf("  %s ",a.fechaIngreso);
+
    gotoxy(30,i); printf("  %s ",a.fechaRetiro);
    gotoxy(46,i); printf("  %i ",a.dni);
    gotoxy(62,i); printf("  %i ",a.matriculaProfesional);
    gotoxy(80,i); printf("  %s", (a.eliminado == 0) ? "No" : "Si");
 
    }
+
+
 

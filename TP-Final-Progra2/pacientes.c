@@ -988,7 +988,7 @@ void mostrar_ingresos(){
 }
 
 
-   arbolPaciente *menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol)
+  arbolPaciente *menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol)
 {   char opc;
     do{
   system("cls");
@@ -1018,24 +1018,22 @@ void mostrar_ingresos(){
                 break;
        case 52:
                  system("cls");
-                system("pause");
-                break;
+                 consulta_paciente(arbol);
+
+          break;
        case 53:
                  system("cls");
+              listado_ingresos_dePaciente(arbol);
 
-                system("pause");
                 break;
        case 54:
                  system("cls");
-
-                system("pause");
+                consulta_ingreso_particular(arbol);
                 break;
        case 55:
                  system("cls");
-
                  mostrar_paciente_porapellido(arbol);
                  printf("\n");
-                 setConsoleColor(11,0);
                 system("pause");
                 break;
 
@@ -1054,8 +1052,4 @@ void mostrar_ingresos(){
 
    return arbol;
 }
-
-
-
-///  MENUS INGRESOS DE LABO CON ARBOLES
 

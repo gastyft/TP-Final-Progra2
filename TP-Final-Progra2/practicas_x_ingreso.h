@@ -31,7 +31,6 @@ typedef struct nodo_simple_pxi{
 
 } nodo_simple_pxi;
 ///PROTOTIPADO
-
 pracXingreso cargar_individual ();
 pracXingreso cargar_individual_x_ingreso (int nroIngreso);
 nodo_simple_pxi * inic_lista();

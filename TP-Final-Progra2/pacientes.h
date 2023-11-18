@@ -36,10 +36,7 @@ typedef struct arbolPaciente {
 }arbolPaciente;
 
 
-
-
 ///PROTOTIPADO
-
 arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol);
 int validar(char numero[]);
 int validar_nombre(const char nombre[]);
@@ -52,16 +49,13 @@ arbolPaciente *crear_paciente(char nombre[20],arbolPaciente *arbol);
 int crear_dni(arbolPaciente *arbol);
 int crear_edad();
 void cargar_Archivo_paciente(char nombre[],stPaciente a);
-
 void mostrar_pacientes(stPaciente a, int i);
 void mostrar_paciente_porapellido(arbolPaciente *arbol);
 int posmenor(stPaciente a[],int validos,int pos);
 void copiar_arbol_arreglo(stPaciente a[] ,arbolPaciente *arbol, int *i, int validos);
 void ordenar_seleccion(stPaciente a[],int validos);
-
 void mostrar_paciente(stPaciente a);
 void mostrar_pacientes_arbol(arbolPaciente *arbol);
-
 arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente * arbol);
 stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol);
 void modificar_archivo_pacientes(char nombre[],int dni_buscar,stPaciente paciente);
@@ -73,9 +67,7 @@ arbolPaciente* cargar_arbol_ingresos(arbolPaciente *arbol);
 void consulta_ingreso_particular(arbolPaciente *arbol);
 arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
 void mostrar_ingresos();
-
 int validar_edad(char numero[]);
-
 struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
 
 

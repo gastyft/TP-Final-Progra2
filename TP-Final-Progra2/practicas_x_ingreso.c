@@ -27,10 +27,35 @@ pracXingreso cargar_individual_x_ingreso (int nroIngreso)
 
 void muestra_individual (pracXingreso a)
 {
-    printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
-    printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
-    printf("\n RESULTADO %s\n",a.resultado);
+    FILE *archi=fopen(nombrePracticas,"r+b");
+    int flag=0;
+    if(archi)
+    {
+        practicas prac;
+        while(fread(&prac,sizeof(practicas),1,archi)>0 && flag)
+        {
+
+            if(prac.nroPractica==a.nroPractica)
+            {
+
+                printf("NOMBRE PRACTICA: %s \n",prac.nombrePractica);
+                printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
+                printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
+                printf("\n RESULTADO %s\n",a.resultado);
+                flag=1;
+            }
+        }
+
+
+    }
+    else
+        printf("ERROR EN ABRIR EL ARCHIVO EN FUNCION MUESTRA INDIVIDUAL EN PRAC X INGRESO \n");
+
+
+    fclose(archi);
 }
+
+
 
 
 ///listas para practicas por ingreso
@@ -240,11 +265,10 @@ nodo_simple_pxi * borrarLista (nodo_simple_pxi * lista)
 }
 /// ACA EMPIEZAN FUNCIONES CRUD
 /**
-Alta_de_pxi: verificar que existan el nro
-de ingreso y de practica
-• Modificacio_de_pxi:puede afectar a un nro
-de practica y al resultado solamente
-• Baja_de_pxi
+Alta_de_pxi: verificar que existan el nro  de ingreso y de practica LISTO
+• Modificacio_de_pxi:puede afectar a un nro de practica y al resultado solamente LISTO
+• Baja_de_pxi  LISTO
+FALTAN VALIDACIONES TODAS PREGUNTAR A SOFI SI QUIERE QUE LAS HAGA
 */
 
 
@@ -491,10 +515,33 @@ pracXingreso cargar_individual ()
 
 void muestra_individual_prac_x_ingreso (pracXingreso a)
 {
-    printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
-    printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
-    printf("\n RESULTADO %s\n",a.resultado);
+    FILE *archi=fopen(nombrePracticas,"r+b");
+    practicas prac;
+    int flag=0;
+    if(archi)
+    {
+
+        while(fread(&prac,sizeof(practicas),1,archi)>0 &&flag)
+        {
+            if(prac.nroPractica==a.nroPractica)
+            {
+
+                printf("NOMBRE PRACTICA: %s \n",prac.nombrePractica);
+                printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
+                printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
+                printf("\n RESULTADO %s\n",a.resultado);
+                flag=1;
+
+            }
+
+        }
+
+    }
+
 }
+
+
+
 
 
 
@@ -531,22 +578,9 @@ void muestra_individual_prac_x_ingreso (pracXingreso a)
 //
 //    cargar
 //    break;
-//
-//
-//
+
 //}
-//
-//
-//
-//
-//
-//
+
 //}while(o!=27);
-//
-//
-//
-//
-//
-//
-//
+
 //}

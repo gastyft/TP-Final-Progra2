@@ -86,10 +86,11 @@ struct arbolPaciente * baja_ingresos_laboratorio(struct arbolPaciente * arbol);
 struct arbolPaciente * alta_de_ingreso_por_numero(struct arbolPaciente * arbol);
 int verificar_existencia_nroingreso_alta (int nroingresoabuscar,int * flag);
 ///consulta
-void consulta_por_numero_de_ingreso();
+void consulta_por_numero_de_ingreso(struct arbolPaciente *arbol);
 void consulta_por_dni(struct arbolPaciente * arbol);
-///buscar por dni
-struct arbolPaciente * buscar(struct arbolPaciente * arbol, int dni);
- void mostrar_ingreso (ingresosLaboratorio a, int i);
 
+
+ void mostrar_ingreso (ingresosLaboratorio a, int i);
+ingresosLaboratorio validacion_modificacion_ingreso(ingresosLaboratorio laboratorio);
+ingresosLaboratorio validacion_modificacion_retiro(ingresosLaboratorio laboratorio);
 #endif // INGRESO_LABORATORIO_NUEVO_H_INCLUDED
