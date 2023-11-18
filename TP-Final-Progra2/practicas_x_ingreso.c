@@ -1,7 +1,7 @@
 #include "practicas_x_ingreso.h"
 
 
-pracXingreso cargar_individual (int nroIngreso)
+pracXingreso cargar_individual_x_ingreso (int nroIngreso)
 {
     pracXingreso a;
     ///  FILE *archi=fopen(nombrePracticas,"r+b"); ///NRO INGRESO SE DE TRAER DE INGRESO X LABORATORIO
@@ -488,7 +488,8 @@ pracXingreso cargar_individual ()
 
     return a;
 }
-void muestra_individual (pracXingreso a)
+
+void muestra_individual_prac_x_ingreso (pracXingreso a)
 {
     printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
     printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);

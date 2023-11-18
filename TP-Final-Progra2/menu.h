@@ -7,9 +7,8 @@
 #include <unistd.h>
 #include <time.h>
 #include "empleado_de_laboratorio.h"
-#include "pacientes.h"
-#include "practicas_x_ingreso.h"
-#include "practica_de_laboratorio.h"
+//#include "practicas_x_ingreso.h"
+//#include "practica_de_laboratorio.h"
 #include "ingreso_laboratorio_nuevo.h"
 #include "pacientes.h"
 #include "Firma.h"

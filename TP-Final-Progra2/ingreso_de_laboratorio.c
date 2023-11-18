@@ -2,7 +2,6 @@
 #include "ingreso_laboratorio_nuevo.h"
 
 
-
 nodoLab * crear_nodo_lab(ingresosLaboratorio laboratorio)
 {
     nodoLab * aux = (nodoLab *)malloc(sizeof(nodoLab));///genero la variable aux para cargarle los datos me llegan por parametro
@@ -840,6 +839,16 @@ nodoLab* buscar_ingreso_porNumero(arbolPaciente *arbol,int dato)
     }
 
     return rta;
-
 }
+
+ void mostrar_ingreso (ingresosLaboratorio a, int i){
+   printf("\n");
+   gotoxy(3,i); printf("  %i ",a.numeroIngreso);
+   gotoxy(15,i); printf("  %s ",a.fechaIngreso);
+   gotoxy(30,i); printf("  %s ",a.fechaRetiro);
+   gotoxy(46,i); printf("  %i ",a.dni);
+   gotoxy(62,i); printf("  %i ",a.matriculaProfesional);
+   gotoxy(80,i); printf("  %s", (a.eliminado == 0) ? "No" : "Si");
+
+   }
 

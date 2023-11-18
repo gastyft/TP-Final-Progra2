@@ -11,6 +11,8 @@
 #define ESC 27
 #define nombrearchivo "Ingresos.bin"
 
+struct arbolPaciente;
+
 typedef struct
 {
     int numeroIngreso;///dato unico y autoincremental
@@ -53,9 +55,6 @@ typedef struct
     char Resultado [40];
 } Practicaporingreso;
 
-
-void menu_modificacion_ingresos_laboratorio(arbolPaciente * arbol);
-void menu_consulta_ingresos_laboratorio(arbolPaciente * arbol);
 //PROTOTIPADOS
 
 ///funciones de listas (ingresos laboratorio)
@@ -73,21 +72,24 @@ ingresosLaboratorio validacion_fecha_ingreso(ingresosLaboratorio laboratorio);
 ingresosLaboratorio validacion_fecha_retiro(ingresosLaboratorio laboratorio);
 ///Cambia estado en lista
 void cambiar_estado_eliminado (int dniabuscar, int flag);
-// arbolPaciente * cambiar_estado_eliminado_lista(arbolPaciente *arbol,int nroingreso,int dni,int flag);
-nodoLab * cambiar_estado_eliminado_lista(arbolPaciente *arbol,int nroingreso,int dni,int flag);
-arbolPaciente* menu_ingresos_laboratorio (arbolPaciente * arbol);
+// struct arbolPaciente * cambiar_estado_eliminado_lista(struct arbolPaciente *arbol,int nroingreso,int dni,int flag);
+struct  arbolPaciente* menu_ingresos_laboratorio (struct  arbolPaciente * arbol);
+
+void menu_modificacion_ingresos_laboratorio(struct arbolPaciente * arbol);
+nodoLab * cambiar_estado_eliminado_lista(struct arbolPaciente *arbol,int nroingreso,int dni,int flag);
+void menu_consulta_ingresos_laboratorio(struct arbolPaciente * arbol);
 ///pregunta
 int retorna_dni();
 ///alta y baja
-arbolPaciente * alta_ingresos_laboratorio(arbolPaciente * arbol);
-arbolPaciente * baja_ingresos_laboratorio(arbolPaciente * arbol);
-arbolPaciente * alta_de_ingreso_por_numero(arbolPaciente * arbol);
+struct arbolPaciente * alta_ingresos_laboratorio(struct arbolPaciente * arbol);
+struct arbolPaciente * baja_ingresos_laboratorio(struct arbolPaciente * arbol);
+struct arbolPaciente * alta_de_ingreso_por_numero(struct arbolPaciente * arbol);
 int verificar_existencia_nroingreso_alta (int nroingresoabuscar,int * flag);
 ///consulta
 void consulta_por_numero_de_ingreso();
-void consulta_por_dni(arbolPaciente * arbol);
+void consulta_por_dni(struct arbolPaciente * arbol);
 ///buscar por dni
-arbolPaciente * buscar(arbolPaciente * arbol, int dni);
-
+struct arbolPaciente * buscar(struct arbolPaciente * arbol, int dni);
+ void mostrar_ingreso (ingresosLaboratorio a, int i);
 
 #endif // INGRESO_LABORATORIO_NUEVO_H_INCLUDED

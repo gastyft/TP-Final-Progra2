@@ -1,15 +1,18 @@
 #ifndef PACIENTES_H_INCLUDED
 #define PACIENTES_H_INCLUDED
-
+#include "ingreso_laboratorio_nuevo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include <ctype.h>
 #include "Goto_xy.h"
-
+#include "practicas_x_ingreso.h"
 #define ESC 27
+
+struct nodoLab;
 
 
 ///ESTRUCTURAS
@@ -36,6 +39,7 @@ typedef struct arbolPaciente {
 
 
 ///PROTOTIPADO
+
 arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol);
 int validar(char numero[]);
 int validar_nombre(const char nombre[]);
@@ -50,8 +54,9 @@ int crear_edad();
 void cargar_Archivo_paciente(char nombre[],stPaciente a);
 
 void mostrar_pacientes(stPaciente a, int i);
-void mostrar_paciente_porapellido(char nombre[]);
+void mostrar_paciente_porapellido(arbolPaciente *arbol);
 int posmenor(stPaciente a[],int validos,int pos);
+void copiar_arbol_arreglo(stPaciente a[] ,arbolPaciente *arbol, int *i, int validos);
 void ordenar_seleccion(stPaciente a[],int validos);
 
 void mostrar_paciente(stPaciente a);
@@ -61,8 +66,18 @@ arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente *
 stPaciente modificar_paciente(stPaciente a,arbolPaciente *arbol);
 void modificar_archivo_pacientes(char nombre[],int dni_buscar,stPaciente paciente);
 arbolPaciente* baja_paciente(char nombre_paciente[],arbolPaciente *arbol);
-int contar_pacientes(char nombre_paciente[]);
-int validar_edad(char numero[]);
- arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
+int contar_nodos(arbolPaciente *arbol);
+void consulta_paciente(arbolPaciente *arbol);
+void listado_ingresos_dePaciente(arbolPaciente *arbol);
+arbolPaciente* cargar_arbol_ingresos(arbolPaciente *arbol);
+void consulta_ingreso_particular(arbolPaciente *arbol);
+arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
+void mostrar_ingresos();
 
+int validar_edad(char numero[]);
+
+struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
+
+
+//void mostrar_ingreso (ingresosLaboratorio a, int i);
 #endif // PACIENTES_H_INCLUDED
