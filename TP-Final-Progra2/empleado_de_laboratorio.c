@@ -1,5 +1,6 @@
 #include "empleado_de_laboratorio.h"
 
+
 void crear_usuario()
 {
     FILE *archi=fopen(ARCH_EMPLEADO,"a+b");
@@ -30,7 +31,26 @@ void crear_usuario()
         printf("Ingrese 2 para Tecnico de laboratorio o");
         gotoxy(2,12);
         printf("3 para empleado administrativo  ");
-        scanf("%d",&num);
+        char numero[3];
+        fflush(stdin);
+        gets(numero);
+        while(validar_tipo_perfil(numero)==1)
+        {
+            system("cls");
+            consola_login();
+            gotoxy(2,7);
+            printf("INGRESO UN NUMERO NO VALIDO");
+            gotoxy(2,8);
+            printf("Ingrese un nuevo numero valido");
+            gotoxy(2,9);
+            printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado");
+            gotoxy(2,10);
+            printf("administrativo  ");
+            fflush(stdin);
+            gets(numero);
+
+        }
+        num=atoi(numero);
         if(num==2)
         {
             strcpy(empleado.perfil,"tecnico");
@@ -261,7 +281,38 @@ int validar_dni_empleado(char numero[])
 
     return flag;
 }
+int validar_tipo_perfil(char numero[])
+{
 
+    int flag = 0;
+
+    for (int i = 0; numero[i] != '\0'; i++)
+    {
+        if (isspace(numero[i]))
+        {
+            flag = 1;
+        }  /// detecta un escpacio
+        if (isdigit(numero[i]))   /// si es un numero no continua verificando
+        {
+        }
+        else if (isalpha(numero[i]))      /// detecta si es una letra
+        {
+            flag = 1;
+        }
+        else if (ispunct(numero[i]))      /// detecta si es un simbolo
+        {
+            flag = 1;
+        }
+    }
+    if(atoi(numero) != 2 && atoi(numero) != 3)
+    {
+
+        flag = 1;         /// detecta que sean 8 caracteres correctos
+
+    }
+
+    return flag;
+}
 
 empleado_de_laboratorio validaciones(empleado_de_laboratorio empleado,char num[],int *flag) /// VALIDACIONES DE EMPLEADOS POR DNI (que no exista otro DNI repetido)
 {
@@ -551,38 +602,39 @@ void dar_alta_empleado_logico( empleado_de_laboratorio empleado)
         {
             if(empleado.DNI==empleado_a_validar.DNI)
             {
-                if(empleado.eliminado==0){
-                    printf("El usuario ya se encuentra activo");
-                      int contame1=0;
-                      while(contame1<200)
+                if(empleado.eliminado==0)
                 {
-                    usleep(10000);
-                    contame1++;
-                }
+                    printf("El usuario ya se encuentra activo");
+                    int contame1=0;
+                    while(contame1<200)
+                    {
+                        usleep(10000);
+                        contame1++;
+                    }
                 }
                 else
                 {
 
 
-                empleado.eliminado=0;
+                    empleado.eliminado=0;
 
-                fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
+                    fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
 
-                fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
-                system("cls");
-                consola_vacia();
-                gotoxy(2,10);
-                setConsoleColor(15,10);
-                printf("Usuario dado de alta nuevamente \n");
-                int contame=0;
-                while(contame<200)
-                {
-                    usleep(10000);
-                    contame++;
-                }
-                system("cls");
-                setConsoleColor(11,0);
-                mostrar_1_empleado(empleado);
+                    fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+                    system("cls");
+                    consola_vacia();
+                    gotoxy(2,10);
+                    setConsoleColor(15,10);
+                    printf("Usuario dado de alta nuevamente \n");
+                    int contame=0;
+                    while(contame<200)
+                    {
+                        usleep(10000);
+                        contame++;
+                    }
+                    system("cls");
+                    setConsoleColor(11,0);
+                    mostrar_1_empleado(empleado);
 
                 }
                 system("pause");
@@ -794,7 +846,7 @@ void modificar_empleado()
                                     contrasenia_valida = 1;
                                 }
                             }
-                            flag=1;
+                        flag=1;
                         break;
 
                     case '4':
@@ -807,8 +859,30 @@ void modificar_empleado()
                             gotoxy(2,7);
                             printf("Ingrese Rol de usuario. ");
                             gotoxy(2,11);
-                            printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado administrativo \n");
-                            scanf("%d",&num);
+                            printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado");
+                            gotoxy(2,12);
+                            printf("administrativo \n");
+                            gotoxy(2,13);
+                            char numero[3];
+                            fflush(stdin);
+                            gets(numero);
+                            while(validar_tipo_perfil(numero)==1)
+                            {
+                                system("cls");
+                                consola_login();
+                                gotoxy(2,7);
+                                printf("INGRESO UN NUMERO NO VALIDO");
+                                gotoxy(2,8);
+                                printf("Ingrese un nuevo numero valido");
+                                gotoxy(2,9);
+                                printf("Ingrese 2 para Tecnico de laboratorio o 3 para empleado");
+                                gotoxy(2,10);
+                                printf("administrativo  ");
+                                fflush(stdin);
+                                gets(numero);
+
+                            }
+                            num=atoi(numero);
                             if(num==2)
                             {
                                 strcpy(empleado.perfil,"tecnico");
@@ -822,6 +896,7 @@ void modificar_empleado()
 
                         }
                         flag=1;
+
                         break;
 
                     case '5':
@@ -869,32 +944,33 @@ void modificar_empleado()
                         break;
 
                     }
-                if(flag==0){
-                    fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
-                    fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
-                    system("cls");
-                    consola_login();
-                    setConsoleColor(15,10);
-                    gotoxy(8,8);
-                    printf("EMPLEADO MODIFICADO\n");
-                    setConsoleColor(11,0);
-                    int contame=0;
-                    while(contame<200)
+                    if(flag==0)
                     {
-                        usleep(10000);
-                        contame++;
+                        fseek(archi,-1*sizeof(empleado_de_laboratorio),SEEK_CUR);
+                        fwrite(&empleado,sizeof(empleado_de_laboratorio),1,archi);
+                        system("cls");
+                        consola_login();
+                        setConsoleColor(15,10);
+                        gotoxy(8,8);
+                        printf("EMPLEADO MODIFICADO\n");
+                        setConsoleColor(11,0);
+                        int contame=0;
+                        while(contame<200)
+                        {
+                            usleep(10000);
+                            contame++;
 
+                        }
+                        system("cls");
+                        gotoxy(2,0);
+                        mostrar_1_empleado(empleado);
+                        setConsoleColor(15,5);
+                        printf("\nContrasenia: ");
+                        setConsoleColor(11,0);
+                        printf("%s",empleado.contrasenia);
+                        printf("\n");
+                        system("pause");
                     }
-                    system("cls");
-                    gotoxy(2,0);
-                    mostrar_1_empleado(empleado);
-                    setConsoleColor(15,5);
-                    printf("\nContrasenia: ");
-                    setConsoleColor(11,0);
-                    printf("%s",empleado.contrasenia);
-                    printf("\n");
-                    system("pause");
-                }
                 }
                 while(o != 27);
                 fclose(archi);
@@ -1181,7 +1257,7 @@ void funcion_about_us()
     imprimir_con_puntos(" para el docente ");
 
     setConsoleColor(4,0);
-    imprimir_con_puntos("Adrian Arocca");
+    imprimir_con_puntos("Adrian Aroca");
 
     setConsoleColor(3,0);
     gotoxy(2,10);

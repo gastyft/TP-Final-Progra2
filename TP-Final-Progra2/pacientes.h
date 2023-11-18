@@ -1,12 +1,16 @@
 #ifndef PACIENTES_H_INCLUDED
 #define PACIENTES_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "empleado_de_laboratorio.h"
+#include <ctype.h>
+#include "Goto_xy.h"
+
 #define ESC 27
+
 
 ///ESTRUCTURAS
 typedef struct {
@@ -24,7 +28,7 @@ typedef struct arbolPaciente {
  stPaciente paciente;
  struct arbolPaciente *izq;
  struct arbolPaciente *der;
- struct nodoIngreso *ingreso;
+ struct nodoLab *ingreso;
 
 }arbolPaciente;
 

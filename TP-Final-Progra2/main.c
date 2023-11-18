@@ -17,6 +17,7 @@ int LoKJuegoConC()
 ///    setConsoleColor(15,5);   ///LETRA BLANCA FONDO VIOLETA (QUEDA BUENO)
 ///    printf("12312412412512 12 12 125 12 ");
     menu_contenedor();
+
 //     crear_usuario();
 
 

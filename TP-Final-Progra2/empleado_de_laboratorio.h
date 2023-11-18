@@ -5,9 +5,9 @@
 #include<conio.h>
 #include <string.h>
 #include <ctype.h>
+#include "Goto_xy.h"
 #define ESC 27
 #define ARCH_EMPLEADO "Empleado.bin"
-#include "Goto_xy.h"
 #include "menu.h"
 
 ///ESTRUCTURAS
@@ -59,5 +59,5 @@ void ordenar_seleccion_empleado(empleado_de_laboratorio emp[],int validos);
 int posmenor_empleado(empleado_de_laboratorio emp[],int validos,int pos);
 void mostrar_empleado_por_apellido();
 void menu_muestra_empleados();
-
+int validar_tipo_perfil(char numero[]);
 #endif // EMPLEADO_DE_LABORATORIO_H_INCLUDED

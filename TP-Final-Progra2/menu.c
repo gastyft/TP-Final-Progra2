@@ -236,6 +236,8 @@ void menu_contenedor()
             printf("5- About Us");
             gotoxy(21,12);
             printf("ESC LogOut \n");
+            arbol= cargar_arbol_pacientes("pacientes.bin",arbol);
+            printf(" %d",arbol->paciente.dni);
 
             char op1=0;
             fflush(stdin);
@@ -243,7 +245,6 @@ void menu_contenedor()
 
             switch(op1)
             {
-
             case '1':
                 menu_empleados(isLoggedIn);
                 break;
@@ -253,6 +254,8 @@ void menu_contenedor()
                 break;
             case '3':
 
+                arbol=menu_ingresos_laboratorio(arbol);
+                system("pause");
                 break;
             case '4':
                 break;

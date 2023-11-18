@@ -10,7 +10,9 @@
 #include <ctype.h>
 #define ESC 27
 #define nombrePracticasxIngreso "PracticasxIngreso.bin"
-#include "ingreso_de_laboratorio.h"
+#include "ingreso_laboratorio_nuevo.h"
+#include "menu.h"
+
 
 ///ESTRUCTURAS
 typedef struct

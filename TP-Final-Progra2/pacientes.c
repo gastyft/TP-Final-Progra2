@@ -430,7 +430,6 @@ int crear_edad(){
 }
 
 
-
 arbolPaciente* inic_arbol(){
 
  return NULL;
@@ -781,3 +780,8 @@ void mostrar_pacientes_arbol(arbolPaciente *arbol)
 
    return arbol;
 }
+
+
+
+///  MENUS INGRESOS DE LABO CON ARBOLES
+

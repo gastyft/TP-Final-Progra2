@@ -46,7 +46,7 @@
 		<Unit filename="ingreso_de_laboratorio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="ingreso_de_laboratorio.h" />
+		<Unit filename="ingreso_laboratorio_nuevo.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

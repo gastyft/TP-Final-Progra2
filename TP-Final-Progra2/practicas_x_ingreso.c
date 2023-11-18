@@ -314,9 +314,11 @@ nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_admin(nodo_simple_pxi *aModific
             gets(aModificar->dato.resultado);
             break;
         case '2':
-            printf("Ingrese nuevo nombre de practica\n");
+            printf("Ingrese nuevo numero de practica\n");
+            ///mostrar lista practicas para que elija
+
             scanf("%d",&aModificar->dato.nroPractica);
-/// funcion validacion nroPractica que abre archivo practicas
+/// funcion validacion nroPrctica que abre archivo practicas
             break;
 
         case 27:
@@ -395,7 +397,6 @@ nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_tecnico(nodo_simple_pxi *aModif
 }
 
 
-
 nodo_simple_pxi *cargar_practicas_x_ingreso_tecnico(nodo_simple_pxi *lista) ///Carga del resultado por parte del tecnico o bioquimico ROL 2
 {
 
@@ -468,9 +469,83 @@ nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso)
 
     }
     else
-        printf("ERROR EN EL ARCHIVO EN FUNCION BAJA DE PXI\n");
+        printf("ERROR  EN EL ARCHIVO EN FUNCION BAJA DE PXI\n");
 
     return lista;
 }
 
 
+pracXingreso cargar_individual ()
+{
+    pracXingreso a;
+    printf("\nIngrese resultado\n");
+    fflush(stdin);
+    gets(a.resultado);
+    printf("Ingrese numero de ingreso \n");
+    scanf("%d",&a.nroIngreso);/// esto no es asi, se hace autoincremental
+    printf("\nIngrese numero de practica\n");
+    scanf("%d",&a.nroPractica);
+
+    return a;
+}
+void muestra_individual (pracXingreso a)
+{
+    printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
+    printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
+    printf("\n RESULTADO %s\n",a.resultado);
+}
+
+
+
+//void menu_practicas_x_ingreso(){
+//
+//char o=0;
+//practicas *prac=NULL;
+//int dimension=0;
+// int validos= pasar_archivo_practicas_a_arreglo(prac,&dimension);
+//
+//
+//
+//do{
+//system("cls");
+//consola_vacia();
+//gotoxy(2,7);
+//printf("1- Cargar un ingreso de practica nuevo ");
+//gotoxy(2,8);
+//printf("2- Dar de baja un ingreso de practica");
+//gotoxy(2,9);
+//
+//
+//switch(o){
+//
+//case '1':
+//    int num=0;
+//    int nroIngreso=0;
+//    printf("Ingrese nro de ingreso ");
+//    scanf("%d",&nroIngreso);
+//    ///VALIDACION NRO INGRESO EXISTA
+//    printf("Ingrese nro de practica a cargar \n");
+//    scanf("%d",&num);
+//    prac=validar_nro_practica_exista(arr,validos,nroPractica);
+//
+//    cargar
+//    break;
+//
+//
+//
+//}
+//
+//
+//
+//
+//
+//
+//}while(o!=27);
+//
+//
+//
+//
+//
+//
+//
+//}

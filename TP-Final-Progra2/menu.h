@@ -10,7 +10,7 @@
 #include "pacientes.h"
 #include "practicas_x_ingreso.h"
 #include "practica_de_laboratorio.h"
-#include "ingreso_de_laboratorio.h"
+#include "ingreso_laboratorio_nuevo.h"
 #include "pacientes.h"
 #include "Firma.h"
 #include "Goto_xy.h"
@@ -34,6 +34,6 @@ void apertura_programa();
 void consola_pacientes();
 void consola_pacientes();
 void setConsoleColor(int text, int background);
-void me_parece_una_banda();
+
 
 #endif // MENU_H_INCLUDED
