@@ -1,0 +1,105 @@
+# depslib dependency file v1.0
+1700256766 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.c
+	"empleado_de_laboratorio.h"
+
+1700259426 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\empleado_de_laboratorio.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"Goto_xy.h"
+	"menu.h"
+
+1688253880 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\goto_xy.h
+
+1700278478 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<unistd.h>
+	<time.h>
+	"empleado_de_laboratorio.h"
+	"ingreso_laboratorio_nuevo.h"
+	"pacientes.h"
+	"Firma.h"
+	"Goto_xy.h"
+	<windows.h>
+
+1700291101 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_laboratorio_nuevo.h
+	"pacientes.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+
+1700283441 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.h
+	"ingreso_laboratorio_nuevo.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	"Goto_xy.h"
+	"practicas_x_ingreso.h"
+
+1700282232 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.h
+	<stdio.h>
+	<stdlib.h>
+	"practica_de_laboratorio.h"
+	<conio.h>
+	<malloc.h>
+	<string.h>
+	<ctype.h>
+	"ingreso_laboratorio_nuevo.h"
+	"menu.h"
+
+1700287203 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"string.h"
+	<ctype.h>
+	"practica_de_laboratorio.h"
+
+1699737561 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.h
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+	<conio.h>
+
+1699911751 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\firma.c
+	<stdio.h>
+	<stdlib.h>
+	"Firma.h"
+
+1699688002 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\goto_xy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"goto_xy.h"
+
+1700291438 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_de_laboratorio.c
+	"ingreso_laboratorio_nuevo.h"
+
+1700254586 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
+	"menu.h"
+
+1700282729 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
+	"menu.h"
+
+1700293641 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.c
+	"pacientes.h"
+
+1700287253 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.c
+	"practica_de_laboratorio.h"
+
+1700292622 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.c
+	"practicas_x_ingreso.h"
+

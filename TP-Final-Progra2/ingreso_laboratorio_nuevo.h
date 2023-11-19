@@ -60,6 +60,8 @@ typedef struct
 ///funciones de listas (ingresos laboratorio)
 nodoLab * crear_nodo_lab(ingresosLaboratorio laboratorio);
 nodoLab * agregar_al_principio (nodoLab * listaLab,nodoLab *nuevo);
+
+
 ///carga
 ingresosLaboratorio carga_un_ingreso_laboratorio(int dni);
 ///muestra

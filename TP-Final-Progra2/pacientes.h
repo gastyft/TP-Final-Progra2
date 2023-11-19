@@ -63,11 +63,15 @@ arbolPaciente* baja_paciente(char nombre_paciente[],arbolPaciente *arbol);
 int contar_nodos(arbolPaciente *arbol);
 void consulta_paciente(arbolPaciente *arbol);
 void listado_ingresos_dePaciente(arbolPaciente *arbol);
+
+
 arbolPaciente* cargar_arbol_ingresos(arbolPaciente *arbol);
 void consulta_ingreso_particular(arbolPaciente *arbol);
 arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
 void mostrar_ingresos();
 int validar_edad(char numero[]);
+
+
 struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
 
 
