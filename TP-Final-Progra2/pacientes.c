@@ -973,6 +973,7 @@ void mostrar_ingresos(){
   FILE *archi = fopen("ingresos.bin","rb");
   int i = 2;
    if(archi){
+///         setConsoleColor(15,5);
   printf(" \n   INGRESO     FECHA INGRESO   FECHA RETIRO        DNI         MATRICULA       ELIMINADO ");
       while( fread(&aux,sizeof(ingresosLaboratorio),1,archi)> 0){
          mostrar_ingreso(aux,i);
