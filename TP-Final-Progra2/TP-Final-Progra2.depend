@@ -27,7 +27,7 @@
 	"Goto_xy.h"
 	<windows.h>
 
-1700291101 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_laboratorio_nuevo.h
+1700559008 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_laboratorio_nuevo.h
 	"pacientes.h"
 	<stdio.h>
 	<stdlib.h>
@@ -37,7 +37,7 @@
 	<time.h>
 	<conio.h>
 
-1700283441 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.h
+1700551969 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.h
 	"ingreso_laboratorio_nuevo.h"
 	<stdio.h>
 	<stdlib.h>
@@ -49,7 +49,7 @@
 	"Goto_xy.h"
 	"practicas_x_ingreso.h"
 
-1700282232 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.h
+1700554805 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.h
 	<stdio.h>
 	<stdlib.h>
 	"practica_de_laboratorio.h"
@@ -60,7 +60,7 @@
 	"ingreso_laboratorio_nuevo.h"
 	"menu.h"
 
-1700287203 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.h
+1700554806 c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.h
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -85,21 +85,21 @@
 	<windows.h>
 	"goto_xy.h"
 
-1700291438 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_de_laboratorio.c
+1700563113 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\ingreso_de_laboratorio.c
 	"ingreso_laboratorio_nuevo.h"
 
 1700254586 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\main.c
 	"menu.h"
 
-1700282729 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
+1700557535 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\menu.c
 	"menu.h"
 
-1700293641 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.c
+1700558155 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\pacientes.c
 	"pacientes.h"
 
-1700287253 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.c
+1700561712 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practica_de_laboratorio.c
 	"practica_de_laboratorio.h"
 
-1700292622 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.c
+1700561101 source:c:\users\gasty\onedrive\escritorio\tp-final-progra2-main\tp-final-progra2-main\ tp-final-progra2\practicas_x_ingreso.c
 	"practicas_x_ingreso.h"
 

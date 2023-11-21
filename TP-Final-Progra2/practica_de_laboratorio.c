@@ -1,6 +1,15 @@
 #include "practica_de_laboratorio.h"
 
 
+practicas practica_nula()
+{
+    practicas nula;
+    nula.nroPractica = 0; // O cualquier valor que no sea válido para nroPractica
+    nula.nombrePractica[0] = '\0'; // Nombre vacío
+    nula.eliminado = 0; // Indicador por defecto
+    return nula;
+}
+
 
 
 ///practicas se abre el archivo y se guardan en arreglos
@@ -13,6 +22,19 @@
    }*/
 ///HACER VALIDACIONES REGEX QUE NO ACEPTE CARACTERES EN FUNCIONES DE NUMEROS
 
+
+
+
+
+///practicas se abre el archivo y se guardan en arreglos
+///practicas por ingreso en lista simple
+
+///VALIDAR QUE LOS STRINGS NO SEAN MAS LARGOS DE LO PERMITIDO, QUE DE UN MENSAJE DE ALERTA.
+/*if (strlen(palabra) > 100) {
+       printf("¡Error! El nombre ingresado es demasiado largo.\n");
+       return; // Sale de la función si el nombre es demasiado largo
+   }*/
+///HACER VALIDACIONES REGEX QUE NO ACEPTE CARACTERES EN FUNCIONES DE NUMEROS
 void muestra_individual_practica (practicas a)
 {
     printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
@@ -28,109 +50,49 @@ void muestra_individual_practica (practicas a)
 practicas cargar_practica_individual ()
 {
     practicas practica;
-    printf("\n NUMERO DE PRACTICA:\n");
-    scanf("%d",&practica.nroPractica);
+    int validacion;
+
     printf("\n NOMBRE DE PRACTICA:\n");
     fflush(stdin);
     gets(practica.nombrePractica);
+    validacion=validacion_nombre_practica(practica);
+    practica.nroPractica=cantidad_de_ingresos();
+    if (validacion==0)
+    printf("\n NUMERO DE PRACTICA: %d \n",practica.nroPractica);
     practica.eliminado=0;
     return practica;
 }
-
-practicas practica_nula()
-{
-    practicas nula;
-    nula.nroPractica = 0; // O cualquier valor que no sea válido para nroPractica
-    nula.nombrePractica[0] = '\0'; // Nombre vacío
-    nula.eliminado = 0; // Indicador por defecto
-    return nula;
-}
-
-void inicializar_practicas_cargadas(int practicas_cargadas [], int max_practicas)
-{
-    for (int i = 0; i < max_practicas; i++)
-    {
-        practicas_cargadas[i] = -1;
-    }
-}
-
-
-practicas cargar_practica_individual_validacion_archivo ()
-{
-    FILE * archi = fopen(nombrePracticas, "rb");
-    practicas practica;
-    practicas a;
-    int rta=1;
-
-    if (archi)
-    {
-        printf("\n NUMERO DE PRACTICA:\n");
-        scanf("%d",&practica.nroPractica);
-        printf("\n NOMBRE DE PRACTICA:\n");
-        fflush(stdin);
-        gets(practica.nombrePractica);
-        fseek(archi,0,SEEK_SET);
-        while (fread(&a,sizeof(practicas),1,archi)>0)
-        {
-            if (a.nroPractica==practica.nroPractica)
-            {
-                printf("Disculpe. Ese numero de practica ya existe");
-                rta=0;
-                break;
-            }
-
-        }
-        if (rta==1)
-        {
-            practica.eliminado=0;
-        }
-        fclose(archi);
-    }
-    return (rta==1) ? practica: practica_nula();
-}
-
 
 void cargar_archivo ()
 {
     FILE * archi = fopen(nombrePracticas, "ab");
     char opcion=0;
-    practicas a;// practica a cargar
-    int max_practicas =100;
-    int practicas_cargadas[max_practicas];
-    int cantidad_practicas_cargadas=0;
+    practicas a;
+    int validacion;
 
     if (archi)
     {
-        inicializar_practicas_cargadas(practicas_cargadas,max_practicas);
         while (opcion!=27)
         {
-            a=cargar_practica_individual_validacion_archivo();
-            int ya_cargada=0;
-
-            for (int i = 0; i < cantidad_practicas_cargadas; i++)
+            a=cargar_practica_individual();
+            validacion=validacion_nombre_practica(a);
+            if (validacion==0)
             {
-                if (practicas_cargadas[i] == a.nroPractica)
+                fwrite(&a, sizeof(practicas), 1, archi);
+                fseek(archi,0,SEEK_END);
+            }
+            else
                 {
-                    printf("\n Disculpe. Ese numero de practica ya fue cargado en esta sesion\n");
-                    ya_cargada=1;
-                    break;
+                    printf("\nIngrese otro nombre, ese ya existe\n");
                 }
-            }
-            if (!ya_cargada && a.nroPractica!=0)
-            {
-                fwrite(&a,sizeof(practicas),1,archi);
-                practicas_cargadas[cantidad_practicas_cargadas] = a.nroPractica;
-                cantidad_practicas_cargadas++;
-            }
-            else if (a.nroPractica==0)
-            {
-                printf("\n No se cargo esa practica en esta sesion.\n");
-            }
-            printf("\nPRESS ANY KEY TO CONTINUE OR ESC TO EXIT \n ");
+
+            printf("PRESS ANY KEY TO CONTINUE OR ESC TO EXIT \n ");
             fflush(stdin);
             opcion=getch();
         }
+
     }
+
     fclose(archi);
 }
 
@@ -144,7 +106,7 @@ void mostrarArchivo ()
         while (fread(&a,sizeof(practicas),1,archi)>0)
         {
             if(a.eliminado==0)
-                muestra_individual_practica(a);
+               muestra_individual_practica(a);
         }
         fclose(archi);
     }
@@ -220,10 +182,10 @@ void dar_baja_practica(int nro_de_practica_a_validar)
             {
                 if(practica.eliminado==0)
                 {
-                    printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de baja? 's' o 'S' si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
+                    printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de baja? 's' si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
                     scanf("%c",&respuesta);
 
-                    if (respuesta=='s'|| respuesta=='S')
+                    if (respuesta=='s')
                     {
                         practica.eliminado=1;
 
@@ -263,7 +225,7 @@ void dar_alta_practica(int nro_de_practica_a_validar)
                     printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de alta? 's' si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
                     scanf("%c",&respuesta);
 
-                    if (respuesta=='s'|| respuesta=='S')
+                    if (respuesta=='s')
                     {
                         practica.eliminado=0;
 
@@ -335,6 +297,11 @@ void buscar_practica_por_numero (int numero_practica_a_buscar, practicas * arreg
 
         i++;
     }
+    i++;
+    if (i>validos)
+    {
+        printf("\n Ese numero de practica no se encontro\n");
+    }
 }
 
 //void dar_baja_todas_practicas
@@ -353,7 +320,7 @@ void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practic
 
     if (cant_resultados == 0)
     {
-        printf("La practica no se encontro.\n");
+        printf("\nLa practica no se encontro.\n");
     }
     else if (cant_resultados == 1)
     {
@@ -404,6 +371,60 @@ void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo
     }
 }
 
+
+int cantidad_de_ingresos ()///cuento la cantidad de ingresos para despues poder saber el numero de ingreso de la proxima persona
+{
+    FILE *archi =fopen(nombrePracticas,"r+b");///abro el archivo en modo lectura
+    int cant=0;
+    if(archi!=NULL)
+    {
+        fseek(archi,0,SEEK_END);///me paro al final del archivo
+        cant=ftell(archi)/sizeof(practicas);///con esa division encuentro la cantidad de registros dentro del archivo
+    }
+    else
+    {
+        printf("ERROR LA APERTURA DEL  ARCHIVO \n");
+    }
+    return cant;///retorno la cantidad de registros encontrados
+}
+
+/// validacion de que la misma practica no exista dos veces
+int validacion_nombre_practica(practicas practica_a_validar) ///no se repita
+{
+    FILE *archi=fopen(nombrePracticas,"r+b");
+    practicas prac;
+    int flag=0;
+    if(archi)
+    {
+
+        while(fread(&prac,sizeof(practicas),1,archi)>0)
+        {
+
+            if(strcmpi(prac.nombrePractica,practica_a_validar.nombrePractica)==0)
+            {
+                //gets(practica_a_validar.nombrePractica);
+                //rewind(archi);
+                flag=1;
+            }
+
+        }
+    }
+    else
+        printf("ERROR EN EL ARCHIVO DE PRACTICAS EN FUNCION VALIDACION NOMBRE PRACTICA \n");
+
+    fclose(archi);
+
+    return flag;
+}
+
+
+
+
+
+
+
+
+
 ///VALIDAR PRACTICAS
 practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica) /// DEVUELVE NULL SI NO EXISTE SINO LA ESTRUCTURA
 {
@@ -426,32 +447,7 @@ practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica
     return prac;
 }
 
-practicas validacion_nombre_practica(practicas practicaAvalidar){///no se repita
-FILE *archi=fopen(nombrePracticas,"r+b");
-practicas prac=practica_nula();
-if(archi){
 
-while(fread(&prac,sizeof(practicas),1,archi)>0){
 
-if(strcmpi(prac.nombrePractica,practicaAvalidar.nombrePractica)==0){
 
-    printf("ESE NOMBRE DE PRACTICA YA EXISTE \n");
 
-    printf("Ingrese otro nombre de practica\n");
-
-    fflush(stdin);
-    gets(practicaAvalidar.nombrePractica);
-    rewind(archi);
-}
-
-}
-fwrite(&practicaAvalidar,sizeof(practicas),1,archi);
-
-}
-else
-    printf("ERRROR EN EL ARCHIVO DE PRACTICAS EN FUNCION VALIDACION NOMBRE PRACTICA \n");
-
-fclose(archi);
-
-return practicaAvalidar;
-}

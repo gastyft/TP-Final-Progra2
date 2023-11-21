@@ -9,7 +9,7 @@
 #include <string.h>
 #include <ctype.h>
 #define ESC 27
-#define nombrePracticasxIngreso "PracticasxIngreso.bin"
+#define nombrePracticasxIngreso "Practicas.bin"
 #include "ingreso_laboratorio_nuevo.h"
 #include "menu.h"
 
@@ -53,5 +53,13 @@ nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso);
 nodo_simple_pxi *alta_logica_archivo(nodo_simple_pxi *lista,int nroIngreso);
 nodo_simple_pxi *alta_fisica(nodo_simple_pxi*lista,int nroIngreso);
 nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_tecnico(nodo_simple_pxi *aModificar);
+pracXingreso cargar_individual_administrativo ();
+void carga_alta_pracXingreso(pracXingreso a);
 void muestra_individual_prac_x_ingreso (pracXingreso a);
+struct arbolPaciente* cargar_arbol_nuevo_practica_x_ingreso(struct arbolPaciente *arbol);
+struct arbolPaciente *modificar_practicas_x_ingreso_incorpora_arbol( struct arbolPaciente*arbol);
+struct arbolPaciente * menu_practicas_x_ingreso( struct arbolPaciente *arbol);
+struct arbolPaciente *cargar_resultado_practicas_x_ingreso_incorpora_arbol_tecnico(struct arbolPaciente*arbol);
+
+void muestra_individual_con_nombre (pracXingreso a);
 #endif // PRACTICAS_X_INGRESO_H_INCLUDED

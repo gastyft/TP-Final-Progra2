@@ -4,45 +4,47 @@
 pracXingreso cargar_individual_x_ingreso (int nroIngreso)
 {
     pracXingreso a;
-    ///  FILE *archi=fopen(nombrePracticas,"r+b"); ///NRO INGRESO SE DE TRAER DE INGRESO X LABORATORIO
-//    int cant=0;
-//    if(archi){
-//    fseek(archi,0,SEEK_END);
-//cant=ftell(archi)/sizeof(pracXingreso);    ///AUTOINCREMENTAL: CUENTO CANTIDAD QUE SE ENCUENTRAN EN ARCHIVO Y LE SUMO 1
-//    }
-//    else
-//        printf("ERROR EN CARGAR INDIVIDUAL\n");
+    do {
+          printf("Ingrese nro de practica \n");
+        scanf("%d",&a.nroPractica);
+        }while( buscarid_practica(a.nroPractica)==0);
 
     a.nroIngreso=nroIngreso;
     printf("\nIngrese resultado\n");
     fflush(stdin);
     gets(a.resultado);
-    /// esto no es asi, se hace autoincremental
 
-    printf("\nIngrese numero de practica\n");
-    scanf("%d",&a.nroPractica);
 
     return a;
 }
-
 void muestra_individual (pracXingreso a)
 {
-    FILE *archi=fopen(nombrePracticas,"r+b");
-    int flag=0;
+    printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
+    printf(" NUMERO DE INGRESO %d\n",a.nroIngreso);
+    printf(" RESULTADO %s\n",a.resultado);
+}
+
+void muestra_individual_con_nombre (pracXingreso a)
+{
+    FILE *archi=fopen(nombrePracticas,"rb");
+
     if(archi)
     {
         practicas prac;
-        while(fread(&prac,sizeof(practicas),1,archi)>0 && flag)
+        while(fread(&prac,sizeof(practicas),1,archi)>0)
         {
 
             if(prac.nroPractica==a.nroPractica)
             {
+                setConsoleColor(15,5);
+                printf("NOMBRE PRACTICA:"),
+                       setConsoleColor(11,0);
+                       printf(" %s",prac.nombrePractica);
 
-                printf("NOMBRE PRACTICA: %s \n",prac.nombrePractica);
                 printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
                 printf("\n NUMERO DE INGRESO %d\n",a.nroIngreso);
                 printf("\n RESULTADO %s\n",a.resultado);
-                flag=1;
+
             }
         }
 
@@ -162,11 +164,13 @@ nodo_simple_pxi * cargar_lista (nodo_simple_pxi * lista, int nroIngreso)
     return lista;
 }
 
+
+
 void muestra_lista (nodo_simple_pxi * lista)
 {
     if (lista)
     {
-        muestra_individual(lista->dato);
+        muestra_individual_con_nombre(lista->dato);
         muestra_lista(lista->siguiente);
     }
 }
@@ -229,7 +233,7 @@ nodo_simple_pxi * buscar_nodo (nodo_simple_pxi * lista, int dato)
     }
     else
     {
-        while (seg!=NULL &&seg->dato.nroIngreso!=dato)
+        while (seg!=NULL &&seg->dato.nroPractica!=dato)
         {
             seg=seg->siguiente;
         }
@@ -367,15 +371,15 @@ nodo_simple_pxi *modifica_un_nodo_prac_x_ingreso_admin(nodo_simple_pxi *aModific
 nodo_simple_pxi *modificar_practicas_x_ingreso_contenedora_admin(nodo_simple_pxi *lista)
 {
 
-    nodo_simple_pxi* aux=inic_lista();
 
     int nroAbuscar;
     int flag=0;
-    printf("Ingrese el numero de ingreso para modificar \n");
+    printf("Ingrese el numero de practica para modificar \n");
     scanf("%d",&nroAbuscar);
     char o=0;
     while(flag || o!=27)
     {
+    nodo_simple_pxi* aux;
         aux= buscar_nodo(lista,nroAbuscar);
         if(aux)
         {
@@ -428,7 +432,7 @@ nodo_simple_pxi *cargar_practicas_x_ingreso_tecnico(nodo_simple_pxi *lista) ///C
 
     int nroAbuscar;
     int flag=0;
-    printf("Ingrese el numero de ingreso a cargar resultado \n");
+    printf("Ingrese el numero de practica a cargar resultado \n");
     scanf("%d",&nroAbuscar);
     char o=0;
     while(flag || o!=27)
@@ -440,7 +444,6 @@ nodo_simple_pxi *cargar_practicas_x_ingreso_tecnico(nodo_simple_pxi *lista) ///C
             printf("Ingrese Resultado \n");
             fflush(stdin);
             gets(aux->dato.resultado);
-            ///Verificar si al devolver esta funcion te devuelve el nodo editado conectado a la lista o hay que conectarlo
             flag=1;
         }
         else
@@ -462,11 +465,11 @@ nodo_simple_pxi *cargar_practicas_x_ingreso_tecnico(nodo_simple_pxi *lista) ///C
 
     }
 
-    return lista;
+    return aux;
 }
 
 
-nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso)
+nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *nodo,int nroPractica)
 {
 
     FILE *archi=fopen(nombrePracticasxIngreso,"r+b");
@@ -476,26 +479,27 @@ nodo_simple_pxi *baja_de_pxi(nodo_simple_pxi *lista,int nroIngreso)
     {
         while(flag && fread(&prac,sizeof(pracXingreso),1,archi)>0)
         {
-            if(nroIngreso==prac.nroIngreso)
+            if( nodo->dato.nroPractica == prac.nroIngreso){
+            if(nroPractica==prac.nroPractica)
             {
                 prac.eliminado=1;
+                nodo->dato.eliminado=1;
                 fseek(archi,-1*sizeof(pracXingreso),SEEK_CUR);
                 fwrite(&prac,sizeof(pracXingreso),1,archi);
                 flag=1;
             }
+            }
         }
-
         if(flag)
         {
             printf("No se encontro el nro de ingreso\n");
-            lista=NULL;
-        }
 
+        }
     }
     else
         printf("ERROR  EN EL ARCHIVO EN FUNCION BAJA DE PXI\n");
 
-    return lista;
+    return nodo;
 }
 
 
@@ -507,6 +511,17 @@ pracXingreso cargar_individual ()
     gets(a.resultado);
     printf("Ingrese numero de ingreso \n");
     scanf("%d",&a.nroIngreso);/// esto no es asi, se hace autoincremental
+    printf("\nIngrese numero de practica\n");
+    scanf("%d",&a.nroPractica);
+
+    return a;
+}
+
+pracXingreso cargar_individual_administrativo (int nroIngreso)
+{
+    pracXingreso a;
+    strcpy(a.resultado,"Ninguno");
+    a.nroIngreso=nroIngreso;
     printf("\nIngrese numero de practica\n");
     scanf("%d",&a.nroPractica);
 
@@ -542,45 +557,191 @@ void muestra_individual_prac_x_ingreso (pracXingreso a)
 
 
 
+arbolPaciente* cargar_arbol_nuevo_practica_x_ingreso(arbolPaciente *arbol)
+{
 
 
 
-//void menu_practicas_x_ingreso(){
-//
-//char o=0;
-//practicas *prac=NULL;
-//int dimension=0;
-// int validos= pasar_archivo_practicas_a_arreglo(prac,&dimension);
-//
-//
-//
-//do{
-//system("cls");
-//consola_vacia();
-//gotoxy(2,7);
-//printf("1- Cargar un ingreso de practica nuevo ");
-//gotoxy(2,8);
-//printf("2- Dar de baja un ingreso de practica");
-//gotoxy(2,9);
-//
-//
-//switch(o){
-//
-//case '1':
-//    int num=0;
-//    int nroIngreso=0;
-//    printf("Ingrese nro de ingreso ");
-//    scanf("%d",&nroIngreso);
-//    ///VALIDACION NRO INGRESO EXISTA
-//    printf("Ingrese nro de practica a cargar \n");
-//    scanf("%d",&num);
-//    prac=validar_nro_practica_exista(arr,validos,nroPractica);
-//
-//    cargar
-//    break;
 
-//}
+    FILE *archi_practicas = fopen(nombrePracticasxIngreso,"ab");
+        int nroIngreso;
 
-//}while(o!=27);
+    if(archi_practicas)
+    {
+        mostrar_ingresos();
+         printf("Ingrese nro de ingreso \n");
+        scanf("%d",&nroIngreso);
 
-//}
+        nodoLab * aux= buscar_ingreso_porNumero(arbol,nroIngreso);
+
+                mostrarArchivo();
+
+        if(aux!= NULL)
+        { pracXingreso a;
+                a=cargar_individual_x_ingreso(nroIngreso);
+
+                nodo_simple_pxi *practica = crear_nodo_pxi(a);
+                printf("CARGUE PRAC \n");
+                   aux->listaIngresoPrac  = agregar_ppio(aux->listaIngresoPrac,practica);
+                printf("CARGUE LISTA \n");
+                     fwrite(&a,sizeof(pracXingreso),1,archi_practicas);
+                     printf("GUARDE ARCHIVO");
+                     system("pause");
+        }
+    }
+    else
+    {
+        printf("\n");
+        printf("no se encontro numero de ingreso solicitado\n");
+        system("pause");
+    }
+    fclose(archi_practicas);
+
+
+    return arbol;
+
+}
+
+arbolPaciente *modificar_practicas_x_ingreso_incorpora_arbol(arbolPaciente*arbol){
+
+ pracXingreso practicaa;
+
+    FILE *archi_practicas = fopen("practicas.bin","rb");
+
+    if(archi_practicas)
+    {
+
+        int nroPractica;
+         int nroIngreso;
+         mostrar_ingresos();
+         printf("Ingrese nro de ingreso \n");
+        scanf("%d",&nroIngreso);
+       nodoLab * aux = buscar_ingreso_porNumero(arbol,nroIngreso);
+       nodo_simple_pxi *aux1=aux->listaIngresoPrac;
+
+        printf("Ingrese nro de practica \n");
+        scanf("%d",&nroPractica);
+            aux1=buscar_nodo(aux1,nroPractica);
+        if(aux1 != NULL)
+        {
+            rewind(archi_practicas);
+            while(fread(&practicaa,sizeof(pracXingreso),1,archi_practicas) > 0)
+            {
+                if(practicaa.nroPractica == aux1->dato.nroPractica)
+                {
+                  aux1=modificar_practicas_x_ingreso_contenedora_admin(aux1);
+
+                  fseek(archi_practicas,-1*sizeof(pracXingreso),SEEK_CUR);
+                  fwrite(&practicaa,sizeof(pracXingreso),1,archi_practicas);
+                }
+            }
+        }
+    }
+    else
+    {
+        printf("no se encontro numero de ingreso solicitado\n");
+    }
+    fclose(archi_practicas);
+
+
+return arbol;
+}
+
+arbolPaciente *cargar_resultado_practicas_x_ingreso_incorpora_arbol_tecnico(arbolPaciente*arbol){
+
+ pracXingreso practicaa;
+
+    FILE *archi_practicas = fopen("practicas.bin","rb");
+
+    if(archi_practicas)
+    {
+
+        int nroPractica;
+         int nroIngreso;
+         printf("Ingrese nro de ingreso \n");
+        scanf("%d",&nroIngreso);
+       nodoLab * aux = buscar_ingreso_porNumero(arbol,nroIngreso);
+        printf("Ingrese nro de practica \n");
+        scanf("%d",&nroPractica);
+        nodo_simple_pxi *aux1=buscar_nodo(aux->listaIngresoPrac,nroPractica);
+        if(aux1 != NULL)
+        {
+            rewind(archi_practicas);
+            while(fread(&practicaa,sizeof(pracXingreso),1,archi_practicas) > 0)
+            {
+                if(practicaa.nroPractica == aux1->dato.nroPractica)
+                {
+                  aux1=cargar_practicas_x_ingreso_tecnico(aux1);
+                  fseek(archi_practicas,-1*sizeof(pracXingreso),SEEK_CUR);
+                  fwrite(&practicaa,sizeof(pracXingreso),1,archi_practicas);
+                }
+            }
+        }
+    }
+    else
+    {
+        printf("no se encontro numero de ingreso solicitado\n");
+    }
+    fclose(archi_practicas);
+
+
+return arbol;
+}
+
+
+arbolPaciente * menu_practicas_x_ingreso(arbolPaciente *arbol)
+{
+
+    char o=0;
+    do
+    {
+            int nroIngreso=0;
+        system("cls");
+        consola_vacia();
+        gotoxy(2,7);
+        printf("1- Cargar un ingreso de practica nuevo ");
+        gotoxy(2,8);
+        printf("2- Dar de baja un ingreso de practica");
+        gotoxy(2,9);
+        printf("3- Modificar practica por ingreso ");
+        fflush(stdin);
+        o=getch();
+        switch(o)
+        {
+
+        case '1':
+
+            arbol =cargar_arbol_nuevo_practica_x_ingreso(arbol);
+            break;
+
+        case '2':
+
+            printf("Ingrese numero de ingreso para dar de baja");
+            scanf("%d",&nroIngreso);
+           nodoLab *aux = buscar_ingreso_porNumero(arbol,nroIngreso);
+           nodo_simple_pxi *aux1=aux->listaIngresoPrac;
+           int nroPractica;
+           do{
+           printf("Ingrese nro de practica a dar de baja \n");
+           scanf("%d",&nroPractica);
+
+           }while(buscarid_practica(nroPractica)!=1);
+
+           aux1=buscar_nodo(aux->listaIngresoPrac,nroPractica);
+                      aux1= baja_de_pxi(aux1,nroPractica);
+            break;
+        case '3':
+           arbol= modificar_practicas_x_ingreso_incorpora_arbol(arbol);
+            break;
+
+
+
+        }
+
+    }
+    while(o!=27);
+
+    return arbol;
+}
+
+

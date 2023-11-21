@@ -9,15 +9,15 @@
 #include <time.h>
 #include <conio.h>
 #define ESC 27
-#define nombrearchivo "Ingresos.bin"
+#define nombrearchivo "ingresos.bin"
 
 struct arbolPaciente;
 
 typedef struct
 {
     int numeroIngreso;///dato unico y autoincremental
-    char fechaIngreso[10];
-    char fechaRetiro[10];
+    char fechaIngreso[11];
+    char fechaRetiro[11];
     int dni;///dato unico
     int matriculaProfesional;
     int eliminado;
@@ -48,20 +48,13 @@ typedef struct nodoPracticasxingreso
 
 
 
-typedef struct
-{
-    int nrodeIngreso;
-    int nropractica;
-    char Resultado [40];
-} Practicaporingreso;
+
 
 //PROTOTIPADOS
 
 ///funciones de listas (ingresos laboratorio)
 nodoLab * crear_nodo_lab(ingresosLaboratorio laboratorio);
 nodoLab * agregar_al_principio (nodoLab * listaLab,nodoLab *nuevo);
-
-
 ///carga
 ingresosLaboratorio carga_un_ingreso_laboratorio(int dni);
 ///muestra
@@ -90,7 +83,6 @@ int verificar_existencia_nroingreso_alta (int nroingresoabuscar,int * flag);
 ///consulta
 void consulta_por_numero_de_ingreso(struct arbolPaciente *arbol);
 void consulta_por_dni(struct arbolPaciente * arbol);
-
 
  void mostrar_ingreso (ingresosLaboratorio a, int i);
 ingresosLaboratorio validacion_modificacion_ingreso(ingresosLaboratorio laboratorio);

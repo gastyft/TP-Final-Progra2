@@ -31,7 +31,7 @@ typedef struct arbolPaciente {
  stPaciente paciente;
  struct arbolPaciente *izq;
  struct arbolPaciente *der;
- struct nodoLab *ingreso;
+ struct nodoLab *ingresos;
 
 }arbolPaciente;
 
@@ -72,8 +72,8 @@ void mostrar_ingresos();
 int validar_edad(char numero[]);
 
 
-struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
 
+struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
 
 //void mostrar_ingreso (ingresosLaboratorio a, int i);
 #endif // PACIENTES_H_INCLUDED

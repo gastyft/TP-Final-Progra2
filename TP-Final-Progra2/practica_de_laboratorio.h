@@ -6,7 +6,7 @@
 #include "string.h"
 #include <ctype.h>
 #include "practica_de_laboratorio.h"
-#define nombrePracticas "Practicas.bin"
+#define nombrePracticas "estudios.bin"
 
 
 ///ESTRUCTURAS
@@ -29,6 +29,7 @@ int redimensionar_arreglo (practicas * arreglo_practicas,int cantidad);
 void cargar_archivo ();
 void mostrarArchivo ();
 int pasar_archivo_practicas_a_arreglo (practicas * arreglo_practicas, int * dimension);
+int validacion_nombre_practica(practicas practica_a_validar);
 void mostrar_arreglo(practicas* arreglo_practicas, int validos);
 void dar_baja_practica(int nro_de_practica_a_validar);
 void dar_alta_practica(int nro_de_practica_a_validar);
@@ -39,6 +40,9 @@ practicas practica_nula();
 void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practicas, int validos);
 void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo_practicas, int i);
 practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica);
-practicas validacion_nombre_practica(practicas practicaAvalidar);
+int buscarid_practica(int dato) ;
+int cantidad_de_ingresos ();
+
+
 
 #endif // PRACTICA_DE_LABORATORIO_H_INCLUDED

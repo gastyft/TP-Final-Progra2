@@ -216,7 +216,7 @@ void menu_contenedor()
     while (isLoggedIn == -1);
 ///CARGA DE ESTRUCTURAS COMPUESTAS
     arbol= cargar_arbol_pacientes("pacientes.bin",arbol);
-      arbol= cargar_arbol_ingresos(arbol);    ///CARGA PRACTICAS INCLUIDA EN CARGA ARBOL INGRESOS
+    arbol= cargar_arbol_ingresos(arbol);    ///CARGA PRACTICAS INCLUIDA EN CARGA ARBOL INGRESOS
 
     do
     {
@@ -259,7 +259,7 @@ void menu_contenedor()
                 system("pause");
                 break;
             case '4':
-
+                arbol=menu_practicas_x_ingreso(arbol);
                 break;
             case '5':
                 system("cls");
@@ -296,8 +296,6 @@ void menu_contenedor()
                 gotoxy(21,11);
                 printf("5- About Us");
                 gotoxy(21,12);
-                printf("6- Me parece una banda...");
-                gotoxy(21,13);
                 printf("ESC LogOut \n");
                 fflush(stdin);
                 op1=getch();
@@ -305,29 +303,170 @@ void menu_contenedor()
                 break;
             }
 
-///menu pacientes
-///menu practicas
-///menu labos
-///TODAS LAS FUNCIONES HABILITADAS
-///ESC PARA SALIR DE LA SESION
-
 
         }
-        if(isLoggedIn==2) ///Tecnico o bioquimico administrativo laboratorio
+        if(isLoggedIn==2) ///Tecnico o bioquimico laboratorio
         {
 ///menu practicas para tecnico
 ///ESC PARA SALIR DE LA SESION
+
+            char op=0;
+
+            consola_login();
+            gotoxy(2,7);
+            printf("1- Mostrar pacientes ");
+            gotoxy(2,8);
+            printf("2- Menu ingresos");
+            gotoxy(2,9);
+            printf("3- Cargar resultado practicas");
+            gotoxy(21,12);
+            printf("ESC LogOut \n");
+            fflush(stdin);
+            op=getch();
+
+            switch(op)
+            {
+
+            case '1':
+                system("cls");
+                mostrar_paciente_porapellido(arbol);
+                printf("\n");
+                system("pause");
+
+                break;
+
+            case '2':
+                arbol= menu_ingresos_laboratorio(arbol);
+                break;
+
+            case '3':
+                arbol=cargar_resultado_practicas_x_ingreso_incorpora_arbol_tecnico(arbol);
+                break;
+
+            case 27:
+                isLoggedIn=log_out();
+                break;
+
+            default:
+                system("cls");
+                gotoxy(21,7);
+                printf("Ingreso una opcion incorrecta  \n");
+                int contame12=0;
+                while(contame12<200)
+                {
+                    usleep(10000);
+                    contame12++;
+                }
+
+                system("cls");
+                consola_vacia();
+                gotoxy(2,7);
+                printf("1- Mostrar pacientes ");
+                gotoxy(2,8);
+                printf("2- Menu ingresos");
+                gotoxy(2,9);
+                printf("3- Cargar resultado practicas");
+                gotoxy(21,12);
+                printf("ESC LogOut \n");
+                fflush(stdin);
+                op=getch();
+
+                break;
+
+            }
+
+
         }
         if(isLoggedIn==3) ///empleadoo administrativo
         {
+            char op2= 0;
+
 ///menu pacientes empleado solo ver
 ///menu practicas empleado
 ///menu labos empleado cambiar fechas, numero matricula
 ///ESC PARA SALIR DE LA SESION
+                system("cls");
+            consola_login();
+            gotoxy(2,7);
+            printf("1- Menu Pacientes");
+            gotoxy(2,8);
+            printf("2- Menu ingresos");
+            gotoxy(2,9);
+            printf("3- crear Prac x Ingreso");
+            gotoxy(2,10);
+            printf("4- crear practica nueva ");
+            gotoxy(2,11);
+            printf("ESC LogOut \n");
+            fflush(stdin);
+            op2=getch();
+            switch(op2)
+            {
+
+            case '1':
+                arbol= menu_pacientes("pacientes.bin",arbol);
+
+
+                break;
+            case '2':
+
+                arbol=menu_ingresos_laboratorio(arbol);
+
+
+                break;
+            case '3':
+                 system("cls");
+
+                arbol= cargar_arbol_nuevo_practica_x_ingreso(arbol);
+
+                break;
+            case '4':
+                 system("cls");
+                cargar_archivo ();
+                system("cls");
+                mostrarArchivo();
+                system("pause");
+                system("cls");
+                break;
+
+
+            case 27:
+                isLoggedIn=log_out();
+                break;
+            default:
+                system("cls");
+                gotoxy(21,7);
+                printf("Ingreso una opcion incorrecta  \n");
+                int contameee=0;
+                while(contameee<200)
+                {
+                    usleep(10000);
+                    contameee++;
+                }
+                system("cls");
+                consola_login();
+                gotoxy(2,7);
+                printf("1- Menu Pacientes");
+                gotoxy(2,8);
+                printf("2- Menu ingresos");
+                gotoxy(2,9);
+                printf("3- crear Prac x Ingreso");
+                gotoxy(2,10);
+                printf("4- crear practica nueva ");
+                gotoxy(2,11);
+                printf("ESC LogOut \n");
+                fflush(stdin);
+                op2=getch();
+
+                system("cls");
+                break;
+
+
+            }
+
         }
 
 
-        ///EN ALGUN LADO OPCION LOGOUT;
+        ///EN ALGUN LADO OPCION LOGOUT; en case 27
         ///DONDE ASIGNA ISLOGGEDIN A -1
     }
     while(isLoggedIn!=-1);
