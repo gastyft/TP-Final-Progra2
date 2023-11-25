@@ -53,11 +53,14 @@ como la inclusión obligatoria de una mayúscula y un carácter especial en las 
 **28/10/23**
      Se empezó a trabajar con el árbol del proyecto y se separó a los pacientes en una estructura para usarlo como un campo del árbol, de esta manera podemos trabajar a los pacientes de manera independiente para poder volcarlo en el archivo y al árbol de manera de asignación directa.
      A la hora de organizar el nombre y apellido, separamos el apellido para evitar que el usuario no tenga la duda de ingresarlo de orden inverso. Las validaciones genéricas se modificaron según los datos que el usuario tenga que ingresar en cada caso particular.
+     
 **4/11/23**
      Comencé a desarrollar la función para buscar el nodo de un ingreso, función importante para poder buscar un ingreso por su número eso me permitió traer el nodo con sus prácticas . A la hora de ordenar por nombre y apellido pase la información del árbol a un arreglo para poder trabajar con la estructura de pacientes.
      Se realizó la función para volcar los datos del archivo de pacientes al árbol de búsqueda binario.
+     
 **9/11/23** 
 A la hora de volcar los archivos de ingresos y prácticas por ingresos, se hicieron en conjunto ya que uno depende de la otra. Es por eso que cada vez que leía un ingreso del archivo de ingresos buscaba en el archivo de prácticas por ingresos todos los que estaban relacionados con ese mismo id. Eso mismo me permitía controlar que cuando se terminara de leer el archivo de ingresos, ya todas las prácticas estaban cargadas.
+
 **14/11/23**
     Comencé a hacer el menú principal de mi estructura y luego de terminarla, junto a mis demás compañeros tratamos de ir insertandolas  empezamos a relacionar con las funciones del  Login que ya estaban hechas por Gaston
 
