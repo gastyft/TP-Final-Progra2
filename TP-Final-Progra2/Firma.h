@@ -12,4 +12,6 @@ void firma();
 void cierre_firma();
 void colores();
 
+
+
 #endif // FIRMA_H_INCLUDED

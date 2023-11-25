@@ -1,5 +1,6 @@
 #ifndef EMPLEADO_DE_LABORATORIO_H_INCLUDED
 #define EMPLEADO_DE_LABORATORIO_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
 #include<conio.h>
@@ -60,4 +61,5 @@ int posmenor_empleado(empleado_de_laboratorio emp[],int validos,int pos);
 void mostrar_empleado_por_apellido();
 void menu_muestra_empleados();
 int validar_tipo_perfil(char numero[]);
+
 #endif // EMPLEADO_DE_LABORATORIO_H_INCLUDED

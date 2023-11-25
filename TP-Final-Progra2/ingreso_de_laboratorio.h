@@ -1,5 +1,6 @@
-#ifndef INGRESO_LABORATORIO_NUEVO_H_INCLUDED
-#define INGRESO_LABORATORIO_NUEVO_H_INCLUDED
+#ifndef INGRESO_DE_LABORATORIO_H_INCLUDED
+#define INGRESO_DE_LABORATORIO_H_INCLUDED
+
 #include "pacientes.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +10,7 @@
 #include <time.h>
 #include <conio.h>
 #define ESC 27
-#define nombrearchivo "ingresos.bin"
+#define nombrearchivo "Ingresos.bin"
 
 struct arbolPaciente;
 
@@ -38,17 +39,6 @@ typedef struct
     int anio;
 } stFecha;
 
-typedef struct nodoPracticasxingreso
-{
-    int numeroIngresoPractica;
-    int numeroPractica;
-    char resultado[40];
-    struct nodoPracticasxingreso  * siguiente;
-} nodoPracticasxingreso;
-
-
-
-
 
 //PROTOTIPADOS
 
@@ -67,7 +57,6 @@ ingresosLaboratorio validacion_fecha_ingreso(ingresosLaboratorio laboratorio);
 ingresosLaboratorio validacion_fecha_retiro(ingresosLaboratorio laboratorio);
 ///Cambia estado en lista
 void cambiar_estado_eliminado (int dniabuscar, int flag);
-// struct arbolPaciente * cambiar_estado_eliminado_lista(struct arbolPaciente *arbol,int nroingreso,int dni,int flag);
 struct  arbolPaciente* menu_ingresos_laboratorio (struct  arbolPaciente * arbol);
 
 void menu_modificacion_ingresos_laboratorio(struct arbolPaciente * arbol);
@@ -87,4 +76,8 @@ void consulta_por_dni(struct arbolPaciente * arbol);
  void mostrar_ingreso (ingresosLaboratorio a, int i);
 ingresosLaboratorio validacion_modificacion_ingreso(ingresosLaboratorio laboratorio);
 ingresosLaboratorio validacion_modificacion_retiro(ingresosLaboratorio laboratorio);
-#endif // INGRESO_LABORATORIO_NUEVO_H_INCLUDED
+
+void busqueda_filtro_fecha(); /// BUSCA LOS INGRESOS POR FECHA
+int compararFechas(const char *fecha1, const char *fecha2);  /// BUSCA EL RANGO DE LA FECHA
+
+#endif // INGRESO_DE_LABORATORIO_H_INCLUDED

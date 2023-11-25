@@ -1,9 +1,10 @@
 #include "pacientes.h"
 
-arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol){
+arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol)
+{
     FILE *archi = fopen(nombre_paciente,"rb");
     stPaciente paciente;
-
+                                                 /// CARGA EL ARBOL AL INICIO DEL PROGRAMA
     if(archi){
 
          while(fread(&paciente,sizeof(stPaciente),1,archi) > 0){
@@ -26,7 +27,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
     stPaciente paciente;
 
-    paciente.dni = crear_dni(arbol);
+    paciente.dni = crear_dni(arbol); /// FUNCION VALIDA TAMA—O DNI Y QUE NO EXISTA EN EL ARBOL
     paciente.eliminado = 0;
 
        system("cls");
@@ -40,7 +41,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
    while(validar_nombre(paciente.Apellido_nombre)){
       system("cls");
       consola_vacia();
-       gotoxy(1,7);
+       gotoxy(1,7);                                  /// VALIDA QUE NO TENGA NUMEROS Y QUE NO TENGA ESPACIOS
       printf("\n\t No corresponde a un nombre \n ");
       printf("\n\t ingrese Apellido y Nombre del paciente: ");
       fflush(stdin);
@@ -48,7 +49,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
       }
 
-      paciente.edad = crear_edad();
+      paciente.edad = crear_edad();  /// VALIDA EDAD QUE NO SEAN LETRAS Y QUE ESA DE 1 A 100
 
       do{
             system("cls");
@@ -63,7 +64,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
       do{
          system("cls");
          consola_vacia();
-         gotoxy(1,7);
+         gotoxy(1,7);                                       /// VALIDA QUE SEAN NUMEROS Y QUE SEAN TENGA MAS DE 8 CARACTERES
          printf(" \t ingrese el numero de telefono \n\t");
          gets(paciente.telefono);
 
@@ -75,7 +76,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
 
   char opc = 0;
 
-  printf("\n\t Son correctos los datos ? s/n \n");
+  printf("\n\t Son correctos los datos ? s/n \n");    /// MUESTRA EL PACIENTE Y PODES CARGARLO O NO
   fflush(stdin);
   opc = getch();
 
@@ -87,7 +88,7 @@ arbolPaciente* crear_paciente(char nombre_paciente[],arbolPaciente *arbol){
     printf(" \n \t*DATOS CARGADOS   . . . \n \t*");
 
    cargar_Archivo_paciente(nombre_paciente,paciente);
-   arbol = agregar_paciente(arbol,crear_nodo_arbol(paciente));
+   arbol = agregar_paciente(arbol,crear_nodo_arbol(paciente)); /// CARGA NUEVO PACIENTE AL ARBOL
 
 
     system("pause");
@@ -127,7 +128,7 @@ arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente *
 
    }
    dni = atoi(dni_char);
-   arbolPaciente *aux = buscar_paciente(arbol,dni);
+   arbolPaciente *aux = buscar_paciente(arbol,dni);  /// BUSCA PACIENTE EN EL ARBOL
 
    if(aux != NULL){
          system("cls");
@@ -140,7 +141,7 @@ arbolPaciente * modificar_paciente_buscar(char nombre_paciente[],arbolPaciente *
        opc = getch();
        if(opc != ESC){
 
-            aux->paciente = modificar_paciente(aux->paciente,arbol);
+            aux->paciente = modificar_paciente(aux->paciente,arbol);        /// ENTRAS AL MENU PARA MODIFICAR LOS CAMPOS Y LO RETORNA
             modificar_archivo_pacientes(nombre_paciente,dni,aux->paciente);
 
 
@@ -413,10 +414,12 @@ void listado_ingresos_dePaciente(arbolPaciente *arbol){
 
    system("cls");
    int i = 0;
- //printf(" \n      DNI       APELLIDO Y NOMBRE           EDAD     TELEFONO       DIRECCION       ELIMINADO ");
+ setConsoleColor(15,5);
+   gotoxy(3,1);
+  printf("INGRESO     FECHA INGRESO   FECHA RETIRO        DNI         MATRICULA       ELIMINADO        ");
   while (lab != NULL){
 
-       mostrar_ingreso(lab->labo,i+3);
+       mostrar_ingreso(lab->labo,i+2);
        i++;
        lab = lab->siguiente;
 
@@ -677,15 +680,14 @@ void consulta_ingreso_particular(arbolPaciente *arbol)
    if(buscar != NULL){
         system("cls");
 
-setConsoleColor(15,5);
-gotoxy(3,1);
- printf("INGRESO     FECHA INGRESO   FECHA RETIRO        DNI         MATRICULA       ELIMINADO        ");
+ printf(" \n   INGRESO     FECHA INGRESO   FECHA RETIRO        DNI         MATRICULA       ELIMINADO ");
 
       mostrar_ingreso(buscar->labo,2);
 
       if(buscar->listaIngresoPrac != NULL){
-        printf("\n\n");
+        printf("\n");
         muestra_lista(buscar->listaIngresoPrac);
+
         system("pause");
       }
       else{
@@ -769,7 +771,7 @@ int validar_nombre(const char Letras[]) {
         if (isspace(Letras[i])) {
             espacioConteo++; // Incrementar el contador de espacios
             if (espacioConteo > 2) {
-                flag = 1; // M√°s de dos espacios consecutivos, establecer la bandera en 1
+                flag = 1; // M·s de dos espacios consecutivos, establecer la bandera en 1
                 break;     // Salir del bucle
             }
         } else {
@@ -777,7 +779,7 @@ int validar_nombre(const char Letras[]) {
         }
 
         if (!isalpha(Letras[i]) && !isspace(Letras[i])) {
-            flag = 1; // Se encontr√≥ un car√°cter que no es una letra ni espacio
+            flag = 1; // Se encontrÛ un car·cter que no es una letra ni espacio
             break;    // Salir del bucle
         }
     }
@@ -794,7 +796,7 @@ int validar_char(char Letras[]) {
 
     for (int i = 0; Letras[i] != '\0'; i++) {
         if (!isalpha(Letras[i])) {
-            flag = 1; /// Se encontr√≥ un car√°cter que no es una letra, establecer la bandera en 1
+            flag = 1; /// Se encontrÛ un car·cter que no es una letra, establecer la bandera en 1
             break;    /// Salir del bucle
         }
     }
@@ -842,9 +844,7 @@ void mostrar_paciente_porapellido(arbolPaciente *arbol){
     ordenar_seleccion(a,validos);   ///se ordena el arreglo
 
        system("cls");
-        setConsoleColor(15,5);
-   gotoxy(1,1);
- printf("    DNI          APELLIDO Y NOMBRE        EDAD     TELEFONO       DIRECCION           ELIMINADO      ");
+ printf(" \n      DNI       APELLIDO Y NOMBRE           EDAD     TELEFONO       DIRECCION       ELIMINADO ");
   for(int i = 0 ; i < validos; i++){
 
        mostrar_pacientes(a[i],i+2);  /// se muestra ordenado el arreglo
@@ -923,8 +923,6 @@ void mostrar_paciente(stPaciente a){
     printf(" \t Eliminado:         %s \n", (a.eliminado == 0) ? "No" : "Si");
 
 }
-
-
 void mostrar_pacientes_arbol(arbolPaciente *arbol)
 {
 
@@ -1050,6 +1048,53 @@ arbolPaciente *menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol)
                 system("pause");
                 break;
 
+
+
+       case ESC:
+
+                break;
+       default:
+                printf("Opcion invalida. Por favor, seleccione una opcion valida.\n");
+                system("pause");
+                break;
+
+    }
+  } while( opc != ESC);
+
+   return arbol;
+}
+arbolPaciente *menu_pacientes_labo(char nombre_pacientes[],arbolPaciente *arbol)
+{   char opc;
+    do{
+  system("cls");
+  consola_pacientes_labo();
+  printf("\n");
+  fflush(stdin);
+  opc = getch();
+  switch(opc)
+  {
+       case 49:    system("cls");
+                consola_vacia();
+                gotoxy(0,7);
+                consulta_paciente(arbol);
+                break;
+       case 50:
+                  system("cls");
+                 listado_ingresos_dePaciente(arbol);
+
+                break;
+       case 51:
+               system("cls");
+                consulta_ingreso_particular(arbol);
+
+                break;
+       case 52:
+                  system("cls");
+                 mostrar_paciente_porapellido(arbol);
+                 printf("\n");
+                system("pause");
+
+          break;
 
 
        case ESC:

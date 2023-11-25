@@ -1,6 +1,7 @@
 #ifndef PACIENTES_H_INCLUDED
 #define PACIENTES_H_INCLUDED
-#include "ingreso_laboratorio_nuevo.h"
+
+#include "ingreso_de_laboratorio.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -37,10 +38,13 @@ typedef struct arbolPaciente {
 
 
 ///PROTOTIPADO
-arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol);
+arbolPaciente* cargar_arbol_pacientes(char nombre_paciente[],arbolPaciente *arbol); /// CARGA EL ARBOL AL INICIO DEL PROGRAMA
 int validar(char numero[]);
 int validar_nombre(const char nombre[]);
 int validar_char(char Letras[]);
+
+struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato); /// BUSCA EL INGRESO EN EL ARBOL Y DEVUELVE EL NODO
+
 arbolPaciente* inic_arbol();
 arbolPaciente* crear_nodo_arbol(stPaciente dato);
 arbolPaciente *agregar_paciente(arbolPaciente *lista,arbolPaciente *nuevo);
@@ -64,16 +68,16 @@ int contar_nodos(arbolPaciente *arbol);
 void consulta_paciente(arbolPaciente *arbol);
 void listado_ingresos_dePaciente(arbolPaciente *arbol);
 
-
-arbolPaciente* cargar_arbol_ingresos(arbolPaciente *arbol);
+arbolPaciente* cargar_arbol_ingresos(arbolPaciente *arbol);  /// CARGA LOS INGRESOS Y PRACTICAS AL INICIO DEL PROGRAMA
 void consulta_ingreso_particular(arbolPaciente *arbol);
 arbolPaciente* menu_pacientes(char nombre_pacientes[],arbolPaciente *arbol);
+arbolPaciente *menu_pacientes_labo(char nombre_pacientes[],arbolPaciente *arbol);
 void mostrar_ingresos();
 int validar_edad(char numero[]);
 
 
 
-struct nodoLab *buscar_ingreso_porNumero(arbolPaciente *arbol,int dato);
 
 //void mostrar_ingreso (ingresosLaboratorio a, int i);
+
 #endif // PACIENTES_H_INCLUDED

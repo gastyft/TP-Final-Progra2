@@ -1,7 +1,6 @@
 #include "practica_de_laboratorio.h"
 
-
-practicas practica_nula()
+practicas practica_nula() ///Funcion devuelve practica nula
 {
     practicas nula;
     nula.nroPractica = 0; // O cualquier valor que no sea válido para nroPractica
@@ -11,31 +10,7 @@ practicas practica_nula()
 }
 
 
-
-///practicas se abre el archivo y se guardan en arreglos
-///practicas por ingreso en lista simple
-
-///VALIDAR QUE LOS STRINGS NO SEAN MAS LARGOS DE LO PERMITIDO, QUE DE UN MENSAJE DE ALERTA.
-/*if (strlen(palabra) > 100) {
-       printf("¡Error! El nombre ingresado es demasiado largo.\n");
-       return; // Sale de la función si el nombre es demasiado largo
-   }*/
-///HACER VALIDACIONES REGEX QUE NO ACEPTE CARACTERES EN FUNCIONES DE NUMEROS
-
-
-
-
-
-///practicas se abre el archivo y se guardan en arreglos
-///practicas por ingreso en lista simple
-
-///VALIDAR QUE LOS STRINGS NO SEAN MAS LARGOS DE LO PERMITIDO, QUE DE UN MENSAJE DE ALERTA.
-/*if (strlen(palabra) > 100) {
-       printf("¡Error! El nombre ingresado es demasiado largo.\n");
-       return; // Sale de la función si el nombre es demasiado largo
-   }*/
-///HACER VALIDACIONES REGEX QUE NO ACEPTE CARACTERES EN FUNCIONES DE NUMEROS
-void muestra_individual_practica (practicas a)
+void muestra_individual_practica (practicas a)   ///Muestra individual de una practica
 {
     printf("\n NUMERO DE PRACTICA: %d\n",a.nroPractica);
     printf("\n NOMBRE DE PRACTICA %s\n",a.nombrePractica);
@@ -47,7 +22,30 @@ void muestra_individual_practica (practicas a)
 
 }
 
-practicas cargar_practica_individual ()
+
+void muestra_individual_archivo (practicas a,int i)  ///Muestra individual que recibe una practica y contador para mostrar en tabla
+{
+    gotoxy(6,i);
+    printf("%i",a.nroPractica);
+    gotoxy(11,i);
+    printf("%s",a.nombrePractica);
+    gotoxy(35,i);
+    if (a.eliminado == 0)
+    {
+        setConsoleColor(15,10); // Verde
+        printf("  %-3s", "No");
+    }
+    else
+    {
+
+        setConsoleColor(15,4);// Rojo
+        printf("  %-3s", "Si");
+    }
+    setConsoleColor(11,0);
+
+}
+
+practicas cargar_practica_individual ()  ///Carga una practica
 {
     practicas practica;
     int validacion;
@@ -58,12 +56,12 @@ practicas cargar_practica_individual ()
     validacion=validacion_nombre_practica(practica);
     practica.nroPractica=cantidad_de_ingresos();
     if (validacion==0)
-    printf("\n NUMERO DE PRACTICA: %d \n",practica.nroPractica);
+        printf("\n NUMERO DE PRACTICA: %d \n",practica.nroPractica);
     practica.eliminado=0;
     return practica;
 }
 
-void cargar_archivo ()
+void cargar_archivo ()    ///Carga el archivo con practica nueva
 {
     FILE * archi = fopen(nombrePracticas, "ab");
     char opcion=0;
@@ -82,9 +80,9 @@ void cargar_archivo ()
                 fseek(archi,0,SEEK_END);
             }
             else
-                {
-                    printf("\nIngrese otro nombre, ese ya existe\n");
-                }
+            {
+                printf("\nIngrese otro nombre, ese ya existe\n");
+            }
 
             printf("PRESS ANY KEY TO CONTINUE OR ESC TO EXIT \n ");
             fflush(stdin);
@@ -96,17 +94,22 @@ void cargar_archivo ()
     fclose(archi);
 }
 
-void mostrarArchivo ()
+void mostrarArchivo_todos()   ///Muestro de todas practicas activas e inactivas
 {
+    system("cls");
     FILE * archi = fopen(nombrePracticas, "rb");
     practicas a;
+    int i = 2;
 
     if (archi)
     {
+        printf("\n   Numero  Nombre Practica       Eliminado ");
         while (fread(&a,sizeof(practicas),1,archi)>0)
         {
-            if(a.eliminado==0)
-               muestra_individual_practica(a);
+
+            muestra_individual_archivo(a,i);
+            i++;
+
         }
         fclose(archi);
     }
@@ -114,8 +117,57 @@ void mostrarArchivo ()
         printf("ERROR EN EL ARCHIVO PRACTICAS EN FUNCTION MOSTRAR PRACTICAS DESDE ARCHIVO \n");
 
 }
+void mostrarArchivo()   ///contenedora de mostrar individual archivo activas
+{
+    system("cls");
+    FILE * archi = fopen(nombrePracticas, "rb");
+    practicas a;
+    int i = 2;
 
-int pasar_archivo_practicas_a_arreglo(practicas * arreglo_practicas, int *dimension)
+    if (archi)
+    {
+        printf("\n   Numero  Nombre Practica       Eliminado ");
+        while (fread(&a,sizeof(practicas),1,archi)>0)
+        {
+            if(a.eliminado==0)
+            {
+
+                muestra_individual_archivo(a,i);
+                i++;
+            }
+        }
+        fclose(archi);
+    }
+    else
+        printf("ERROR EN EL ARCHIVO PRACTICAS EN FUNCTION MOSTRAR PRACTICAS DESDE ARCHIVO \n");
+
+}
+void mostrarArchivoInactivas()  ///Muestra solo inactivas
+{
+    system("cls");
+    FILE * archi = fopen(nombrePracticas, "rb");
+    practicas a;
+    int i = 2;
+
+    if (archi)
+    {
+        printf("\n   Numero  Nombre Practica       Eliminado ");
+        while (fread(&a,sizeof(practicas),1,archi)>0)
+        {
+            if(a.eliminado==1)
+            {
+
+                muestra_individual_archivo(a,i);
+                i++;
+            }
+        }
+        fclose(archi);
+    }
+    else
+        printf("ERROR EN EL ARCHIVO PRACTICAS EN FUNCTION MOSTRAR PRACTICAS DESDE ARCHIVO \n");
+
+}
+int pasar_archivo_practicas_a_arreglo(practicas * arreglo_practicas, int *dimension)  ///pasa practicas a un arreglo
 {
     FILE *archi = fopen(nombrePracticas, "rb");
     practicas a;
@@ -150,7 +202,7 @@ int pasar_archivo_practicas_a_arreglo(practicas * arreglo_practicas, int *dimens
     return i;
 }
 
-void mostrar_arreglo(practicas* arreglo_practicas, int validos)
+void mostrar_arreglo(practicas* arreglo_practicas, int validos)   ///muestro del arreglo
 {
     int i=0;
 
@@ -163,16 +215,13 @@ void mostrar_arreglo(practicas* arreglo_practicas, int validos)
 
 }
 
-///hacer funcion para ver si la practica esta en algun ingreso, si esta en algun ingreso la baja no puede pasar. (practicas por ingreso)
-///trae la practica entera, hay que verificar que el numero y el nombre de la practica coincidan en la misma practica - YA LO SOLUCIONE SOLO TRAYENDO EL NUMERO DE PRACTICA
 
-
-void dar_baja_practica(int nro_de_practica_a_validar)
+void dar_baja_practica(int nro_de_practica_a_validar) /// da de baja practica validando que no este en uso sino no se puede dar de baja
 {
     FILE *archi=fopen(nombrePracticas,"r+b");
-    char respuesta ='s';
 
     practicas practica;
+    char o=0;
 
     if(archi)
     {
@@ -180,39 +229,55 @@ void dar_baja_practica(int nro_de_practica_a_validar)
         {
             if(practica.nroPractica==nro_de_practica_a_validar)
             {
-                if(practica.eliminado==0)
+
+                if(validacion_practica_uso(practica)== 0 )
                 {
-                    printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de baja? 's' si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
-                    scanf("%c",&respuesta);
-
-                    if (respuesta=='s')
+                    if(practica.eliminado==0)
                     {
-                        practica.eliminado=1;
+                        printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de baja? Presione ENTER si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
+                        fflush(stdin);
+                        o=getch();
 
-                        fseek(archi,-(long)sizeof(practicas),SEEK_CUR);
-                        fwrite(&practica,sizeof(practicas),1,archi);
-                        return;
+                        if (o==13)
+                        {
+                            practica.eliminado=1;
+
+                            fseek(archi,-1*sizeof(practicas),SEEK_CUR);
+                            fwrite(&practica,sizeof(practicas),1,archi);
+                            fclose(archi);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        printf("\nEsa practica ya esta dada de baja.\n");
+                        fclose(archi);
+                        system("pause");
                     }
                 }
                 else
-                    printf("\nEsa practica ya esta dada de baja.\n");
+                {
 
+                    system("cls");
+                    printf("La practica no se puede dar de baja porque se encuentra en uso \n");
+                    system("pause");
+                }
             }
         }
+
     }
     else
         printf("ERROR AL ABRIR ARCHIVO EMPLEADOS EN DAR BAJA PRACTICA\n");
 
-    fclose(archi);
 
 }
 
-void dar_alta_practica(int nro_de_practica_a_validar)
+void dar_alta_practica(int nro_de_practica_a_validar)  ///da de alta una practica
 {
     FILE *archi=fopen(nombrePracticas,"r+b");
 
     practicas practica;
-    char respuesta='s';
+    char o=0;
 
     if(archi)
     {
@@ -222,33 +287,37 @@ void dar_alta_practica(int nro_de_practica_a_validar)
             {
                 if(practica.eliminado==1)
                 {
-                    printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de alta? 's' si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
-                    scanf("%c",&respuesta);
+                    printf("\nIngreso el numero: %d ----> que corresponde a la practica: %s. Esta de acuerdo con darla de alta? ENTER si lo esta. cualquier otra tecla si no. \n",practica.nroPractica,practica.nombrePractica);
+                    fflush(stdin);
+                    o=getch();
 
-                    if (respuesta=='s')
+                    if (o==13)
                     {
                         practica.eliminado=0;
 
-                        fseek(archi,-(long)sizeof(practicas),SEEK_CUR);
+                        fseek(archi,-1*sizeof(practicas),SEEK_CUR);
                         fwrite(&practica,sizeof(practicas),1,archi);
+                        fclose(archi);
                         return;
                     }
                 }
                 else
+                {
                     printf("\nEsa practica ya esta dada de alta.\n");
-
+                    fclose(archi);
+                }
             }
         }
+
+
     }
     else
         printf("ERROR AL ABRIR ARCHIVO EMPLEADOS EN DAR BAJA PRACTICA\n");
 
-    fclose(archi);
-
 }
 
 void buscar_practica_por_nombre (char practica_a_buscar[], practicas * arreglo_de_practicas,int validos,int indices [], int * cant_resultados)
-{
+{                            ///busqueda por coincidencias
     int i=0;
     char busqueda[strlen(practica_a_buscar)];
     strcpy(busqueda,practica_a_buscar);
@@ -271,20 +340,20 @@ void buscar_practica_por_nombre (char practica_a_buscar[], practicas * arreglo_d
             aux[j]=tolower(aux[j]);
         }
         if (strncmp(aux,busqueda,strlen(busqueda))==0)
+
         {
-            printf("\nPRACTICA: %s ",aux);
-            muestra_individual_practica(arreglo_de_practicas[i]);
+            ///  muestra_individual_practica(arreglo_de_practicas[i]);
             indices[(*cant_resultados)++]=i;
         }
         i++;
     }
 }
 
-void buscar_practica_por_numero (int numero_practica_a_buscar, practicas * arreglo_de_practicas,int validos)
+void buscar_practica_por_numero (int numero_practica_a_buscar, practicas * arreglo_de_practicas,int validos) ///Busqueda por numero de practica
 {
     int i=0;
 
-    printf("\n BUSQUEDA:   %i",numero_practica_a_buscar);
+    printf("\n BUSQUEDA:   %i \n",numero_practica_a_buscar);
 
     while (i<validos)
     {
@@ -310,45 +379,74 @@ void buscar_practica_por_numero (int numero_practica_a_buscar, practicas * arreg
 ///MODIFICACION DE PRACTICA - SOLO SU NOMBRE
 
 
-void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practicas, int validos)
+void modificar_nombre_practica(char nombre_buscar[], practicas * arreglo_practicas, int validos, char opcion) ///funcion de modificar y contenedora de buscar por coincidencias
 {
     int indices[validos];
     int cant_resultados = 0;
     char nuevo_nombre[100];
+    int i=0;
 
-    buscar_practica_por_nombre(nombre_buscar, arreglo_practicas, validos, indices, &cant_resultados);
+    if (opcion=='4')///modificar
+    {
+        buscar_practica_por_nombre(nombre_buscar, arreglo_practicas, validos, indices, &cant_resultados);
 
-    if (cant_resultados == 0)
-    {
-        printf("\nLa practica no se encontro.\n");
-    }
-    else if (cant_resultados == 1)
-    {
-        modificar_nombre_practica_archivo(nuevo_nombre,arreglo_practicas,indices[0]);
-    }
-    else
-    {
-        printf("Se encontraron multiples practicas. Por favor, seleccione una.\n");
-        for (int i = 0; i < cant_resultados; i++)
+        if (cant_resultados == 0)
         {
-            printf("%d. ", i + 1);
-            muestra_individual_practica(arreglo_practicas[indices[i]]);
+            printf("\nLa practica no se encontro.\n");
+            system("pause");
         }
-        int seleccion;
-        printf("Seleccione el numero correspondiente a la practica que desea modificar: ");
-        scanf("%d", &seleccion);
-        if (seleccion > 0 && seleccion <= cant_resultados)
+        else if (cant_resultados == 1)
         {
-            modificar_nombre_practica_archivo(nuevo_nombre,arreglo_practicas, indices[seleccion-1]);
+            modificar_nombre_practica_archivo(nuevo_nombre,arreglo_practicas,indices[0]);
         }
         else
         {
-            printf("Selección invalida.\n");
+
+            printf("Se encontraron multiples practicas. Por favor, seleccione una.\n");
+            for (int i = 0; i < cant_resultados; i++)
+            {
+                printf("%d. ", i + 1);
+                muestra_individual_practica(arreglo_practicas[indices[i]]);
+            }
+            int seleccion;
+            printf("Seleccione el numero correspondiente a la practica que desea modificar: ");
+            scanf("%d", &seleccion);
+            if (seleccion > 0 && seleccion <= cant_resultados)
+            {
+                modificar_nombre_practica_archivo(nuevo_nombre,arreglo_practicas, indices[seleccion-1]);
+            }
+            else
+            {
+
+                printf("Selección invalida.\n");
+                system("pause");
+            }
         }
+    }
+    if (opcion == '5')///buscar
+
+    {
+        buscar_practica_por_nombre(nombre_buscar, arreglo_practicas, validos, indices, &cant_resultados);
+        if (cant_resultados == 0)
+        {
+            printf("\nLa practica no se encontro.\n");
+        }
+        if (cant_resultados==1)
+            muestra_individual_practica(arreglo_practicas[indices[i]]);
+        if (cant_resultados>1)
+        {
+            for (int i = 0; i < cant_resultados; i++)
+            {
+                printf("%d. ", i + 1);
+                muestra_individual_practica(arreglo_practicas[indices[i]]);
+            }
+        }
+        system("pause");
     }
 }
 
-void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo_practicas, int i)
+
+void modificar_nombre_practica_archivo (char nuevo_nombre[], practicas * arreglo_practicas, int i)  ///modifica practica al archivo
 {
     FILE * archi = fopen(nombrePracticas,"r+b");
     if (archi)
@@ -419,12 +517,6 @@ int validacion_nombre_practica(practicas practica_a_validar) ///no se repita
 
 
 
-
-
-
-
-
-
 ///VALIDAR PRACTICAS
 practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica) /// DEVUELVE NULL SI NO EXISTE SINO LA ESTRUCTURA
 {
@@ -437,17 +529,159 @@ practicas validar_nro_practica_exista(practicas *arr,int validos,int nroPractica
         {
             {
                 strcpy(prac.nombrePractica,arr[i].nombrePractica);
-                       prac.nroPractica=nroPractica;
-                        prac.eliminado=arr[i].eliminado;
+                prac.nroPractica=nroPractica;
+                prac.eliminado=arr[i].eliminado;
             }
         }
-            i++;
+        i++;
     }
 
     return prac;
+
+
+}
+   ///Valida si la practica se encuentra en uso por alguna practica por ingreso desde el archivo
+int validacion_practica_uso( practicas a)
+{
+    FILE *archi = fopen("practicas.bin","r+b");
+   pracXingreso prac;
+    int encontrado=0;
+    if(archi)
+    {
+
+        while(fread(&prac,sizeof(pracXingreso),1,archi)>0)
+        {
+
+            if(prac.nroPractica == a.nroPractica)
+            {
+                encontrado =1;
+
+            }
+        }
+
+
+
+    }
+    else
+        printf("ERROR EN EL ARCHIVO \n");
+
+ return encontrado;
 }
 
 
 
+
+
+void menu_practicas() ///Menu para Admin con funciones de practicas
+{
+
+
+    char o=0;
+    do
+    {
+        int nroPractica=0;
+        char nombrePractica[30];
+        char nombrePractica2[30];
+
+
+        int cantidad= 50;
+        practicas * arreglo_practicas = (practicas*)malloc(sizeof(practicas)*cantidad);
+        int validos=pasar_archivo_practicas_a_arreglo(arreglo_practicas,&cantidad);
+
+        system("cls");
+        consola_vacia();
+        gotoxy(2,7);
+        printf("1- Cargar una practica nueva ");
+        gotoxy(2,8);
+        printf("2- Dar de baja una practica");
+        gotoxy(2,9);
+        printf("3- Dar de alta una practica");
+        gotoxy(2,10);
+        printf("4- Modificar nombre de practica ");
+        gotoxy(2,11);
+        printf("5- Buscar practica por nombre");
+        gotoxy(2,12);
+        printf("6- Buscar practica por numero ");
+        gotoxy(2,13);
+        printf("7- Mostrar practicas activas ");
+        gotoxy(2,14);
+        printf("8- Mostrar practicas inactivas ");
+        gotoxy(2,15);
+
+        fflush(stdin);
+        o=getch();
+        switch(o)
+        {
+
+        case '1':
+            system("cls");
+            cargar_archivo();
+            break;
+
+        case '2':
+            system("cls");
+            mostrarArchivo_todos();
+            printf("\n");
+            printf("Ingrese numero de practica a dar de baja");
+            scanf("%d",&nroPractica);
+            dar_baja_practica(nroPractica);
+            break;
+        case '3':
+            system("cls");
+            mostrarArchivo_todos();
+            printf("\n");
+            printf("Ingrese numero de practica a dar de alta");
+            scanf("%d",&nroPractica);
+            dar_alta_practica(nroPractica);
+            break;
+        case '4':
+            system("cls");
+            mostrarArchivo_todos();
+            printf("\n");
+            printf("Ingrese nombre de la practica a modificar \n");
+            fflush(stdin);
+            gets(nombrePractica);
+            modificar_nombre_practica(nombrePractica,arreglo_practicas,validos,o);
+            break;
+        case '5':
+            system("cls");
+            printf("Ingrese practica a buscar por nombre");
+            fflush(stdin);
+            gets(nombrePractica2);
+            modificar_nombre_practica(nombrePractica2,arreglo_practicas,validos,o);
+
+            break;
+        case '6':
+            system("cls");
+            printf("Ingrese practica a buscar por numero");
+            scanf("%d",&nroPractica);
+            buscar_practica_por_numero(nroPractica,arreglo_practicas,validos);
+            system("pause");
+            break;
+        case '7':
+            system("cls");
+            mostrarArchivo();
+            printf("\n");
+            system("pause");
+            break;
+        case '8':
+            system("cls");
+            mostrarArchivoInactivas();
+            printf("\n");
+            system("pause");
+            break;
+        case 27:
+            break;
+        default:
+            system("cls");
+            printf("Selecciono opcion invalida. Presione cualquier tecla para continuar");
+            fflush(stdin);
+            o=getch();
+            break;
+        }
+
+    }
+    while(o!=27);
+}
 
 
