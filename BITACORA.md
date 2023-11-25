@@ -36,7 +36,22 @@ También, me saqué a duda que había anotado acerca de las fechas de ingreso y 
 Trabaje con el archivo de las prácticas y tuvo inconvenientes para pasar los datos del mismo a un arreglo dinámico que pudo solucionar con ayuda del docente. 
 
 **1/11/2023**
-Sofia sigue trabajando en el archivo de prácticas. Búsqueda de prácticas, baja, altas. 
+Sigo trabajando en el archivo de prácticas. Búsqueda de prácticas, bajas y altas. 
+
+**2/11/2023**
+Hoy trabaje con búsqueda de una práctica por nombre y modificación del nombre cuando la práctica es encontrada. 
+
+**3/11/2023**
+Inicialmente había entendido que el número de la práctica debía ser ingresado manualmente por lo que cree un arreglo en el que se chequeara y no se permitiera que el número de practica ya ingresado no exista pero luego cambiamos el abordaje y decidimos que el número de práctica será creado automáticamente de manera autoincremental.
+
+**4/11/2023**
+Trabajé con el número autoincremental de la práctica y la validación de que no exista el mismo número o nombre. Gastón Ftacla asistió. 
+
+**18/11/2023**
+En estos días hubo modificaciones, validaciones en el código. 
+
+
+
 
 
 
@@ -47,6 +62,9 @@ El desarrollador encargado del login enfrentó un desafío al tratar de asegurar
 Para abordar esta preocupación, se recurrió a StackOverflow para encontrar una implementación que ocultara la entrada de la contraseña en el teclado. A pesar de encontrar una solución, 
 requería modificaciones significativas para adaptarse al proyecto específico. Entre los ajustes necesarios, se añadieron requisitos de seguridad, 
 como la inclusión obligatoria de una mayúscula y un carácter especial en las contraseñas para fortalecer la seguridad del producto.
+
+**17/11/23**
+Desarrollamos la parte de ingresos X laboratorio la parte de fechas de ingresos, retiros, sus validaciones y además la incorporación de la lista al arbolito. Donde surgió un inconveniente con el tema de las llamadas de las librerías que lo solucionamos agregando la palabra struct delante de la función. 
 
 
 ## Mauricio Martínez
