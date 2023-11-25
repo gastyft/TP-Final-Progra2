@@ -5,28 +5,22 @@
 ## Tiziano Couñago
 
 **28/10/2023**
-
      Hoy comenzamos a trabajar en el proyecto y ya habíamos asignado las tareas en clase. Dividimos el proyecto por estructuras y a mí me tocó encargarme de los ingresos del laboratorio. Surgieron algunas dudas sobre las fechas de ingreso y retiro, que anoté para revisar y consultar en clase. 
      En la clase en la que se explicó el proyecto final, no pude asistir, lo que dificultó mi comprensión al principio. Por eso, empecé a trabajar en funciones específicas y luego fui viendo cómo crear otras funciones que las incluyeran. Además, no habíamos podido acordar ciertos detalles para que el proyecto fuera lo más uniforme posible, como los nombres de algunas variables o archivos que debían utilizar todos.
 
 **03/11/2023**
-
       Terminé las funciones relacionadas con el archivo de ingresos al laboratorio y realicé muchas de las validaciones necesarias, como por ejemplo, que la matrícula del profesional no pueda ser un número negativo, la de la asignación del número de ingreso y la de las fechas de ingreso y retiro las cuales ya había sacado mi duda el dia martes de esta misma semana. 
 
 **05/11/2023**
-     
      Realice los menús para ir visualizando mejor en donde tenía que llamar a cada función.
 
 **06/11/2023**
-      
       Como ya había terminado el tema de agregar y modificar las cosas en el archivo, ahora lo tenía que hacer desde el puntero del árbol que tenía el puntero de mis ingresos. Así que tuve que revisar todas las funciones en las que daba de alta, baja y modifica.
 
 **13/11/2023**
-
      Modifique mucho de los parámetros que le pasaba a las funciones y también el tipo de  dato que tenía que devolver.
 
 **17/11/2023**
-
      En conjunto empezamos a meter mis funciones en el proyecto que ya tenia las funciones de Gaston y Mauricio.
 
 **31/10/2023**
